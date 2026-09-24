@@ -37,7 +37,15 @@
           <span class="dot"></span>
           <span id="setup-label">Indlæser ...</span>
         </div>
+        <div class="action" id="action" hidden>
+          <div class="action-title" id="action-title"></div>
+          <div class="action-text" id="action-text"></div>
+          <div class="action-rr" id="action-rr"></div>
+        </div>
         <dl class="levels" id="setup-levels"></dl>
+        <div class="setup-buttons">
+          <button type="button" class="btn" id="tips-btn">Tips til køb og salg</button>
+        </div>
         <h3 class="sub-h">Hvorfor?</h3>
         <ul class="crit" id="setup-criteria"></ul>
         <p class="muted small" id="setup-event"></p>
@@ -58,6 +66,21 @@
         <ul class="signals" id="signals"></ul>
         <p class="muted small">Klik på et signal for at se reglen bag farven.</p>
       </article>
+    </section>
+
+    <section class="card" id="pos-card">
+      <div class="card-head">
+        <h2>Min position</h2>
+        <span class="muted small">Gemmes kun i din browser</span>
+      </div>
+      <form class="pos-form" id="pos-form">
+        <label>Købsdato <input type="date" id="pos-date" required></label>
+        <label>Købskurs ($) <input type="number" id="pos-price" step="0.01" min="0" required></label>
+        <label>Antal <input type="number" id="pos-qty" step="1" min="0"></label>
+        <button type="submit" class="btn">Gem</button>
+        <button type="button" class="btn btn-ghost" id="pos-clear">Slet</button>
+      </form>
+      <div id="pos-result" class="pos-result"></div>
     </section>
 
     <section class="card" id="hist-card">
@@ -203,6 +226,36 @@
       <p class="muted small" id="perf-note"></p>
     </section>
   </main>
+
+  <dialog class="tips" id="tips-dialog">
+    <div class="tips-head">
+      <h2>Tips til køb og salg</h2>
+      <button type="button" class="btn btn-ghost" id="tips-close" aria-label="Luk">Luk</button>
+    </div>
+    <p class="muted small">Generel information om modellens regler og almindelige faldgruber ved swing trading. Ikke personlig investeringsrådgivning.</p>
+    <h3>Ved køb</h3>
+    <ul>
+      <li><b>Køb lavt i entry-zonen.</b> Risk/reward er bedst i bunden af zonen og dårligst i toppen. Boksen øverst viser risk/reward ved den aktuelle kurs.</li>
+      <li><b>Bestem stop og størrelse før du køber.</b> En udbredt tommelfingerregel er at risikere højst 1-2% af kapitalen pr. handel. Antal aktier = beløb du vil risikere / (købskurs - stop).</li>
+      <li><b>Tjek events.</b> Earnings og deliveries kan flytte TSLA 10% på én dag. Et køb lige før er mest et væddemål på nyheden.</li>
+      <li><b>Jagt ikke kursen.</b> Stiger kursen mere end 1 ATR over zonen, er setup'et forbi efter reglerne.</li>
+      <li><b>Brug limit-ordrer.</b> Market-ordrer ved åbning eller efter nyheder kan give en dårlig pris.</li>
+    </ul>
+    <h3>Ved salg</h3>
+    <ul>
+      <li><b>Følg stoppet.</b> Flyt det ikke længere ned i håb om et comeback.</li>
+      <li><b>Lukkekurs eller intradag.</b> Siden bruger lukkekurs under stop som ugyldighed. En stop-ordre i banken udløses intradag. Den giver mindre risiko, men rammes oftere af støj.</li>
+      <li><b>Gaps.</b> Et stop beskytter ikke mod huller i kursen. Falder TSLA 8% over natten, sælges du til åbningskursen.</li>
+      <li><b>Tag gevinst i trin.</b> En almindelig metode er at sælge en del ved Target 1 og flytte stoppet op til købskursen for resten.</li>
+      <li><b>Tid.</b> Er Target 1 ikke nået inden for horisonten, passer forløbet ikke med mønsteret. Mange lukker så i stedet for at vente.</li>
+    </ul>
+    <h3>Generelt</h3>
+    <ul>
+      <li>Modellen er ny. Følg "Previous setups" i nogle måneder, før du lægger vægt på den.</li>
+      <li>Kurtage og valutaveksling spiser af små gevinster.</li>
+      <li>Gevinst og tab på aktier beskattes. Tjek reglerne hos Skattestyrelsen eller din bank.</li>
+    </ul>
+  </dialog>
 
   <footer class="wrap foot">
     <p id="source"></p>

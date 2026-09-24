@@ -222,6 +222,121 @@
     $('news-method').textContent = 'Kilder: ' + src + '. Seneste ' + n.days + ' dage. ' + n.method + ' ' + n.risk.rule;
   }
 
+
+  // ---------- Handlingsboks: hvad betyder status lige nu? ----------
+  function renderAction(d) {
+    const s = d.setup;
+    if (!s || !s.entryLow) return;
+    const p = d.quote.price, L = s.entryLow, H = s.entryHigh, S = s.stop, T1 = s.target1;
+    const rrAt = (x) => (x > S ? (T1 - x) / (x - S) : null);
+    const pGood = (T1 + 1.5 * S) / 2.5;           // Købskurs hvor risk/reward til T1 er 1,5
+    const notMet = s.criteria.filter((c) => !c.pass).map((c) => c.label.toLowerCase());
+    const hard = s.criteria.filter((c) => c.hardFail).map((c) => c.label.toLowerCase());
+    let cls, title, text;
+
+    if (p <= S) { cls = 'red'; title = 'Setup ugyldigt'; text = 'Kursen er under stop. Niveauerne beregnes igen efter lukketid.'; }
+    else if (s.status === 'green') {
+      if (p > H) { cls = 'yellow'; title = 'Over entry-zonen'; text = 'Alle krav er opfyldt, men kursen er over zonen. Efter reglerne købes der kun i zonen.'; }
+      else if (p < L) { cls = 'yellow'; title = 'Under entry-zonen'; text = 'Kursen er faldet under zonen. Niveauerne beregnes igen efter lukketid.'; }
+      else if (rrAt(p) >= 1.5) { cls = 'green'; title = 'Muligt køb efter reglerne'; text = 'Alle krav er opfyldt, og kursen ligger i entry-zonen med risk/reward på mindst 1,5.'; }
+      else { cls = 'yellow'; title = 'I zonen, men dyrt'; text = 'Alle krav er opfyldt, men risk/reward ved den aktuelle kurs er under 1,5. Under ' + usd(pGood) + ' er den mindst 1,5.'; }
+    } else if (s.status === 'yellow') {
+      cls = 'yellow'; title = 'Afvent. Ikke et køb endnu';
+      text = 'Ikke opfyldt: ' + notMet.join(', ') + '. Status skifter først når alle krav er opfyldt.';
+    } else {
+      cls = 'red'; title = 'Ikke et køb efter reglerne';
+      text = 'Langt fra kravet: ' + hard.join(', ') + '.' + (notMet.length > hard.length ? ' Heller ikke opfyldt: ' + notMet.filter((x) => !hard.includes(x)).join(', ') + '.' : '');
+    }
+
+    const box = $('action');
+    box.hidden = false;
+    box.className = 'action a-' + cls;
+    $('action-title').textContent = title;
+    $('action-text').textContent = text;
+    const f = (x) => (x == null ? '-' : nf1.format(x));
+    $('action-rr').textContent = 'Risk/reward til Target 1 ved ' + usd(p) + ': ' + f(rrAt(p)) +
+      '. I bunden af zonen (' + usd(L) + '): ' + f(rrAt(L)) + '. I toppen (' + usd(H) + '): ' + f(rrAt(H)) +
+      '. Regelbaseret vurdering, ikke rådgivning. Har du en position, så se "Min position".';
+  }
+
+  // ---------- Tips-popup ----------
+  function initTips() {
+    const dlg = $('tips-dialog');
+    $('tips-btn').addEventListener('click', () => { if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', ''); });
+    $('tips-close').addEventListener('click', () => dlg.close ? dlg.close() : dlg.removeAttribute('open'));
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });   // Klik udenfor lukker
+  }
+
+  // ---------- Min position (kun i browseren) ----------
+  const POS_KEY = 'tsla-position';
+  let setupLogCache = null;
+
+  async function initPosition(d, hist) {
+    let pos = null;
+    try { pos = JSON.parse(localStorage.getItem(POS_KEY) || 'null'); } catch (e) { pos = null; }
+    if (pos) { $('pos-date').value = pos.date; $('pos-price').value = pos.price; $('pos-qty').value = pos.qty || ''; }
+    const run = async () => { if (pos) await evalPosition(pos, d, hist); else $('pos-result').innerHTML = '<p class="muted small">Indtast købsdato og købskurs. Så vises stop og targets fra den dag du købte, og hvor du er i planen nu.</p>'; };
+    $('pos-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      pos = { date: $('pos-date').value, price: Number($('pos-price').value), qty: Number($('pos-qty').value) || 0 };
+      try { localStorage.setItem(POS_KEY, JSON.stringify(pos)); } catch (err) { /* ignorer */ }
+      await run();
+    });
+    $('pos-clear').addEventListener('click', async () => {
+      pos = null;
+      try { localStorage.removeItem(POS_KEY); } catch (err) { /* ignorer */ }
+      $('pos-form').reset();
+      await run();
+    });
+    await run();
+  }
+
+  async function evalPosition(pos, d, hist) {
+    const out = $('pos-result');
+    try {
+      if (!setupLogCache) setupLogCache = await getJson('data/setups-log.json');
+    } catch (e) { setupLogCache = { entries: [] }; }
+    const logE = setupLogCache.entries.filter((e) => e.date <= pos.date).pop();
+    const lv = logE || d.setup;
+    const src = logE ? 'setup fra ' + logE.date + (logE.date !== pos.date ? ' (seneste før købsdagen)' : '') + ', status dengang: ' + logE.label
+      : 'dagens setup, fordi der ikke er logget et setup for købsdagen';
+    const S = lv.stop, T1 = lv.target1, T2 = lv.target2;
+    const hHigh = logE && logE.horizon ? Number(String(logE.horizon).split('-')[1]) : (d.setup.horizon ? d.setup.horizon.high : 20);
+
+    const col = hist.columns, ix = Object.fromEntries(col.map((c, i) => [c, i]));
+    const after = hist.rows.filter((r) => r[0] > pos.date);
+    const last = hist.rows[hist.rows.length - 1];
+    const c = last[ix.close];
+    const maxH = after.length ? Math.max(...after.map((r) => r[ix.high])) : null;
+    const minL = after.length ? Math.min(...after.map((r) => r[ix.low])) : null;
+    const days = after.length;
+    const plPct = (c / pos.price - 1) * 100;
+    const risk = pos.price - S;
+    const r = risk > 0 ? (c - pos.price) / risk : null;
+
+    let cls, title, text;
+    if (c < S) { cls = 'red'; title = 'Stop brudt'; text = 'Lukkekursen ' + usd(c) + ' er under stop ' + usd(S) + '. Efter planen er du ude.'; }
+    else if (maxH != null && maxH >= T2) { cls = 'green'; title = 'Target 2 nået'; text = 'Kursen har været på ' + usd(maxH) + '. Planen er opfyldt.'; }
+    else if (maxH != null && maxH >= T1) { cls = 'green'; title = 'Target 1 nået'; text = 'Kursen har været på ' + usd(maxH) + '. En almindelig metode er at sælge en del og flytte stop op til købskursen ' + usd(pos.price) + '.'; }
+    else if (days > hHigh) { cls = 'yellow'; title = 'Horisonten er passeret'; text = days + ' handelsdage uden Target 1. Forventet horisont var højst ' + hHigh + ' dage. Forløbet passer ikke med mønsteret.'; }
+    else { cls = 'neutral'; title = 'Inden for planen'; text = 'Hverken stop eller Target 1 er ramt. ' + days + ' af højst ' + hHigh + ' handelsdage er gået.'; }
+    if (c >= S && minL != null && minL <= S) text += ' Bemærk: kursen har intradag været nede på ' + usd(minL) + ', under stop. En stop-ordre i banken ville have solgt dig.';
+    if (pos.price > S && logE && (pos.price < logE.entryLow || pos.price > logE.entryHigh)) text += ' Købskursen lå uden for den dags entry-zone (' + usd(logE.entryLow) + ' - ' + usd(logE.entryHigh) + ').';
+    if (pos.price <= S) { cls = 'yellow'; title = 'Købskurs under stop'; text = 'Købskursen er under stop fra planen, så stop og targets passer ikke til din handel.'; }
+
+    const pl = pos.qty ? ' (' + (c >= pos.price ? '+' : '-') + usd(Math.abs(pos.qty * (c - pos.price))) + ')' : '';
+    out.innerHTML =
+      '<div class="action a-' + (cls === 'neutral' ? 'none' : cls) + '"><div class="action-title">' + esc(title) + '</div><div class="action-text">' + esc(text) + '</div></div>' +
+      '<dl class="levels">' +
+      '<div><dt>Købskurs</dt><dd>' + usd(pos.price) + '</dd></div>' +
+      '<div><dt>Seneste lukkekurs</dt><dd>' + usd(c) + '<span class="pc">' + pct(plPct) + pl + '</span></dd></div>' +
+      '<div><dt>Resultat i R</dt><dd>' + (r == null ? '-' : nf2.format(r) + 'R') + '</dd></div>' +
+      '<div><dt>Stop</dt><dd>' + usd(S) + '</dd></div>' +
+      '<div><dt>Target 1</dt><dd>' + usd(T1) + '</dd></div>' +
+      '<div><dt>Target 2</dt><dd>' + usd(T2) + '</dd></div></dl>' +
+      '<p class="muted small">Niveauer fra ' + esc(src) + '. Planen følger niveauerne fra købsdagen, ikke dagens nye niveauer. Beregnet på lukkekurser og dagens high/low. Regelbaseret, ikke rådgivning.</p>';
+  }
+
   // ---------- Setup (fase 3) ----------
   function renderSetup(s) {
     const box = $('setup-status');
@@ -419,6 +534,7 @@
 
   async function main() {
     initTheme();
+    initTips();
     try {
       const [d, hist] = await Promise.all([getJson('data/tsla.json'), getJson('data/tsla-history.json')]);
       renderHeader(d);
@@ -426,12 +542,14 @@
       renderKeyFigures(d);
       renderHistorical(d.historical);
       renderSetup(d.setup);
+      renderAction(d);
       renderNews(d.news);
       renderEvents(d.events);
       renderPerformance(d.performance);
       showWarnings(d.dataWarnings);
       $('source').textContent = 'Datakilde: ' + d.source + '. Historik: ' + d.history.bars + ' handelsdage fra ' + d.history.firstDate + '.';
       renderCharts(hist, d.setup);
+      initPosition(d, hist);
     } catch (e) {
       const box = $('error');
       box.hidden = false;
