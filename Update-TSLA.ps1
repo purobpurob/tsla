@@ -123,6 +123,18 @@ try {
         Write-Log "Cache: $($cached.Count) bars"
     }
     $bars = Merge-BarCache -Cached $cached -Fresh $result.Bars
+
+    # Dagens bar bruges kun når børsen har lukket (16:00 New York-tid).
+    # Før åbning kan Yahoo levere en pladsholder-bar for i dag, og intradag er baren ufærdig.
+    # Analysen bygger derfor altid på afsluttede dagsbars. Aktuel kurs vises stadig live.
+    $ny = Get-NewYorkNow
+    $nyDate = $ny.ToString('yyyy-MM-dd')
+    $droppedBar = $null
+    if ($bars[-1].Date -ge $nyDate -and $ny.Hour -lt 16) {
+        $droppedBar = $bars[-1]
+        $bars = @($bars | Select-Object -First ($bars.Count - 1))
+        Write-Log "Dagens ufærdige bar ($($droppedBar.Date)) er udeladt af analysen"
+    }
     Write-JsonFile $cacheFile $bars -Compress
 
     $warnings = @(Test-Bars -Bars $bars)
@@ -154,12 +166,12 @@ try {
     }
 
     # Er seneste dagsbar afsluttet? (NYSE lukker 16:00 New York-tid)
-    $ny = Get-NewYorkNow
-    $nyDate = $ny.ToString('yyyy-MM-dd')
-    $barComplete = ($last.Date -lt $nyDate) -or ($ny.Hour -ge 16)
+    $barComplete = $true   # Ufærdige bars er fjernet ovenfor
 
     $price = if ($result.Quote.Price) { $result.Quote.Price } else { $last.Close }
-    $prevClose = $prev.Close   # Seneste bar er enten i dag (ufærdig) eller sidste handelsdag. Forrige bar er dagen før.
+    # Intradag: ændring måles fra seneste afsluttede lukkekurs. Efter lukning: fra dagen før.
+    $prevClose = if ($droppedBar) { $last.Close } else { $prev.Close }
+    if (-not $droppedBar) { $price = $last.Close }
     $change = $price - $prevClose
 
     # 5. Byg JSON
@@ -181,6 +193,7 @@ try {
         lastBar       = [ordered]@{
             date     = $last.Date
             complete = $barComplete
+            intradayExcluded = [bool]$droppedBar
             open = Rnd $last.Open; high = Rnd $last.High; low = Rnd $last.Low; close = Rnd $last.Close; volume = $last.Volume
         }
         trend         = $trend

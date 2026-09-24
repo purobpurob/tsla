@@ -34,8 +34,8 @@
 
     const gen = new Date(d.generatedAt);
     const bar = df.format(new Date(d.lastBar.date + 'T12:00:00'));
-    const state = d.lastBar.complete ? 'afsluttet' : 'intradag, ikke afsluttet';
-    $('updated').textContent = 'Opdateret ' + dtf.format(gen) + '. Seneste handelsdag ' + bar + ' (' + state + ').';
+    const note = d.lastBar.intradayExcluded ? ' Kursen øverst er live. Analysen bygger på lukkekursen.' : '';
+    $('updated').textContent = 'Opdateret ' + dtf.format(gen) + '. Analysen bygger på lukkekursen ' + bar + '.' + note;
 
     const ageH = (Date.now() - gen.getTime()) / 36e5;
     if (ageH > 72) showWarnings(['Data er mere end 3 døgn gamle. Tjek at opdateringsjobbet på serveren kører.']);
