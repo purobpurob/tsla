@@ -79,8 +79,17 @@ function Get-NewYorkNow {
 }
 
 function Invoke-Git([string[]]$GitArgs) {
-    $out = & git -C $Root @GitArgs 2>&1
-    if ($LASTEXITCODE -ne 0) { throw "git $($GitArgs -join ' ') fejlede: $out" }
+    # Git skriver statusbeskeder til stderr. Windows PowerShell 5.1 gør dem til fejl når
+    # ErrorActionPreference er 'Stop'. Derfor 'Continue' her og kun exit-koden afgør om det gik godt.
+    $old = $ErrorActionPreference
+    $ErrorActionPreference = 'Continue'
+    try {
+        $out = & git -C $Root @GitArgs 2>&1 | ForEach-Object { "$_" }
+        $code = $LASTEXITCODE
+    } finally {
+        $ErrorActionPreference = $old
+    }
+    if ($code -ne 0) { throw "git $($GitArgs -join ' ') fejlede (exit $code): $($out -join ' | ')" }
     return $out
 }
 
@@ -121,7 +130,7 @@ try {
     $rows = Add-Indicators -Bars $bars
     $last = $rows[-1]
     $prev = $rows[-2]
-    Write-Log ("Seneste bar {0}: close {1}" -f $last.Date, $last.Close)
+    Write-Log ("Seneste bar {0}: close {1}" -f $last.Date, (Rnd $last.Close))
 
     # 4. Signaler
     $signals = Get-TechnicalSignals -Rows $rows
