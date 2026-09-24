@@ -173,9 +173,34 @@
       <p class="muted small" id="events-method"></p>
     </section>
 
-    <section class="card placeholder">
+    <section class="card" id="perf-card">
       <h2>Previous setups</h2>
-      <p class="muted">Fase 6. Hvad sagde modellen dengang og hvad skete der bagefter.</p>
+      <p class="hist-sub" id="perf-sub">Indlæser ...</p>
+      <h3 class="sub-h">Resultat pr. status</h3>
+      <div class="table-wrap">
+        <table class="tbl" id="perf-groups">
+          <thead><tr><th>Status</th><th>Setups</th><th>Afsluttede</th><th>T1 først</th><th>Stop først</th><th>Gns. R</th><th>Positive 5d</th><th>Positive 10d</th><th>Gns. 20d</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <h3 class="sub-h">Passer forventningen?</h3>
+      <p class="muted small">Modellens forventede andel positive (fase 2) sammenlignet med hvad der faktisk skete.</p>
+      <div class="table-wrap">
+        <table class="tbl" id="perf-calib">
+          <thead><tr><th>Forventet positive</th><th>Setups 5d</th><th>Forventet 5d</th><th>Faktisk 5d</th><th>Setups 10d</th><th>Forventet 10d</th><th>Faktisk 10d</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <details class="more">
+        <summary>Seneste setups</summary>
+        <div class="table-wrap">
+          <table class="tbl" id="perf-recent">
+            <thead><tr><th>Dato</th><th>Kurs</th><th>Status</th><th>Stop / T1</th><th>Forventet 5d</th><th>2d</th><th>5d</th><th>10d</th><th>20d</th><th>Udfald</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </details>
+      <p class="muted small" id="perf-note"></p>
     </section>
   </main>
 

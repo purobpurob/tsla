@@ -199,3 +199,7 @@ main { padding-top: 20px; padding-bottom: 20px; display: grid; gap: 16px; }
 .ev-est { color: var(--yellow); }
 .ev-conf { color: var(--green); }
 .ev-soon td { font-weight: 600; }
+
+.st { font-weight: 700; }
+.st-green { color: var(--green); } .st-yellow { color: var(--yellow); } .st-red { color: var(--red); }
+.bf { color: var(--muted); font-size: 11px; margin-left: 4px; }

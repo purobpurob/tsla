@@ -105,6 +105,50 @@
 
 
 
+
+  // ---------- Previous setups (fase 6) ----------
+  const ST_LABEL = { green: 'INTERESSANT', yellow: 'AFVENT', red: 'UINTERESSANT' };
+  const RES_LABEL = { t1: 'Target 1', stop: 'Stop', none: 'Ingen (20d)', open: 'Åben' };
+
+  function renderPerformance(p) {
+    if (!p || p.status !== 'ok') {
+      $('perf-sub').textContent = p && p.reason ? 'Fejl: ' + p.reason : 'Ingen setups logget endnu.';
+      return;
+    }
+    const from = p.firstDate ? df.format(new Date(p.firstDate + 'T12:00:00')) : '-';
+    $('perf-sub').innerHTML = '<b>' + p.total + ' setups</b> siden ' + esc(from) + ' (' + p.live + ' live, ' + p.backfilled + ' beregnet bagud).';
+
+    const num = (v, f) => (v == null ? '-' : f(v));
+    const pp = (v) => num(v, (x) => nf0.format(x) + '%');
+    $('perf-groups').querySelector('tbody').innerHTML = ['green', 'yellow', 'red', 'all'].map((k) => {
+      const g = p.groups[k];
+      const name = k === 'all' ? 'Alle' : '<span class="st st-' + k + '">' + ST_LABEL[k] + '</span>';
+      return '<tr><td>' + name + '</td><td>' + g.n + '</td><td>' + g.closed + '</td><td>' + pp(g.t1Pct) + '</td><td>' + pp(g.stopPct) + '</td>' +
+        '<td class="' + pctCls(g.avgR) + '">' + num(g.avgR, (x) => nf2.format(x) + 'R') + '</td>' +
+        '<td>' + pp(g.d5 && g.d5.pctPositive) + '</td><td>' + pp(g.d10 && g.d10.pctPositive) + '</td>' +
+        (g.d20 ? pctCell(g.d20.mean) : '<td>-</td>') + '</tr>';
+    }).join('');
+
+    $('perf-calib').querySelector('tbody').innerHTML = p.calibration.d5.map((b, i) => {
+      const c = p.calibration.d10[i];
+      return '<tr><td>' + esc(b.bucket) + '</td><td>' + b.n + '</td><td>' + pp(b.predicted) + '</td><td>' + pp(b.actual) + '</td>' +
+        '<td>' + c.n + '</td><td>' + pp(c.predicted) + '</td><td>' + pp(c.actual) + '</td></tr>';
+    }).join('');
+
+    $('perf-recent').querySelector('tbody').innerHTML = p.recent.map((e) => {
+      const o = e.outcome || { returns: {}, result: 'open' };
+      const r = (v) => (v == null ? '<td class="muted">-</td>' : pctCell(v));
+      const exp5 = e.expected && e.expected.d5 ? nf0.format(e.expected.d5.matches) + '%' : '-';
+      const res = RES_LABEL[o.result] + (o.r != null ? ' (' + nf2.format(o.r) + 'R)' : '');
+      return '<tr><td>' + esc(e.date) + (e.backfill ? '<span class="bf" title="Beregnet bagud">*</span>' : '') + '</td><td>' + usd(e.close) + '</td>' +
+        '<td><span class="st st-' + e.status + '">' + esc(e.label) + '</span></td><td>' + usd(e.stop) + ' / ' + usd(e.target1) + '</td>' +
+        '<td>' + exp5 + '</td>' + r(o.returns.d2) + r(o.returns.d5) + r(o.returns.d10) + r(o.returns.d20) +
+        '<td class="' + (o.result === 't1' ? 'up' : o.result === 'stop' ? 'down' : '') + '">' + res + '</td></tr>';
+    }).join('');
+
+    $('perf-note').textContent = p.note + ' * = beregnet bagud. Udfald: entry på setup-dagens lukkekurs. Target 1 eller stop inden for 20 dage, ellers lukket på dag 20. R = resultat i forhold til risikoen.';
+  }
+
   // ---------- Events (fase 5) ----------
   function renderEvents(e) {
     if (!e || e.status !== 'ok') {
@@ -384,6 +428,7 @@
       renderSetup(d.setup);
       renderNews(d.news);
       renderEvents(d.events);
+      renderPerformance(d.performance);
       showWarnings(d.dataWarnings);
       $('source').textContent = 'Datakilde: ' + d.source + '. Historik: ' + d.history.bars + ' handelsdage fra ' + d.history.firstDate + '.';
       renderCharts(hist, d.setup);

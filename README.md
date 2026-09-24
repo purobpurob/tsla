@@ -3,7 +3,7 @@
 Analyse af swing trade setups i TSLA med en horisont på 2 dage til 3 uger.
 PowerShell på en lokal server er datamotoren. GitHub Pages viser resultatet.
 
-**Status: Fase 5** (kurser, indikatorer, signaler, graf, historiske setups, trade levels, status, nyheder og events).
+**Status: Fase 6** (alle faser: kurser, indikatorer, signaler, historiske setups, trade levels, status, nyheder, events og evaluering af modellen).
 
 Siden er et analyseværktøj og ikke investeringsrådgivning.
 
@@ -14,6 +14,7 @@ C:\Tools\TSLA
 ├── Update-TSLA.ps1            Hovedscript. Hent, beregn, skriv JSON, commit, push
 ├── Config.ps1                 Indstillinger. Ingen hemmeligheder her
 ├── Install-ScheduledTask.ps1  Opretter planlagt opgave på hverdage
+├── Backfill-Setups.ps1        Fase 6: beregner modellens setups bagud (køres én gang)
 ├── Engine
 │   ├── DataProvider.ps1       Yahoo, Tiingo og fil (test)
 │   ├── Indicators.ps1         EMA, SMA, RSI, MACD, ATR, volumen, high/low
@@ -21,11 +22,13 @@ C:\Tools\TSLA
 │   ├── HistoricalSetups.ps1   Fase 2: lignende historiske dage og deres udvikling
 │   ├── TradeLevels.ps1        Fase 3: entry, stop, targets og samlet status
 │   ├── News.ps1               Fase 4: nyheder fra SEC EDGAR og Nasdaq RSS
-│   └── Events.ps1             Fase 5: kommende events og event risk
+│   ├── Events.ps1             Fase 5: kommende events og event risk
+│   └── SetupLog.ps1           Fase 6: log og evaluering af setups
 ├── Events.json                Event-kalender (vedligeholdes manuelt)
 ├── data                       JSON til frontend (committes)
 │   ├── tsla.json              Aktuel status, indikatorer og signaler
-│   └── tsla-history.json      Ca. 3 års dagsdata til grafen
+│   ├── tsla-history.json      Ca. 3 års dagsdata til grafen
+│   └── setups-log.json        Alle loggede setups og deres udfald
 ├── Cache                      Fuld kurshistorik (ikke i Git)
 ├── Logs                       Kørselslog pr. dag (ikke i Git)
 ├── Tests
@@ -236,6 +239,25 @@ Event risk indgår som krav i setup-status: Høj event risk giver AFVENT, men al
 
 Siden bruger mørkt tema som standard. Knappen øverst skifter til lyst tema, og valget huskes i browseren.
 
-## Næste fase
+## Fase 6: Evaluering af modellen
 
-Fase 6: Log hver dags setup og mål bagefter hvad der faktisk skete efter 2, 5, 10 og 20 dage.
+Hver aften gemmes dagens setup i `data/setups-log.json`: status, niveauer og den historiske forventning. Ved hver kørsel evalueres alle tidligere setups:
+
+- Afkast efter 2, 5, 10 og 20 handelsdage.
+- Udfald med entry på setup-dagens lukkekurs: Target 1 før stop, stop først, eller ingen af dem på 20 dage (lukket på dag 20). Samme dag tæller som stop.
+- R = resultat i forhold til risikoen (lukkekurs - stop).
+
+Siden viser resultat pr. status og om forventningen passer: når modellen forventede fx over 55% positive, hvor mange blev det så faktisk?
+
+**Bagud-beregning:** For at få historik med det samme kan modellen køres bagud:
+
+```powershell
+.\Backfill-Setups.ps1 -Days 250
+.\Update-TSLA.ps1
+```
+
+For hver dag bruges kun de kurser der fandtes den dag. Det er testet ved at køre det almindelige script på data der er skåret af på en given dag: resultatet er identisk. Nyheder og events kan ikke genskabes bagud og indgår ikke. Bagud-beregnede setups er markeret med *. Live-setups bliver aldrig overskrevet.
+
+Kørslen tager nogle minutter (ca. 75 sek. for 250 dage i PowerShell 7, længere i 5.1).
+
+**Forbehold:** Setups fra dag til dag overlapper og ligner hinanden. 250 dage er derfor ikke 250 uafhængige forsøg. Brug tallene til at se tendenser, ikke som bevis.
