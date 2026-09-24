@@ -44,6 +44,7 @@ $Root = $PSScriptRoot
 . (Join-Path (Join-Path $Root 'Engine') 'News.ps1')
 . (Join-Path (Join-Path $Root 'Engine') 'Events.ps1')
 . (Join-Path (Join-Path $Root 'Engine') 'SetupLog.ps1')
+. (Join-Path (Join-Path $Root 'Engine') 'Narrative.ps1')
 
 $DataDir  = Join-Path $Root $Config.DataDir
 $CacheDir = Join-Path $Root $Config.CacheDir
@@ -178,6 +179,10 @@ try {
         Write-Log ("Setup: {0}. Entry {1}-{2}, stop {3}, T1 {4}, T2 {5}, R/R {6}" -f $setup.label, $setup.entryLow, $setup.entryHigh, $setup.stop, $setup.target1, $setup.target2, $setup.riskReward1)
     }
 
+    # Dynamisk forklaring i klart sprog
+    try { $narrative = Get-Narrative -Rows $rows -Signals $signals -Trend $trend -Setup $setup -Events $events }
+    catch { Write-Log "Forklaring fejlede: $($_.Exception.Message)" 'WARN'; $narrative = $null }
+
     # Fase 6: log dagens setup og evaluer tidligere setups
     $perf = [ordered]@{ status = 'na' }
     if ($setup.status -ne 'na') {
@@ -261,6 +266,7 @@ try {
         historical    = $hist
         news          = $news
         events        = $events
+        narrative     = $narrative
         performance   = $perf
         dataWarnings  = $warnings
         history       = [ordered]@{ bars = $bars.Count; firstDate = $bars[0].Date; lastDate = $last.Date; file = 'data/tsla-history.json' }

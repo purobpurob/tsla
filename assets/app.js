@@ -223,6 +223,17 @@
   }
 
 
+
+  // ---------- Dynamisk forklaring ----------
+  function renderNarrative(n) {
+    if (!n) return;
+    $('narrative').hidden = false;
+    $('narrative-parts').innerHTML = n.parts.map((p) => '<p class="np"><b>' + esc(p.topic) + '</b>' + esc(p.text) + '</p>').join('');
+    $('narrative-need-title').textContent = n.needTitle;
+    $('narrative-need').innerHTML = n.need.map((x) => '<li>' + esc(x) + '</li>').join('');
+    $('narrative-note').textContent = n.note;
+  }
+
   // ---------- Handlingsboks: hvad betyder status lige nu? ----------
   function renderAction(d) {
     const s = d.setup;
@@ -539,6 +550,7 @@
       const [d, hist] = await Promise.all([getJson('data/tsla.json'), getJson('data/tsla-history.json')]);
       renderHeader(d);
       renderTrend(d);
+      renderNarrative(d.narrative);
       renderKeyFigures(d);
       renderHistorical(d.historical);
       renderSetup(d.setup);

@@ -225,3 +225,9 @@ main { padding-top: 20px; padding-bottom: 20px; display: grid; gap: 16px; }
 .pos-form label { display: flex; flex-direction: column; font-size: 12px; color: var(--muted); gap: 4px; }
 .pos-form input { background: var(--surface-2); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 6px 8px; font: inherit; font-size: 14px; width: 150px; color-scheme: inherit; }
 .pos-result { margin-top: 12px; }
+
+.narrative { margin-top: 16px; border-top: 1px solid var(--border); padding-top: 4px; }
+.narrative p.np { margin: 6px 0 10px; font-size: 14px; }
+.narrative p.np b { display: block; font-size: 12px; color: var(--muted); font-weight: 600; margin-bottom: 2px; }
+.need { margin: 0; padding-left: 18px; }
+.need li { font-size: 14px; margin: 6px 0; }
