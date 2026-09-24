@@ -55,11 +55,13 @@ function ConvertFrom-YahooChart {
 function Get-YahooDaily {
     param([string]$Symbol, [int]$Years, $Config)
     Initialize-Tls
-    $range = "$($Years)y"
+    # period1/period2 i stedet for range, fordi range kun tillader faste værdier (1y, 2y, 5y, 10y, max)
+    $p2 = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
+    $p1 = [DateTimeOffset]::UtcNow.AddYears(-$Years).ToUnixTimeSeconds()
     $hosts = @('query1.finance.yahoo.com', 'query2.finance.yahoo.com')
     $lastError = $null
     foreach ($h in $hosts) {
-        $url = "https://$h/v8/finance/chart/$($Symbol)?range=$range&interval=1d&includePrePost=false&events=split"
+        $url = "https://$h/v8/finance/chart/$($Symbol)?period1=$p1&period2=$p2&interval=1d&includePrePost=false&events=split"
         try {
             $json = Invoke-RestMethod -Uri $url -UserAgent $Config.UserAgent -TimeoutSec $Config.TimeoutSec -ErrorAction Stop
             return ConvertFrom-YahooChart -Json $json

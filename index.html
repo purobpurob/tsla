@@ -52,6 +52,50 @@
       </article>
     </section>
 
+    <section class="card" id="hist-card">
+      <h2>Historical matches</h2>
+      <p class="hist-sub" id="hist-sub">Indlæser ...</p>
+      <div class="hist-grid">
+        <div>
+          <div class="table-wrap">
+            <table class="tbl" id="hist-table">
+              <thead><tr><th>Horisont</th><th>Positive</th><th>Alle dage</th><th>Forskel</th><th>Median</th><th>Midterste 50%</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="kv kv-small" id="hist-exc"></div>
+        </div>
+        <div>
+          <div class="fan-title">Kursforløb omkring lignende setups (setup-dag = 100)</div>
+          <div id="hist-fan" class="fan"></div>
+          <div class="legend">
+            <span class="lg lg-band">Midterste 50% af matches</span>
+            <span class="lg lg-median">Median</span>
+            <span class="lg lg-current">TSLA de seneste 10 dage</span>
+          </div>
+        </div>
+      </div>
+      <details class="more">
+        <summary>Hvad ligner hinanden? Sammenligning af de 9 features</summary>
+        <div class="table-wrap">
+          <table class="tbl" id="hist-features">
+            <thead><tr><th>Feature</th><th>Nu</th><th>Median i matches</th><th>Percentil nu</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </details>
+      <details class="more">
+        <summary>Alle matches</summary>
+        <div class="table-wrap">
+          <table class="tbl" id="hist-matches">
+            <thead><tr><th>Dato</th><th>Kurs</th><th>Afstand</th><th>2d</th><th>5d</th><th>10d</th><th>20d</th><th>Max op 20d</th><th>Max ned 20d</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </details>
+      <p class="muted small" id="hist-method"></p>
+    </section>
+
     <section class="card">
       <div class="card-head">
         <h2>Price chart</h2>
@@ -79,11 +123,7 @@
       <div class="kv" id="keyfigures"></div>
     </section>
 
-    <section class="grid-3">
-      <article class="card placeholder">
-        <h2>Historical matches</h2>
-        <p class="muted">Fase 2. Lignende historiske setups og deres udvikling efter 2, 3, 5, 10, 15 og 20 handelsdage.</p>
-      </article>
+    <section class="grid-2">
       <article class="card placeholder">
         <h2>News &amp; events</h2>
         <p class="muted">Fase 4 og 5. Nyheder, earnings, deliveries og makro.</p>

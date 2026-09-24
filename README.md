@@ -3,7 +3,7 @@
 Analyse af swing trade setups i TSLA med en horisont på 2 dage til 3 uger.
 PowerShell på en lokal server er datamotoren. GitHub Pages viser resultatet.
 
-**Status: Fase 1** (kurser, indikatorer, regelbaserede signaler og graf).
+**Status: Fase 2** (kurser, indikatorer, signaler, graf og historiske lignende setups).
 
 Siden er et analyseværktøj og ikke investeringsrådgivning.
 
@@ -17,7 +17,8 @@ C:\Tools\TSLA
 ├── Engine
 │   ├── DataProvider.ps1       Yahoo, Tiingo og fil (test)
 │   ├── Indicators.ps1         EMA, SMA, RSI, MACD, ATR, volumen, high/low
-│   └── Signals.ps1            Farveregler for de tekniske signaler
+│   ├── Signals.ps1            Farveregler for de tekniske signaler
+│   └── HistoricalSetups.ps1   Fase 2: lignende historiske dage og deres udvikling
 ├── data                       JSON til frontend (committes)
 │   ├── tsla.json              Aktuel status, indikatorer og signaler
 │   └── tsla-history.json      Ca. 3 års dagsdata til grafen
@@ -106,6 +107,36 @@ Kort, mellem og lang trend svarer til 20 EMA, 50 SMA og 200 SMA.
 
 Grafer: [TradingView Lightweight Charts™](https://www.tradingview.com/) 4.2.3, Apache License 2.0. Se `assets/vendor/lightweight-charts.LICENSE`.
 
+## Fase 2: Historiske lignende setups
+
+Modellen finder de 40 handelsdage i de seneste 5 år der ligner i dag mest, og måler hvad der skete bagefter.
+
+**Features** (alle skalafri):
+
+| Feature | Beregning |
+|---|---|
+| RSI 14 | Som ovenfor |
+| Afstand til 20 EMA, 50 SMA, 200 SMA | (kurs / MA - 1) x 100 |
+| MACD-histogram / ATR | Momentum målt i forhold til volatilitet |
+| Volumen-ratio | Logaritme af volumen / 20d gns. |
+| ATR percentil | Volatilitet i forhold til det seneste år |
+| Afstand til 52u high | (kurs / 52u high - 1) x 100 |
+| 50 SMA hældning | Ændring i 50 SMA over 10 dage i % |
+
+**Metode**
+
+1. Features standardiseres (z-score) over søgevinduet.
+2. Afstand = RMS af z-forskellene. Alle features vægter ens.
+3. De 40 nærmeste dage vælges, med mindst 5 handelsdage imellem, så samme situation ikke tæller flere gange.
+4. For hvert match måles afkast efter 2, 3, 5, 10, 15 og 20 dage (lukkekurs til lukkekurs) samt max op og max ned inden for 5, 10 og 20 dage (high og low).
+5. Alt sammenlignes med **"Alle dage"**: udviklingen efter samtlige dage i søgevinduet. Et match er kun interessant hvis det er bedre end en tilfældig dag.
+
+Kun dage med 20 dages kendt fremtid kan være matches. Features bruger kun data til og med dagen selv.
+
+**Forbehold:** Matchenes perioder overlapper, og 40 observationer er ikke meget. Forskelle på få procentpoint fra "Alle dage" kan være tilfældige.
+
+Indstillinger i `Config.ps1`: `ModelYears`, `MatchCount`, `MatchMinGap`.
+
 ## Næste fase
 
-Fase 2: Find historiske dage med lignende tekniske forhold og mål afkast efter 2, 3, 5, 10, 15 og 20 handelsdage samt max op og max drawdown.
+Fase 3: Entry zone, stop, targets og risk/reward ud fra ATR, swing high/low og matchenes max op og max ned.

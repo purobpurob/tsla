@@ -101,6 +101,83 @@
     box.innerHTML += list.map((w) => '<div>' + esc(w) + '</div>').join('');
   }
 
+
+  // ---------- Historiske matches (fase 2) ----------
+  const pctCls = (v) => (v > 0 ? 'up' : v < 0 ? 'down' : '');
+  const pctCell = (v) => '<td class="' + pctCls(v) + '">' + pct(v) + '</td>';
+  const ppCell = (v) => '<td class="' + pctCls(v) + '">' + (v > 0 ? '+' : '') + nf1.format(v) + ' pp</td>';
+
+  function renderHistorical(h) {
+    if (!h || h.status !== 'ok') {
+      $('hist-sub').textContent = h && h.reason ? 'Ikke beregnet: ' + h.reason : 'Ikke beregnet endnu.';
+      return;
+    }
+    const from = df.format(new Date(h.searchFrom + 'T12:00:00'));
+    $('hist-sub').innerHTML = '<b>' + h.similarSetups + ' lignende dage</b> fundet blandt ' + nf0.format(h.candidates) +
+      ' handelsdage siden ' + esc(from) + '. Match-kvalitet: <b>' + esc(h.quality) + '</b> (median afstand ' + nf2.format(h.medianDistance) + ').';
+
+    $('hist-table').querySelector('tbody').innerHTML = h.horizons.map((x) =>
+      '<tr><td>' + x.days + ' dage</td>' +
+      '<td>' + nf0.format(x.matches.pctPositive) + '%</td>' +
+      '<td class="muted">' + nf0.format(x.baseline.pctPositive) + '%</td>' +
+      ppCell(x.edgePositive) +
+      pctCell(x.matches.median) +
+      '<td class="muted">' + pct(x.matches.p25) + ' til ' + pct(x.matches.p75) + '</td></tr>').join('');
+
+    $('hist-exc').innerHTML = h.excursions.map((e) =>
+      '<div><div class="k">Inden for ' + e.days + ' dage (median)</div>' +
+      '<div class="v"><span class="up">' + pct(e.maxUpMedian) + '</span> / <span class="down">' + pct(e.maxDownMedian) + '</span></div>' +
+      '<div class="k">Max op / max ned. Værste 25%: ' + pct(e.maxDownP25) + '</div></div>').join('');
+
+    const fmtF = (f, v) => (f.unit === '%' ? pct(v) : f.unit === 'x' ? nf2.format(v) + 'x' : nf1.format(v));
+    $('hist-features').querySelector('tbody').innerHTML = h.features.map((f) =>
+      '<tr><td>' + esc(f.label) + '</td><td>' + fmtF(f, f.current) + '</td><td>' + fmtF(f, f.matchMedian) + '</td><td>' + nf0.format(f.percentile) + '</td></tr>').join('');
+
+    $('hist-matches').querySelector('tbody').innerHTML = h.matches.slice().reverse().map((m) =>
+      '<tr><td>' + esc(m.date) + '</td><td>' + usd(m.close) + '</td><td>' + nf2.format(m.distance) + '</td>' +
+      pctCell(m.returns.d2) + pctCell(m.returns.d5) + pctCell(m.returns.d10) + pctCell(m.returns.d20) +
+      pctCell(m.maxUp.d20) + pctCell(m.maxDown.d20) + '</tr>').join('');
+
+    $('hist-method').textContent = 'Metode: ' + h.method + '. Afstand måles i standardafvigelser. ' + h.qualityRule +
+      ' Matches ligger mindst ' + h.minGapDays + ' handelsdage fra hinanden. "Alle dage" er udviklingen efter samtlige dage i søgevinduet. ' +
+      'Matchenes perioder overlapper og er ikke uafhængige, så små forskelle fra "Alle dage" kan være tilfældige.';
+
+    renderFan(h);
+  }
+
+  function renderFan(h) {
+    const W = 560, H = 260, L = 40, R = 12, T = 10, B = 26;
+    const b = h.bands, t0 = b[0].t, t1 = b[b.length - 1].t;
+    const ys = b.flatMap((x) => [x.p25, x.p75]).concat(h.currentPath);
+    let yMin = Math.min(...ys), yMax = Math.max(...ys);
+    const pad = (yMax - yMin) * 0.08; yMin -= pad; yMax += pad;
+    const X = (t) => L + (t - t0) / (t1 - t0) * (W - L - R);
+    const Y = (v) => T + (yMax - v) / (yMax - yMin) * (H - T - B);
+    const line = (pts) => pts.map((p, i) => (i ? 'L' : 'M') + X(p[0]).toFixed(1) + ',' + Y(p[1]).toFixed(1)).join('');
+
+    const band = line(b.map((x) => [x.t, x.p75])) + b.slice().reverse().map((x) => 'L' + X(x.t).toFixed(1) + ',' + Y(x.p25).toFixed(1)).join('') + 'Z';
+    const med = line(b.map((x) => [x.t, x.p50]));
+    const cur = line(h.currentPath.map((v, i) => [i - h.pathBack, v]));
+
+    const step = (yMax - yMin) > 30 ? 10 : 5;
+    let grid = '';
+    for (let v = Math.ceil(yMin / step) * step; v <= yMax; v += step) {
+      grid += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="var(--border)" stroke-width="1"/>' +
+        '<text x="' + (L - 6) + '" y="' + (Y(v) + 4) + '" text-anchor="end">' + v + '</text>';
+    }
+    let xt = '';
+    [-10, -5, 0, 5, 10, 15, 20].filter((t) => t >= t0 && t <= t1).forEach((t) => {
+      xt += '<text x="' + X(t) + '" y="' + (H - 8) + '" text-anchor="middle">' + (t > 0 ? '+' + t : t) + '</text>';
+    });
+
+    $('hist-fan').innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Kursforløb for historiske matches">' + grid +
+      '<line x1="' + X(0) + '" x2="' + X(0) + '" y1="' + T + '" y2="' + (H - B) + '" stroke="var(--muted)" stroke-dasharray="3 3"/>' +
+      '<path d="' + band + '" fill="var(--band)" stroke="none"/>' +
+      '<path d="' + med + '" fill="none" stroke="var(--accent)" stroke-width="2"/>' +
+      '<path d="' + cur + '" fill="none" stroke="var(--ema20)" stroke-width="2.5"/>' + xt +
+      '<text x="' + (W - R) + '" y="' + (H - 8) + '" text-anchor="end" opacity="0">.</text></svg>';
+  }
+
   // ---------- Grafer ----------
   function renderCharts(hist) {
     const LC = window.LightweightCharts;
@@ -177,6 +254,7 @@
       renderHeader(d);
       renderTrend(d);
       renderKeyFigures(d);
+      renderHistorical(d.historical);
       showWarnings(d.dataWarnings);
       $('source').textContent = 'Datakilde: ' + d.source + '. Historik: ' + d.history.bars + ' handelsdage fra ' + d.history.firstDate + '.';
       renderCharts(hist);

@@ -39,6 +39,7 @@ $Root = $PSScriptRoot
 . (Join-Path (Join-Path $Root 'Engine') 'DataProvider.ps1')
 . (Join-Path (Join-Path $Root 'Engine') 'Indicators.ps1')
 . (Join-Path (Join-Path $Root 'Engine') 'Signals.ps1')
+. (Join-Path (Join-Path $Root 'Engine') 'HistoricalSetups.ps1')
 
 $DataDir  = Join-Path $Root $Config.DataDir
 $CacheDir = Join-Path $Root $Config.CacheDir
@@ -136,6 +137,15 @@ try {
     $signals = Get-TechnicalSignals -Rows $rows
     $trend = Get-TrendSummary -Signals $signals
 
+    # Fase 2: historiske lignende setups
+    $hist = Get-HistoricalMatches -Rows $rows -ModelYears $Config.ModelYears -K $Config.MatchCount -MinGapDays $Config.MatchMinGap
+    if ($hist.status -eq 'ok') {
+        $h5 = $hist.horizons | Where-Object { $_.days -eq 5 }
+        Write-Log ("Historisk model: {0} matches ({1}), 5d positive {2}% mod baseline {3}%" -f $hist.similarSetups, $hist.quality, $h5.matches.pctPositive, $h5.baseline.pctPositive)
+    } else {
+        Write-Log "Historisk model: $($hist.reason)" 'WARN'
+    }
+
     # Er seneste dagsbar afsluttet? (NYSE lukker 16:00 New York-tid)
     $ny = Get-NewYorkNow
     $nyDate = $ny.ToString('yyyy-MM-dd')
@@ -193,7 +203,7 @@ try {
         signals       = $signals
         # Pladsholdere til senere faser, så frontend kan vise at de endnu ikke er bygget
         setup         = [ordered]@{ status = 'pending'; phase = 3 }
-        historical    = [ordered]@{ status = 'pending'; phase = 2 }
+        historical    = $hist
         news          = [ordered]@{ status = 'pending'; phase = 4 }
         events        = [ordered]@{ status = 'pending'; phase = 5 }
         dataWarnings  = $warnings

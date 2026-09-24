@@ -9,7 +9,13 @@ $Config = @{
     FallbackProvider = 'Tiingo'   # Bruges hvis den primære fejler. Sæt til $null for at slå fra.
 
     # Hvor meget historik der hentes ved hver kørsel. Cachen gemmer alt og vokser over tid.
-    HistoryYears    = 5
+    # 6 år giver 1 års opvarmning til 200 SMA og 52u high/low før modellens 5-års søgevindue.
+    HistoryYears    = 6
+
+    # Fase 2: historiske lignende setups
+    ModelYears      = 5      # Søgevindue for lignende dage
+    MatchCount      = 40     # Antal nærmeste naboer
+    MatchMinGap     = 5      # Min. antal handelsdage mellem to matches
 
     # Hvor mange handelsdage frontend-grafen får med
     ChartBars       = 756          # ca. 3 år
