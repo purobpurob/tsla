@@ -30,7 +30,7 @@ function Write-Log([string]$Message, [string]$Level = 'INFO') { Write-Host ("{0}
 
 $cacheFile = Join-Path (Join-Path $Root $Config.CacheDir) "$($Config.Symbol)_daily.json"
 if (-not (Test-Path $cacheFile)) { throw "Cache mangler: $cacheFile. Kør Update-TSLA.ps1 først." }
-$bars = @(Get-Content -Raw $cacheFile | ConvertFrom-Json | ForEach-Object { ConvertTo-Bar $_ } | Sort-Object Date)
+$bars = @(Get-Content -Raw $cacheFile | ConvertFrom-Json | ForEach-Object { $_ } | ForEach-Object { ConvertTo-Bar $_ } | Sort-Object Date)
 Write-Log "Indlæst $($bars.Count) bars. Beregner indikatorer ..."
 
 # Indikatorerne bruger kun data bagud i tid (glidende gennemsnit, Wilder, rullende max/min),

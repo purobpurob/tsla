@@ -38,6 +38,8 @@ function New-SetupLogEntry {
         histT1Pct  = if ($Setup.historicalTest) { $Setup.historicalTest.target1Pct } else { $null }
         expected   = $hp
         eventRisk  = if ($Events -and $Events.status -eq 'ok') { $Events.risk.label } else { $null }
+        setupType  = $Setup.setupType
+        pullback   = [bool]($Setup.pullback -and $Setup.pullback.active)
         failed     = @($Setup.criteria | Where-Object { -not $_.pass } | ForEach-Object { $_.key })
     }
 }

@@ -54,6 +54,62 @@ function Merge-Levels([object[]]$Levels) {
 
 function New-Level($Price, $Label) { return [pscustomobject]@{ Price = [double]$Price; Label = $Label } }
 
+# Vending-setup (swing op efter et kraftigt fald)
+#   Aktivt når alle 3 er opfyldt på dagen:
+#     1. Lukkekursen er mindst 12% under 20-dages high (kraftigt fald)
+#     2. RSI 14 har været under 40 mindst én dag de seneste 5 dage (udsolgt)
+#     3. Lukkekursen er over gårsdagens high (første tegn på vending)
+#   Stop = laveste low de seneste 5 dage minus 0,25 ATR (1-3 ATR fra entry). Target 1 = +10%.
+#   Testet 2023-2026 på daglige kurser: +10% før stop i ca. 6 af 10 tilfælde mod ca. 4 af 10 for en tilfældig dag.
+$script:VendDrawdown  = -0.12
+$script:VendRsiMax    = 40
+$script:VendTargetPct = 0.10
+$script:VendMinRR     = 0.7    # R/R var ikke afgørende for vending i testen. Kravet fjerner kun de dårligste
+
+function Get-VendingSetup {
+    param([object[]]$Rows)
+    $n = $Rows.Count
+    $r = $Rows[$n - 1]
+    $out = [ordered]@{ active = $false; drawdownPct = $null; rsiMin5 = $null; trigger = $false; low5 = $null; detail = '' }
+    if ($n -lt 6 -or $null -eq $r.High20 -or $null -eq $r.Rsi14) { $out.detail = 'For lidt historik'; return $out }
+    $last5 = $Rows[($n - 5)..($n - 1)]
+    $rsiMin = ($last5 | Where-Object { $null -ne $_.Rsi14 } | Measure-Object -Property Rsi14 -Minimum).Minimum
+    $low5 = ($last5 | Measure-Object -Property Low -Minimum).Minimum
+    $dd = $r.Close / $r.High20 - 1
+    $trig = $r.Close -gt $Rows[$n - 2].High
+    $ok1 = $dd -le $script:VendDrawdown; $ok2 = $rsiMin -lt $script:VendRsiMax
+    $out.active = ($ok1 -and $ok2 -and $trig)
+    $out.drawdownPct = [math]::Round($dd * 100, 1)
+    $out.rsiMin5 = [math]::Round($rsiMin, 1)
+    $out.trigger = $trig
+    $out.low5 = $low5
+    $mk = { param($b) if ($b) { 'ja' } else { 'nej' } }
+    $out.detail = "Fald fra 20-dages high $(Fmt-Num ($dd * 100))% (krav mindst 12%: $(& $mk $ok1)). Laveste RSI 5 dage $(Fmt-Num $rsiMin) (krav under 40: $(& $mk $ok2)). Lukkekurs over gårsdagens high: $(& $mk $trig)."
+    return $out
+}
+
+# Pullback-hint (kun information, påvirker ikke status)
+#   Aktivt når: kursen er 5-12% under 20-dages high, RSI 14 har været under 50 inden for 5 dage,
+#   lukkekursen er over gårsdagens high, og der ikke er et vending-setup.
+#   Testet 2023-2026: +10% før stop (2 ATR) i ca. 1 af 4 tilfælde mod ca. 4 af 10 for en tilfældig dag.
+#   Reglen er derfor ikke et købssignal, men et hint om at se på grafen selv.
+$script:PullbackHitRate = 25
+
+function Get-PullbackHint {
+    param([object[]]$Rows, $Vending)
+    $n = $Rows.Count
+    $r = $Rows[$n - 1]
+    $out = [ordered]@{ active = $false; hitRatePct = $script:PullbackHitRate; detail = '' }
+    if ($n -lt 6 -or $null -eq $r.High20 -or $null -eq $r.Rsi14) { return $out }
+    $last5 = $Rows[($n - 5)..($n - 1)]
+    $rsiMin = ($last5 | Where-Object { $null -ne $_.Rsi14 } | Measure-Object -Property Rsi14 -Minimum).Minimum
+    $dd = $r.Close / $r.High20 - 1
+    $trig = $r.Close -gt $Rows[$n - 2].High
+    $out.active = ($dd -le -0.05 -and $dd -gt -0.12 -and $rsiMin -lt 50 -and $trig -and -not $Vending.active)
+    $out.detail = "Kursen er $(Fmt-Num ($dd * -100))% under 20-dages high, laveste RSI 5 dage er $(Fmt-Num $rsiMin), og lukkekursen er over gårsdagens high. Det ligner et pullback der vender. I testen nåede kun ca. $($script:PullbackHitRate)% af den slags dage +10% før stop, så det er ikke et købssignal."
+    return $out
+}
+
 function Get-TradeSetup {
     param([object[]]$Rows, [object[]]$Signals, $Historical, $Events)
 
@@ -128,6 +184,26 @@ function Get-TradeSetup {
         $t2 = [math]::Max($t1 + 1.5 * $atr, $entry + 3 * $risk)
         $why.target2 = 'Ingen modstand mindst 1 ATR over Target 1. Target 2 er det højeste af Target 1 + 1,5 ATR og 3R.'
     }
+    # Vending-setup: swing op efter et kraftigt fald (se Get-VendingSetup).
+    # Når det er aktivt erstattes niveauerne af vending-reglerne, og målet er et swing på +10%.
+    $vend = Get-VendingSetup -Rows $Rows
+    if ($vend.active) {
+        $entryHigh = $c
+        $entryLow = $c - 0.5 * $atr
+        $entry = ($entryLow + $entryHigh) / 2
+        $why.entry = 'Vending-setup: fra 0,5 ATR under lukkekursen op til lukkekursen.'
+        $stop = $vend.low5 - 0.25 * $atr
+        $why.stop = "Vending-setup: 0,25 ATR under laveste low de seneste 5 dage ($(Fmt-Usd $vend.low5))."
+        $risk = $entry - $stop
+        if ($risk -gt 3 * $atr) { $stop = $entry - 3 * $atr; $why.stop += ' Begrænset til 3 ATR under entry.' }
+        elseif ($risk -lt $atr) { $stop = $entry - $atr; $why.stop += ' Flyttet til 1 ATR under entry, fordi det lå for tæt.' }
+        $risk = $entry - $stop
+        $t1 = $entry * (1 + $script:VendTargetPct)
+        $why.target1 = 'Vending-setup: +10% over midten af entry-zonen. Det er målet for et godt swing.'
+        $t2 = [math]::Max($entry * 1.15, $r.High20)
+        $why.target2 = if ($t2 -gt $entry * 1.15) { "20-dages high ($(Fmt-Usd $r.High20)), hvor faldet startede." } else { 'Vending-setup: +15% over midten af entry-zonen.' }
+    }
+
     $rr1 = ($t1 - $entry) / $risk
     $rr2 = ($t2 - $entry) / $risk
 
@@ -180,6 +256,7 @@ function Get-TradeSetup {
         }
     }
     if (-not $horizon) { $horizon = [ordered]@{ low = 5; high = 20; source = 'For få historiske træffere. Standardhorisont for swing trade.' } }
+    if ($vend.active) { $horizon = [ordered]@{ low = 2; high = 20; source = 'Vending-setup: +10% skal nås inden for 20 handelsdage (ca. 4 uger). I testen blev det typisk nået efter 2-14 dage' } }
 
     # Kriterier for samlet status
     $score = 0
@@ -191,20 +268,37 @@ function Get-TradeSetup {
     $h10 = if ($Historical -and $Historical.status -eq 'ok') { $Historical.horizons | Where-Object { $_.days -eq 10 } } else { $null }
 
     $crit = New-Object System.Collections.Generic.List[object]
+    if ($vend.active) {
+        # Vending: trend og historiske matches måler om en optrend fortsætter. De er altid svage lige
+        # efter et fald og indgår derfor ikke. De vises stadig på siden som information.
+        $minRR = $script:VendMinRR
+        $crit.Add([ordered]@{ key = 'vend'; label = 'Vending-setup efter fald'; pass = $true; hardFail = $false
+            detail = $vend.detail })
+        $crit.Add([ordered]@{ key = 'rr'; label = 'Risk/reward til Target 1'; pass = ($rr1 -ge $minRR); hardFail = ($rr1 -lt 0.5)
+            detail = "$(Fmt-Num $rr1 'N2'):1. Krav ved vending: mindst $(Fmt-Num $minRR 'N1'). Under 0,5 gør setup uinteressant." })
+    } else {
+    # Uden vending-setup kan status højst blive AFVENT. Trend-reglerne slog ikke en tilfældig dag i testen.
+    $minRR = 1.5
+    $crit.Add([ordered]@{ key = 'vend'; label = 'Vending-setup efter fald'; pass = $false; hardFail = $false
+        detail = "Krav for INTERESSANT. $($vend.detail)" })
     $crit.Add([ordered]@{ key = 'trend'; label = 'Trend og momentum'; pass = ($score -ge 2); hardFail = ($score -le -2)
         detail = "Score $score af 5 (20 EMA, 50 SMA, 200 SMA, RSI, MACD: grøn +1, rød -1). Krav: mindst 2. Under -1 gør setup uinteressant." })
     $crit.Add([ordered]@{ key = 'rr'; label = 'Risk/reward til Target 1'; pass = ($rr1 -ge 1.5); hardFail = ($rr1 -lt 0.8)
         detail = "$(Fmt-Num $rr1 'N2'):1. Krav: mindst 1,5. Under 0,8 gør setup uinteressant." })
-    if ($sim) {
+    }
+    if ($sim -and -not $vend.active) {
         $crit.Add([ordered]@{ key = 'hist'; label = 'Historisk Target 1 før stop'; pass = ($sim.target1Pct -ge 50); hardFail = ($sim.target1Pct -lt 35)
             detail = "$($sim.target1First) af $($sim.matches) matches ($(Fmt-Num $sim.target1Pct)%). Stop først i $($sim.stopFirst). Krav: mindst 50%. Under 35% gør setup uinteressant." })
     }
-    if ($h10) {
+    if ($h10 -and -not $vend.active) {
         $crit.Add([ordered]@{ key = 'edge'; label = 'Lignende setups mod alle dage (10 dage)'; pass = ($h10.edgeMedian -ge 0); hardFail = $false
             detail = "Median $(Fmt-Num $h10.matches.median 'N2')% mod $(Fmt-Num $h10.baseline.median 'N2')% for alle dage. Krav: mindst lige så godt." })
     }
+    if (-not $vend.active) {
+    # Ved vending er høj volatilitet normalt lige efter et fald, så kravet gælder kun trend-setups
     $crit.Add([ordered]@{ key = 'vol'; label = 'Volatilitet ikke ekstrem'; pass = ($vol -ne 'red'); hardFail = $false
         detail = 'Krav: volatilitetssignalet er ikke rødt (ATR over 90. percentil).' })
+    }
 
     if ($Events -and $Events.status -eq 'ok') {
         $crit.Add([ordered]@{ key = 'event'; label = 'Ingen større event lige forude'; pass = ($Events.risk.level -ne 'high'); hardFail = $false
@@ -227,6 +321,10 @@ function Get-TradeSetup {
         status        = $status
         label         = $label
         direction     = 'long'
+        setupType     = if ($vend.active) { 'vending' } else { 'trend' }
+        minRR         = $minRR
+        vending       = $vend
+        pullback      = (Get-PullbackHint -Rows $Rows -Vending $vend)
         entryLow      = [math]::Round($entryLow, 2)
         entryHigh     = [math]::Round($entryHigh, 2)
         entry         = [math]::Round($entry, 2)

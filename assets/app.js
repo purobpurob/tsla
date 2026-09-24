@@ -240,7 +240,8 @@
     if (!s || !s.entryLow) return;
     const p = d.quote.price, L = s.entryLow, H = s.entryHigh, S = s.stop, T1 = s.target1;
     const rrAt = (x) => (x > S ? (T1 - x) / (x - S) : null);
-    const pGood = (T1 + 1.5 * S) / 2.5;           // Købskurs hvor risk/reward til T1 er 1,5
+    const minRR = s.minRR || 1.5;
+    const pGood = (T1 + minRR * S) / (1 + minRR);  // Købskurs hvor risk/reward til T1 er minRR
     const notMet = s.criteria.filter((c) => !c.pass).map((c) => c.label.toLowerCase());
     const hard = s.criteria.filter((c) => c.hardFail).map((c) => c.label.toLowerCase());
     let cls, title, text;
@@ -249,8 +250,8 @@
     else if (s.status === 'green') {
       if (p > H) { cls = 'yellow'; title = 'Over entry-zonen'; text = 'Alle krav er opfyldt, men kursen er over zonen. Efter reglerne købes der kun i zonen.'; }
       else if (p < L) { cls = 'yellow'; title = 'Under entry-zonen'; text = 'Kursen er faldet under zonen. Niveauerne beregnes igen efter lukketid.'; }
-      else if (rrAt(p) >= 1.5) { cls = 'green'; title = 'Muligt køb efter reglerne'; text = 'Alle krav er opfyldt, og kursen ligger i entry-zonen med risk/reward på mindst 1,5.'; }
-      else { cls = 'yellow'; title = 'I zonen, men dyrt'; text = 'Alle krav er opfyldt, men risk/reward ved den aktuelle kurs er under 1,5. Under ' + usd(pGood) + ' er den mindst 1,5.'; }
+      else if (rrAt(p) >= minRR) { cls = 'green'; title = 'Muligt køb efter reglerne'; text = (s.setupType === 'vending' ? 'Vending-setup efter fald. ' : '') + 'Alle krav er opfyldt, og kursen ligger i entry-zonen med risk/reward på mindst ' + nf1.format(minRR) + '. Målet er +10% inden for 20 handelsdage.'; }
+      else { cls = 'yellow'; title = 'I zonen, men dyrt'; text = 'Alle krav er opfyldt, men risk/reward ved den aktuelle kurs er under ' + nf1.format(minRR) + '. Under ' + usd(pGood) + ' er den mindst ' + nf1.format(minRR) + '.'; }
     } else if (s.status === 'yellow') {
       cls = 'yellow'; title = 'Afvent. Ikke et køb endnu';
       text = 'Ikke opfyldt: ' + notMet.join(', ') + '. Status skifter først når alle krav er opfyldt.';
@@ -264,6 +265,12 @@
     box.className = 'action a-' + cls;
     $('action-title').textContent = title;
     $('action-text').textContent = text;
+    const pb = $('action-pullback');
+    if (pb) {
+      const show = s.pullback && s.pullback.active && s.status !== 'green';
+      pb.hidden = !show;
+      if (show) pb.innerHTML = '<b>Muligt pullback der vender (kun hint).</b> ' + esc(s.pullback.detail);
+    }
     const f = (x) => (x == null ? '-' : nf1.format(x));
     $('action-rr').textContent = 'Risk/reward til Target 1 ved ' + usd(p) + ': ' + f(rrAt(p)) +
       '. I bunden af zonen (' + usd(L) + '): ' + f(rrAt(L)) + '. I toppen (' + usd(H) + '): ' + f(rrAt(H)) +
@@ -373,7 +380,7 @@
       return '<li><span class="ic ' + cls + '">' + ic + '</span><span>' + esc(c.label) + '<span class="d">' + esc(c.detail) + '</span></span></li>';
     }).join('');
 
-    $('setup-event').textContent = 'Status: grøn kræver at alle krav er opfyldt. Rød hvis et krav er langt fra. Ellers gul. News risk indgår ikke i status, se nyhedssektionen.';
+    $('setup-event').textContent = 'Status: grøn kræver et vending-setup efter et fald og at alle krav er opfyldt. Rød hvis et krav er langt fra. Ellers gul. News risk indgår ikke i status, se nyhedssektionen.';
 
     const w = s.why;
     $('setup-why').innerHTML = [['Entry', w.entry], ['Stop', w.stop], ['Target 1', w.target1], ['Target 2', w.target2],

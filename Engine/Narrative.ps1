@@ -80,7 +80,11 @@ function Get-Narrative {
         foreach ($c in ($Setup.criteria | Where-Object { -not $_.pass })) {
             switch ($c.key) {
                 'trend' { $need.Add("Trend-scoren skal op på mindst 2. Den stiger når flere af 20 EMA, 50 SMA, 200 SMA, RSI og MACD bliver grønne.") }
-                'rr'    { $need.Add("Risk/reward skal op på mindst 1,5. Det sker hvis kursen falder mod bunden af entry-zonen, eller hvis Target 1 kommer til at ligge højere.") }
+                'vend'  {
+                    $v = $Setup.vending
+                    $need.Add("Der skal være et vending-setup: kursen mindst 12% under 20-dages high (nu $(& $n1 $v.drawdownPct)%), RSI under 40 inden for 5 dage (laveste nu $(& $n1 $v.rsiMin5)) og en lukkekurs over gårsdagens high.")
+                }
+                'rr'    { $need.Add("Risk/reward skal op på mindst $(& $n1 $Setup.minRR). Det sker hvis kursen falder mod bunden af entry-zonen, eller hvis Target 1 kommer til at ligge højere.") }
                 'hist'  {
                     $sa = if ($atr) { ($Setup.entry - $Setup.stop) / $atr } else { $null }
                     $txt = "Flere historiske matches skal nå Target 1 før stop (nu $(& $n1 $Setup.historicalTest.target1Pct)%, krav 50%)."

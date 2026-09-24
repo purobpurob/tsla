@@ -209,6 +209,8 @@ main { padding-top: 20px; padding-bottom: 20px; display: grid; gap: 16px; }
 .action-title { font-weight: 700; font-size: 16px; }
 .action.a-green .action-title { color: var(--green); } .action.a-yellow .action-title { color: var(--yellow); } .action.a-red .action-title { color: var(--red); }
 .action-text { margin-top: 4px; font-size: 14px; }
+.action-pullback { margin-top: 8px; padding: 8px 10px; border-radius: 6px; font-size: 13px; background: var(--surface); border: 1px dashed var(--border); }
+.action-pullback[hidden] { display: none; }
 .action-rr { margin-top: 6px; font-size: 13px; color: var(--muted); }
 .setup-buttons { margin-top: 12px; }
 .btn { background: var(--surface-2); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 6px 12px; cursor: pointer; font: inherit; font-size: 13px; }
