@@ -1,16 +1,16 @@
 {
     "schemaVersion":  1,
     "symbol":  "TSLA",
-    "generatedAt":  "2026-09-24T19:24:12Z",
-    "dataHash":  "3f04eb071f911af39657171d7fc48c8f2481c5d245f70e048a76588cfc54b991",
+    "generatedAt":  "2026-09-24T19:24:39Z",
+    "dataHash":  "f2c4bc88184b56a93b36c5ecca311409210b70674b091e55c90089b00897324d",
     "source":  "Yahoo Finance (chart v8)",
     "provider":  "Yahoo",
     "quote":  {
-                  "price":  379.46,
-                  "time":  "2026-09-24T19:23:54Z",
+                  "price":  379.56,
+                  "time":  "2026-09-24T19:24:26Z",
                   "previousClose":  380.12,
-                  "change":  -0.66,
-                  "changePct":  -0.17,
+                  "change":  -0.56,
+                  "changePct":  -0.15,
                   "currency":  "USD"
               },
     "lastBar":  {
