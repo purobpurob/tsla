@@ -1,16 +1,16 @@
 {
     "schemaVersion":  1,
     "symbol":  "TSLA",
-    "generatedAt":  "2026-09-24T19:15:46Z",
-    "dataHash":  "34d088b5f359e6fed220c031a6cbb4e417dc42763259ee3e6315dc523f806c9e",
+    "generatedAt":  "2026-09-24T19:24:12Z",
+    "dataHash":  "3f04eb071f911af39657171d7fc48c8f2481c5d245f70e048a76588cfc54b991",
     "source":  "Yahoo Finance (chart v8)",
     "provider":  "Yahoo",
     "quote":  {
-                  "price":  378.55,
-                  "time":  "2026-09-24T19:15:30Z",
+                  "price":  379.46,
+                  "time":  "2026-09-24T19:23:54Z",
                   "previousClose":  380.12,
-                  "change":  -1.57,
-                  "changePct":  -0.41,
+                  "change":  -0.66,
+                  "changePct":  -0.17,
                   "currency":  "USD"
               },
     "lastBar":  {
@@ -21,7 +21,7 @@
                     "high":  386.7,
                     "low":  377.58,
                     "close":  380.12,
-                    "volume":  33427400
+                    "volume":  33522500
                 },
     "trend":  {
                   "short":  "positive",
@@ -121,6 +121,9 @@
                                   "rsiMin5":  53.8,
                                   "trigger":  false,
                                   "low5":  360.75,
+                                  "high20":  386.7,
+                                  "priceAt12":  340.3,
+                                  "watch":  "none",
                                   "detail":  "Fald fra 20-dages high -1,7% (krav mindst 12%: nej). Laveste RSI 5 dage 53,8 (krav under 40: nej). Lukkekurs over gårsdagens high: nej."
                               },
                   "pullback":  {
@@ -723,7 +726,7 @@
                                        {
                                            "date":  "2021-09-23",
                                            "close":  251.21,
-                                           "distance":  0.545,
+                                           "distance":  0.546,
                                            "returns":  {
                                                            "d2":  5.01,
                                                            "d3":  3.17,
@@ -779,7 +782,7 @@
                                        {
                                            "date":  "2021-10-01",
                                            "close":  258.41,
-                                           "distance":  0.482,
+                                           "distance":  0.481,
                                            "returns":  {
                                                            "d2":  0.69,
                                                            "d3":  0.97,
@@ -891,7 +894,7 @@
                                        {
                                            "date":  "2022-07-27",
                                            "close":  274.82,
-                                           "distance":  0.559,
+                                           "distance":  0.557,
                                            "returns":  {
                                                            "d2":  8.13,
                                                            "d3":  8.17,
@@ -947,7 +950,7 @@
                                        {
                                            "date":  "2022-08-09",
                                            "close":  283.33,
-                                           "distance":  0.661,
+                                           "distance":  0.66,
                                            "returns":  {
                                                            "d2":  1.16,
                                                            "d3":  5.89,
@@ -1003,7 +1006,7 @@
                                        {
                                            "date":  "2022-08-17",
                                            "close":  304,
-                                           "distance":  0.615,
+                                           "distance":  0.616,
                                            "returns":  {
                                                            "d2":  -2.41,
                                                            "d3":  -4.63,
@@ -1115,7 +1118,7 @@
                                        {
                                            "date":  "2022-09-19",
                                            "close":  309.07,
-                                           "distance":  0.529,
+                                           "distance":  0.528,
                                            "returns":  {
                                                            "d2":  -2.68,
                                                            "d3":  -6.63,
@@ -1339,7 +1342,7 @@
                                        {
                                            "date":  "2023-08-31",
                                            "close":  258.08,
-                                           "distance":  0.631,
+                                           "distance":  0.63,
                                            "returns":  {
                                                            "d2":  -0.62,
                                                            "d3":  -2.39,
@@ -1451,7 +1454,7 @@
                                        {
                                            "date":  "2023-10-04",
                                            "close":  261.16,
-                                           "distance":  0.633,
+                                           "distance":  0.631,
                                            "returns":  {
                                                            "d2":  -0.24,
                                                            "d3":  -0.57,
@@ -1563,7 +1566,7 @@
                                        {
                                            "date":  "2023-11-21",
                                            "close":  241.2,
-                                           "distance":  0.614,
+                                           "distance":  0.613,
                                            "returns":  {
                                                            "d2":  -2.38,
                                                            "d3":  -2.12,
@@ -1619,7 +1622,7 @@
                                        {
                                            "date":  "2023-12-01",
                                            "close":  238.83,
-                                           "distance":  0.456,
+                                           "distance":  0.455,
                                            "returns":  {
                                                            "d2":  -0.05,
                                                            "d3":  0.23,
@@ -1675,7 +1678,7 @@
                                        {
                                            "date":  "2023-12-08",
                                            "close":  243.84,
-                                           "distance":  0.291,
+                                           "distance":  0.292,
                                            "returns":  {
                                                            "d2":  -2.8,
                                                            "d3":  -1.87,
@@ -1731,7 +1734,7 @@
                                        {
                                            "date":  "2023-12-21",
                                            "close":  254.5,
-                                           "distance":  0.313,
+                                           "distance":  0.312,
                                            "returns":  {
                                                            "d2":  0.83,
                                                            "d3":  2.73,
@@ -1843,7 +1846,7 @@
                                        {
                                            "date":  "2024-03-01",
                                            "close":  202.64,
-                                           "distance":  0.544,
+                                           "distance":  0.545,
                                            "returns":  {
                                                            "d2":  -10.81,
                                                            "d3":  -12.88,
@@ -1955,7 +1958,7 @@
                                        {
                                            "date":  "2024-06-25",
                                            "close":  187.35,
-                                           "distance":  0.402,
+                                           "distance":  0.401,
                                            "returns":  {
                                                            "d2":  5.37,
                                                            "d3":  5.62,
@@ -2123,7 +2126,7 @@
                                        {
                                            "date":  "2025-08-12",
                                            "close":  340.84,
-                                           "distance":  0.224,
+                                           "distance":  0.223,
                                            "returns":  {
                                                            "d2":  -1.54,
                                                            "d3":  -3.02,
@@ -2235,7 +2238,7 @@
                                        {
                                            "date":  "2025-08-27",
                                            "close":  349.6,
-                                           "distance":  0.278,
+                                           "distance":  0.279,
                                            "returns":  {
                                                            "d2":  -4.5,
                                                            "d3":  -5.79,
@@ -2291,7 +2294,7 @@
                                        {
                                            "date":  "2025-09-10",
                                            "close":  347.79,
-                                           "distance":  0.345,
+                                           "distance":  0.344,
                                            "returns":  {
                                                            "d2":  13.84,
                                                            "d3":  17.9,
@@ -2347,7 +2350,7 @@
                                        {
                                            "date":  "2025-12-09",
                                            "close":  445.17,
-                                           "distance":  0.64,
+                                           "distance":  0.641,
                                            "returns":  {
                                                            "d2":  0.39,
                                                            "d3":  3.1,
@@ -2459,7 +2462,7 @@
                                        {
                                            "date":  "2026-02-11",
                                            "close":  428.27,
-                                           "distance":  0.592,
+                                           "distance":  0.591,
                                            "returns":  {
                                                            "d2":  -2.53,
                                                            "d3":  -4.12,
@@ -2515,7 +2518,7 @@
                                        {
                                            "date":  "2026-02-25",
                                            "close":  417.4,
-                                           "distance":  0.54,
+                                           "distance":  0.539,
                                            "returns":  {
                                                            "d2":  -3.57,
                                                            "d3":  -3.37,
@@ -2571,7 +2574,7 @@
                                        {
                                            "date":  "2026-03-11",
                                            "close":  407.82,
-                                           "distance":  0.568,
+                                           "distance":  0.566,
                                            "returns":  {
                                                            "d2":  -4.08,
                                                            "d3":  -3.01,
@@ -2739,7 +2742,7 @@
                                        {
                                            "date":  "2026-04-01",
                                            "close":  381.26,
-                                           "distance":  0.604,
+                                           "distance":  0.603,
                                            "returns":  {
                                                            "d2":  -7.46,
                                                            "d3":  -9.08,
@@ -2851,7 +2854,7 @@
                                        {
                                            "date":  "2026-05-06",
                                            "close":  398.73,
-                                           "distance":  0.263,
+                                           "distance":  0.264,
                                            "returns":  {
                                                            "d2":  7.43,
                                                            "d3":  11.6,
@@ -2907,7 +2910,7 @@
                                        {
                                            "date":  "2026-05-29",
                                            "close":  435.79,
-                                           "distance":  0.384,
+                                           "distance":  0.385,
                                            "returns":  {
                                                            "d2":  -2.77,
                                                            "d3":  -2.77,
