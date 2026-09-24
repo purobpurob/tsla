@@ -1,8 +1,8 @@
 {
     "schemaVersion":  1,
     "symbol":  "TSLA",
-    "generatedAt":  "2026-09-24T10:26:21Z",
-    "dataHash":  "72e1b167ae3c8809afad43ca6c436824c61bc3accc6457df7aa5ad6884f4f096",
+    "generatedAt":  "2026-09-24T10:41:38Z",
+    "dataHash":  "d2699ed663cf75941ce04969f345ca49542529da44ba696d149bf4e17aad2b7c",
     "source":  "Yahoo Finance (chart v8)",
     "provider":  "Yahoo",
     "quote":  {
@@ -109,8 +109,141 @@
                     }
                 ],
     "setup":  {
-                  "status":  "pending",
-                  "phase":  3
+                  "status":  "red",
+                  "label":  "UINTERESSANT",
+                  "direction":  "long",
+                  "entryLow":  368.6,
+                  "entryHigh":  380.12,
+                  "entry":  374.36,
+                  "stop":  360.87,
+                  "target1":  396.23,
+                  "target2":  414.75,
+                  "riskPct":  -3.6,
+                  "target1Pct":  5.84,
+                  "target2Pct":  10.79,
+                  "riskReward1":  1.62,
+                  "riskReward2":  2.99,
+                  "horizon":  {
+                                  "low":  2,
+                                  "high":  4,
+                                  "source":  "Dage til Target 1 blandt matches der ramte (25-75%)"
+                              },
+                  "why":  {
+                              "entry":  "Fra Swing low 2026-06-26 ($368,60) op til seneste lukkekurs. Swing low 2026-06-26 er nærmeste support mellem 0,25 og 1,5 ATR under kursen.",
+                              "stop":  "0,25 ATR under Swing low 2026-04-27 / 20 EMA ($364,02), som er næste support under entry-zonen.",
+                              "target1":  "Swing high 2026-03-25 / 200 SMA ($396,23) er nærmeste modstand mindst 1 ATR over entry.",
+                              "target2":  "Swing high 2026-06-22 ($414,75) er næste modstand mindst 1 ATR over Target 1."
+                          },
+                  "criteria":  [
+                                   {
+                                       "key":  "trend",
+                                       "label":  "Trend og momentum",
+                                       "pass":  true,
+                                       "hardFail":  false,
+                                       "detail":  "Score 2 af 5 (20 EMA, 50 SMA, 200 SMA, RSI, MACD: grøn +1, rød -1). Krav: mindst 2. Under -1 gør setup uinteressant."
+                                   },
+                                   {
+                                       "key":  "rr",
+                                       "label":  "Risk/reward til Target 1",
+                                       "pass":  true,
+                                       "hardFail":  false,
+                                       "detail":  "1,62:1. Krav: mindst 1,5. Under 0,8 gør setup uinteressant."
+                                   },
+                                   {
+                                       "key":  "hist",
+                                       "label":  "Historisk Target 1 før stop",
+                                       "pass":  false,
+                                       "hardFail":  true,
+                                       "detail":  "11 af 40 matches (27,5%). Stop først i 29. Krav: mindst 50%. Under 35% gør setup uinteressant."
+                                   },
+                                   {
+                                       "key":  "edge",
+                                       "label":  "Lignende setups mod alle dage (10 dage)",
+                                       "pass":  true,
+                                       "hardFail":  false,
+                                       "detail":  "Median 2,44% mod 0,06% for alle dage. Krav: mindst lige så godt."
+                                   },
+                                   {
+                                       "key":  "vol",
+                                       "label":  "Volatilitet ikke ekstrem",
+                                       "pass":  true,
+                                       "hardFail":  false,
+                                       "detail":  "Krav: volatilitetssignalet er ikke rødt (ATR over 90. percentil)."
+                                   }
+                               ],
+                  "eventRisk":  {
+                                    "status":  "pending",
+                                    "phase":  5,
+                                    "note":  "Earnings, deliveries og makro er ikke vurderet endnu (fase 5)."
+                                },
+                  "historicalTest":  {
+                                         "matches":  40,
+                                         "target1First":  11,
+                                         "target2":  11,
+                                         "stopFirst":  29,
+                                         "neither":  0,
+                                         "target1Pct":  27.5,
+                                         "stopPct":  72.5,
+                                         "avgR":  -0.28,
+                                         "rule":  "Samme procentafstand til stop og targets lagt på hvert historisk match med entry på matchets lukkekurs. Ramt samme dag tæller som stop. Ingen af dem inden for 20 dage: lukket på dag 20."
+                                     },
+                  "invalidation":  [
+                                       "Lukkekurs under stop ($360,87).",
+                                       "Kursen stiger over $392,71 (1 ATR over zonen) uden at komme ned i entry-zonen. Så er det for sent at gå ind.",
+                                       "Niveauerne beregnes igen hver dag efter lukketid. Et setup gælder kun indtil næste beregning."
+                                   ],
+                  "supports":  [
+                                   {
+                                       "price":  368.6,
+                                       "label":  "Swing low 2026-06-26"
+                                   },
+                                   {
+                                       "price":  364.02,
+                                       "label":  "Swing low 2026-04-27 / 20 EMA"
+                                   },
+                                   {
+                                       "price":  354.05,
+                                       "label":  "Swing low 2026-09-15"
+                                   },
+                                   {
+                                       "price":  348.96,
+                                       "label":  "50 SMA"
+                                   },
+                                   {
+                                       "price":  342.53,
+                                       "label":  "Swing low 2026-08-26 / 20-dages low"
+                                   },
+                                   {
+                                       "price":  337.24,
+                                       "label":  "Swing low 2026-04-07"
+                                   }
+                               ],
+                  "resistances":  [
+                                      {
+                                          "price":  383.14,
+                                          "label":  "Swing high 2026-04-01"
+                                      },
+                                      {
+                                          "price":  384.04,
+                                          "label":  "Swing high 2026-09-03"
+                                      },
+                                      {
+                                          "price":  386.7,
+                                          "label":  "20-dages high"
+                                      },
+                                      {
+                                          "price":  396.23,
+                                          "label":  "Swing high 2026-03-25 / 200 SMA"
+                                      },
+                                      {
+                                          "price":  408.62,
+                                          "label":  "Swing high 2026-03-05 / Swing high 2026-04-17"
+                                      },
+                                      {
+                                          "price":  414.75,
+                                          "label":  "Swing high 2026-06-22"
+                                      }
+                                  ]
               },
     "historical":  {
                        "status":  "ok",
