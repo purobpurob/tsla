@@ -1,16 +1,16 @@
 {
     "schemaVersion":  1,
     "symbol":  "TSLA",
-    "generatedAt":  "2026-09-24T17:37:00Z",
-    "dataHash":  "26e43fccc89c4ef29e31b4cb483c247c1db6704c289b2302dd6c6a0becb4ec9d",
+    "generatedAt":  "2026-09-24T18:22:56Z",
+    "dataHash":  "f0ed0fd889a83343a3a132c3efa88b4d56fd39e9b5e32b7ed02c2aa965566d44",
     "source":  "Yahoo Finance (chart v8)",
     "provider":  "Yahoo",
     "quote":  {
-                  "price":  380.49,
-                  "time":  "2026-09-24T17:36:45Z",
+                  "price":  379.02,
+                  "time":  "2026-09-24T18:22:40Z",
                   "previousClose":  380.12,
-                  "change":  0.37,
-                  "changePct":  0.1,
+                  "change":  -1.1,
+                  "changePct":  -0.29,
                   "currency":  "USD"
               },
     "lastBar":  {
@@ -2966,7 +2966,7 @@
                           },
                  "counts":  {
                                 "positive":  1,
-                                "neutral":  16,
+                                "neutral":  17,
                                 "negative":  1
                             },
                  "categories":  {
@@ -2979,6 +2979,33 @@
                                 },
                  "method":  "Kategori og tone findes med faste nøgleord i overskriften. Tone = antal positive minus antal negative ord. Reglerne forstår ikke ironi, spørgsmål eller negationer.",
                  "items":  [
+                               {
+                                   "title":  "Tesla\u0027s Q3 Sales Report Comes Out Oct. 2. Here Are 2 Surprises It Might Reveal.",
+                                   "link":  "https://www.nasdaq.com/articles/teslas-q3-sales-report-comes-out-oct-2-here-are-2-surprises-it-might-reveal",
+                                   "time":  "2026-09-24T17:56:00Z",
+                                   "source":  "The Motley Fool",
+                                   "feed":  "Nasdaq RSS",
+                                   "kind":  "article",
+                                   "categories":  [
+
+                                                  ],
+                                   "categoryLabels":  [
+
+                                                      ],
+                                   "matchedWords":  [
+
+                                                    ],
+                                   "tone":  "neutral",
+                                   "toneScore":  0,
+                                   "positiveWords":  [
+
+                                                     ],
+                                   "negativeWords":  [
+
+                                                     ],
+                                   "highImpact":  false,
+                                   "why":  "Ingen positive eller negative nøgleord."
+                               },
                                {
                                    "title":  "Rivian vs. the S\u0026P 500: Which Investment Wins Through 2030?",
                                    "link":  "https://www.nasdaq.com/articles/rivian-vs-sp-500-which-investment-wins-through-2030",
@@ -3629,55 +3656,136 @@
                   },
     "performance":  {
                         "status":  "ok",
-                        "total":  1,
+                        "total":  251,
                         "live":  1,
-                        "backfilled":  0,
-                        "firstDate":  "2026-09-23",
+                        "backfilled":  250,
+                        "firstDate":  "2025-09-24",
                         "groups":  {
                                        "all":  {
-                                                   "n":  1,
-                                                   "closed":  0
+                                                   "n":  251,
+                                                   "closed":  248,
+                                                   "t1Pct":  60.1,
+                                                   "stopPct":  39.5,
+                                                   "avgR":  -0.01,
+                                                   "d2":  {
+                                                              "n":  249,
+                                                              "pctPositive":  49.4,
+                                                              "mean":  -0.03
+                                                          },
+                                                   "d5":  {
+                                                              "n":  246,
+                                                              "pctPositive":  47.2,
+                                                              "mean":  -0.17
+                                                          },
+                                                   "d10":  {
+                                                               "n":  241,
+                                                               "pctPositive":  45.2,
+                                                               "mean":  -0.47
+                                                           },
+                                                   "d20":  {
+                                                               "n":  231,
+                                                               "pctPositive":  41.1,
+                                                               "mean":  -1.08
+                                                           }
                                                },
                                        "green":  {
                                                      "n":  0,
                                                      "closed":  0
                                                  },
                                        "yellow":  {
-                                                      "n":  0,
-                                                      "closed":  0
+                                                      "n":  126,
+                                                      "closed":  125,
+                                                      "t1Pct":  53.6,
+                                                      "stopPct":  45.6,
+                                                      "avgR":  -0.07,
+                                                      "d2":  {
+                                                                 "n":  125,
+                                                                 "pctPositive":  49.6,
+                                                                 "mean":  -0.2
+                                                             },
+                                                      "d5":  {
+                                                                 "n":  123,
+                                                                 "pctPositive":  43.9,
+                                                                 "mean":  -0.3
+                                                             },
+                                                      "d10":  {
+                                                                  "n":  118,
+                                                                  "pctPositive":  36.4,
+                                                                  "mean":  -1.42
+                                                              },
+                                                      "d20":  {
+                                                                  "n":  110,
+                                                                  "pctPositive":  29.1,
+                                                                  "mean":  -4.43
+                                                              }
                                                   },
                                        "red":  {
-                                                   "n":  1,
-                                                   "closed":  0
+                                                   "n":  125,
+                                                   "closed":  123,
+                                                   "t1Pct":  66.7,
+                                                   "stopPct":  33.3,
+                                                   "avgR":  0.04,
+                                                   "d2":  {
+                                                              "n":  124,
+                                                              "pctPositive":  49.2,
+                                                              "mean":  0.13
+                                                          },
+                                                   "d5":  {
+                                                              "n":  123,
+                                                              "pctPositive":  50.4,
+                                                              "mean":  -0.04
+                                                          },
+                                                   "d10":  {
+                                                               "n":  123,
+                                                               "pctPositive":  53.7,
+                                                               "mean":  0.45
+                                                           },
+                                                   "d20":  {
+                                                               "n":  121,
+                                                               "pctPositive":  52.1,
+                                                               "mean":  1.97
+                                                           }
                                                }
                                    },
                         "calibration":  {
                                             "d5":  [
                                                        {
                                                            "bucket":  "Under 45%",
-                                                           "n":  0
+                                                           "n":  49,
+                                                           "predicted":  39.2,
+                                                           "actual":  51
                                                        },
                                                        {
                                                            "bucket":  "45-55%",
-                                                           "n":  0
+                                                           "n":  105,
+                                                           "predicted":  49,
+                                                           "actual":  48.6
                                                        },
                                                        {
                                                            "bucket":  "Over 55%",
-                                                           "n":  0
+                                                           "n":  92,
+                                                           "predicted":  58.2,
+                                                           "actual":  43.5
                                                        }
                                                    ],
                                             "d10":  [
                                                         {
                                                             "bucket":  "Under 45%",
-                                                            "n":  0
+                                                            "n":  50,
+                                                            "predicted":  37.2,
+                                                            "actual":  46
                                                         },
                                                         {
                                                             "bucket":  "45-55%",
-                                                            "n":  0
+                                                            "n":  74,
+                                                            "predicted":  49.5,
+                                                            "actual":  44.6
                                                         },
                                                         {
                                                             "bucket":  "Over 55%",
-                                                            "n":  0
+                                                            "n":  117,
+                                                            "predicted":  58.8,
+                                                            "actual":  45.3
                                                         }
                                                     ]
                                         },
@@ -3744,6 +3852,1891 @@
                                                            "r":  null,
                                                            "target2":  false,
                                                            "daysSince":  0
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-09-22",
+                                           "close":  378.9,
+                                           "backfill":  true,
+                                           "status":  "yellow",
+                                           "label":  "AFVENT",
+                                           "entryLow":  368.6,
+                                           "entryHigh":  378.9,
+                                           "stop":  360.81,
+                                           "target1":  396.23,
+                                           "target2":  414.75,
+                                           "rr1":  1.74,
+                                           "horizon":  "2-4",
+                                           "histT1Pct":  37.5,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  57.5,
+                                                                        "baseline":  50.2,
+                                                                        "median":  2.81
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  52.5,
+                                                                        "baseline":  49.8,
+                                                                        "median":  1.3
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  45,
+                                                                       "baseline":  49.4,
+                                                                       "median":  -0.26
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  57.5,
+                                                                        "baseline":  48.9,
+                                                                        "median":  4.1
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  45,
+                                                                       "baseline":  48.9,
+                                                                       "median":  -0.33
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  50,
+                                                                       "baseline":  48.3,
+                                                                       "median":  -0.05
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "hist"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  null,
+                                                                           "d5":  null,
+                                                                           "d10":  null,
+                                                                           "d20":  null
+                                                                       },
+                                                           "result":  "open",
+                                                           "days":  null,
+                                                           "r":  null,
+                                                           "target2":  false,
+                                                           "daysSince":  1
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-09-21",
+                                           "close":  375.3,
+                                           "backfill":  true,
+                                           "status":  "red",
+                                           "label":  "UINTERESSANT",
+                                           "entryLow":  368.6,
+                                           "entryHigh":  375.3,
+                                           "stop":  358.68,
+                                           "target1":  396.23,
+                                           "target2":  414.75,
+                                           "rr1":  1.83,
+                                           "horizon":  "2-6",
+                                           "histT1Pct":  30,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  50,
+                                                                        "baseline":  50.2,
+                                                                        "median":  0.23
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  55,
+                                                                        "baseline":  49.7,
+                                                                        "median":  1.02
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  45,
+                                                                       "baseline":  49.4,
+                                                                       "median":  -0.6
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  57.5,
+                                                                        "baseline":  48.8,
+                                                                        "median":  1.37
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  42.5,
+                                                                       "baseline":  48.9,
+                                                                       "median":  -1.37
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  52.5,
+                                                                       "baseline":  48.3,
+                                                                       "median":  0.67
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "hist"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  1.28,
+                                                                           "d5":  null,
+                                                                           "d10":  null,
+                                                                           "d20":  null
+                                                                       },
+                                                           "result":  "open",
+                                                           "days":  null,
+                                                           "r":  null,
+                                                           "target2":  false,
+                                                           "daysSince":  2
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-09-18",
+                                           "close":  364.27,
+                                           "backfill":  true,
+                                           "status":  "yellow",
+                                           "label":  "AFVENT",
+                                           "entryLow":  358.38,
+                                           "entryHigh":  364.27,
+                                           "stop":  348.12,
+                                           "target1":  383.14,
+                                           "target2":  397.33,
+                                           "rr1":  1.65,
+                                           "horizon":  "2-4",
+                                           "histT1Pct":  37.5,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  55,
+                                                                        "baseline":  50.2,
+                                                                        "median":  1.79
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  55,
+                                                                        "baseline":  49.8,
+                                                                        "median":  1.5
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  55,
+                                                                       "baseline":  49.4,
+                                                                       "median":  0.73
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  55,
+                                                                        "baseline":  48.8,
+                                                                        "median":  0.87
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  52.5,
+                                                                       "baseline":  48.9,
+                                                                       "median":  0.59
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  47.5,
+                                                                       "baseline":  48.3,
+                                                                       "median":  -0.6
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "hist"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  4.02,
+                                                                           "d5":  null,
+                                                                           "d10":  null,
+                                                                           "d20":  null
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  3,
+                                                           "r":  1.17,
+                                                           "target2":  false,
+                                                           "daysSince":  3
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-09-17",
+                                           "close":  366.2,
+                                           "backfill":  true,
+                                           "status":  "yellow",
+                                           "label":  "AFVENT",
+                                           "entryLow":  357.76,
+                                           "entryHigh":  366.2,
+                                           "stop":  348.54,
+                                           "target1":  383.14,
+                                           "target2":  397.65,
+                                           "rr1":  1.57,
+                                           "horizon":  "2-4",
+                                           "histT1Pct":  42.5,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  57.5,
+                                                                        "baseline":  50.2,
+                                                                        "median":  1.85
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  52.5,
+                                                                        "baseline":  49.7,
+                                                                        "median":  1
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  55,
+                                                                       "baseline":  49.4,
+                                                                       "median":  0.78
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  52.5,
+                                                                        "baseline":  48.7,
+                                                                        "median":  0.11
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  55,
+                                                                       "baseline":  48.9,
+                                                                       "median":  0.35
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  52.5,
+                                                                       "baseline":  48.3,
+                                                                       "median":  0.37
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "hist"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  2.48,
+                                                                           "d5":  null,
+                                                                           "d10":  null,
+                                                                           "d20":  null
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  4,
+                                                           "r":  0.96,
+                                                           "target2":  false,
+                                                           "daysSince":  4
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-09-16",
+                                           "close":  358.08,
+                                           "backfill":  true,
+                                           "status":  "yellow",
+                                           "label":  "AFVENT",
+                                           "entryLow":  352.14,
+                                           "entryHigh":  358.08,
+                                           "stop":  339.22,
+                                           "target1":  383.14,
+                                           "target2":  397.97,
+                                           "rr1":  1.76,
+                                           "horizon":  "2-6",
+                                           "histT1Pct":  45,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  52.5,
+                                                                        "baseline":  50.2,
+                                                                        "median":  1.4
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  52.5,
+                                                                        "baseline":  49.7,
+                                                                        "median":  0.58
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  55,
+                                                                       "baseline":  49.4,
+                                                                       "median":  0.67
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  60,
+                                                                        "baseline":  48.7,
+                                                                        "median":  1.99
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  55,
+                                                                       "baseline":  48.9,
+                                                                       "median":  1.55
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  55,
+                                                                       "baseline":  48.3,
+                                                                       "median":  0.53
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "trend",
+                                                          "hist"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  1.73,
+                                                                           "d5":  6.16,
+                                                                           "d10":  null,
+                                                                           "d20":  null
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  5,
+                                                           "r":  1.33,
+                                                           "target2":  false,
+                                                           "daysSince":  5
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-09-15",
+                                           "close":  356.58,
+                                           "backfill":  true,
+                                           "status":  "yellow",
+                                           "label":  "AFVENT",
+                                           "entryLow":  352.54,
+                                           "entryHigh":  356.58,
+                                           "stop":  339.16,
+                                           "target1":  383.14,
+                                           "target2":  398.32,
+                                           "rr1":  1.86,
+                                           "horizon":  "3-5",
+                                           "histT1Pct":  50,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  65,
+                                                                        "baseline":  50.1,
+                                                                        "median":  3.3
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  60,
+                                                                        "baseline":  49.6,
+                                                                        "median":  3.05
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  60,
+                                                                       "baseline":  49.4,
+                                                                       "median":  1.33
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  62.5,
+                                                                        "baseline":  48.7,
+                                                                        "median":  5.07
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  57.5,
+                                                                       "baseline":  48.8,
+                                                                       "median":  1.55
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  55,
+                                                                       "baseline":  48.3,
+                                                                       "median":  1.08
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "trend"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  2.7,
+                                                                           "d5":  6.26,
+                                                                           "d10":  null,
+                                                                           "d20":  null
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  6,
+                                                           "r":  1.52,
+                                                           "target2":  false,
+                                                           "daysSince":  6
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-09-14",
+                                           "close":  358.97,
+                                           "backfill":  true,
+                                           "status":  "yellow",
+                                           "label":  "AFVENT",
+                                           "entryLow":  353.81,
+                                           "entryHigh":  358.97,
+                                           "stop":  339.06,
+                                           "target1":  383.14,
+                                           "target2":  398.63,
+                                           "rr1":  1.54,
+                                           "horizon":  "2-5",
+                                           "histT1Pct":  45,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  65,
+                                                                        "baseline":  50.1,
+                                                                        "median":  3.13
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  65,
+                                                                        "baseline":  49.6,
+                                                                        "median":  4.94
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  55,
+                                                                       "baseline":  49.3,
+                                                                       "median":  0.67
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  65,
+                                                                        "baseline":  48.6,
+                                                                        "median":  4.34
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  47.5,
+                                                                       "baseline":  48.8,
+                                                                       "median":  -0.19
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  57.5,
+                                                                       "baseline":  48.2,
+                                                                       "median":  1.08
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "hist"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  -0.25,
+                                                                           "d5":  4.55,
+                                                                           "d10":  null,
+                                                                           "d20":  null
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  7,
+                                                           "r":  1.21,
+                                                           "target2":  false,
+                                                           "daysSince":  7
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-09-11",
+                                           "close":  365.44,
+                                           "backfill":  true,
+                                           "status":  "yellow",
+                                           "label":  "AFVENT",
+                                           "entryLow":  356.53,
+                                           "entryHigh":  365.44,
+                                           "stop":  346.87,
+                                           "target1":  383.14,
+                                           "target2":  398.93,
+                                           "rr1":  1.57,
+                                           "horizon":  "2-4",
+                                           "histT1Pct":  40,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  65,
+                                                                        "baseline":  50,
+                                                                        "median":  3.17
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  62.5,
+                                                                        "baseline":  49.6,
+                                                                        "median":  4.68
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  60,
+                                                                       "baseline":  49.3,
+                                                                       "median":  1.33
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  70,
+                                                                        "baseline":  48.6,
+                                                                        "median":  5.34
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  55,
+                                                                       "baseline":  48.8,
+                                                                       "median":  0.71
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  55,
+                                                                       "baseline":  48.2,
+                                                                       "median":  0.9
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "hist"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  -2.42,
+                                                                           "d5":  -0.32,
+                                                                           "d10":  null,
+                                                                           "d20":  null
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  8,
+                                                           "r":  0.95,
+                                                           "target2":  false,
+                                                           "daysSince":  8
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-09-10",
+                                           "close":  363.56,
+                                           "backfill":  true,
+                                           "status":  "yellow",
+                                           "label":  "AFVENT",
+                                           "entryLow":  355.7,
+                                           "entryHigh":  363.56,
+                                           "stop":  338.87,
+                                           "target1":  383.14,
+                                           "target2":  399.05,
+                                           "rr1":  1.13,
+                                           "horizon":  "2-7",
+                                           "histT1Pct":  47.5,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  65,
+                                                                        "baseline":  50,
+                                                                        "median":  3.57
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  70,
+                                                                        "baseline":  49.5,
+                                                                        "median":  6.06
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  60,
+                                                                       "baseline":  49.3,
+                                                                       "median":  1.06
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  65,
+                                                                        "baseline":  48.5,
+                                                                        "median":  5.34
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  50,
+                                                                       "baseline":  48.9,
+                                                                       "median":  0
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  50,
+                                                                       "baseline":  48.1,
+                                                                       "median":  0.06
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "rr",
+                                                          "hist"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  -1.26,
+                                                                           "d5":  0.73,
+                                                                           "d10":  null,
+                                                                           "d20":  null
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  9,
+                                                           "r":  0.79,
+                                                           "target2":  false,
+                                                           "daysSince":  9
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-09-09",
+                                           "close":  367.81,
+                                           "backfill":  true,
+                                           "status":  "yellow",
+                                           "label":  "AFVENT",
+                                           "entryLow":  356.84,
+                                           "entryHigh":  367.81,
+                                           "stop":  347.43,
+                                           "target1":  383.14,
+                                           "target2":  399.21,
+                                           "rr1":  1.4,
+                                           "horizon":  "2-4",
+                                           "histT1Pct":  37.5,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  60,
+                                                                        "baseline":  50,
+                                                                        "median":  3.58
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  65,
+                                                                        "baseline":  49.5,
+                                                                        "median":  3.01
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  47.5,
+                                                                       "baseline":  49.3,
+                                                                       "median":  -0.18
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  62.5,
+                                                                        "baseline":  48.5,
+                                                                        "median":  3.82
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  40,
+                                                                       "baseline":  48.8,
+                                                                       "median":  -1.02
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  52.5,
+                                                                       "baseline":  48.1,
+                                                                       "median":  0.88
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "rr",
+                                                          "hist"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  -0.64,
+                                                                           "d5":  -2.65,
+                                                                           "d10":  3.35,
+                                                                           "d20":  null
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  10,
+                                                           "r":  0.75,
+                                                           "target2":  false,
+                                                           "daysSince":  10
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-09-08",
+                                           "close":  368.16,
+                                           "backfill":  true,
+                                           "status":  "yellow",
+                                           "label":  "AFVENT",
+                                           "entryLow":  357.72,
+                                           "entryHigh":  368.16,
+                                           "stop":  347.62,
+                                           "target1":  383.14,
+                                           "target2":  399.39,
+                                           "rr1":  1.32,
+                                           "horizon":  "2-5",
+                                           "histT1Pct":  40,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  60,
+                                                                        "baseline":  49.9,
+                                                                        "median":  2.89
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  62.5,
+                                                                        "baseline":  49.4,
+                                                                        "median":  2.55
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  40,
+                                                                       "baseline":  49.3,
+                                                                       "median":  -1.34
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  62.5,
+                                                                        "baseline":  48.4,
+                                                                        "median":  3.44
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  45,
+                                                                       "baseline":  48.8,
+                                                                       "median":  -1.17
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  45,
+                                                                       "baseline":  48,
+                                                                       "median":  -0.44
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "rr",
+                                                          "hist"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  -1.25,
+                                                                           "d5":  -3.15,
+                                                                           "d10":  2.92,
+                                                                           "d20":  null
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  11,
+                                                           "r":  0.73,
+                                                           "target2":  false,
+                                                           "daysSince":  11
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-09-04",
+                                           "close":  354.08,
+                                           "backfill":  true,
+                                           "status":  "red",
+                                           "label":  "UINTERESSANT",
+                                           "entryLow":  342.53,
+                                           "entryHigh":  354.08,
+                                           "stop":  333.04,
+                                           "target1":  366.5,
+                                           "target2":  383.14,
+                                           "rr1":  1.19,
+                                           "horizon":  "2-5",
+                                           "histT1Pct":  32.5,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  47.5,
+                                                                        "baseline":  49.9,
+                                                                        "median":  -2.04
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  55,
+                                                                        "baseline":  49.4,
+                                                                        "median":  1.27
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  40,
+                                                                       "baseline":  49.2,
+                                                                       "median":  -2.13
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  52.5,
+                                                                        "baseline":  48.4,
+                                                                        "median":  2.39
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  52.5,
+                                                                       "baseline":  48.8,
+                                                                       "median":  1.09
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  35,
+                                                                       "baseline":  48,
+                                                                       "median":  -3.02
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "trend",
+                                                          "rr",
+                                                          "hist",
+                                                          "edge"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  3.88,
+                                                                           "d5":  1.38,
+                                                                           "d10":  5.99,
+                                                                           "d20":  null
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  1,
+                                                           "r":  0.59,
+                                                           "target2":  true,
+                                                           "daysSince":  12
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-09-03",
+                                           "close":  376.37,
+                                           "backfill":  true,
+                                           "status":  "yellow",
+                                           "label":  "AFVENT",
+                                           "entryLow":  368.6,
+                                           "entryHigh":  376.37,
+                                           "stop":  357.97,
+                                           "target1":  396.23,
+                                           "target2":  414.75,
+                                           "rr1":  1.64,
+                                           "horizon":  "2-6",
+                                           "histT1Pct":  37.5,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  65,
+                                                                        "baseline":  49.8,
+                                                                        "median":  2.53
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  60,
+                                                                        "baseline":  49.3,
+                                                                        "median":  4.42
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  50,
+                                                                       "baseline":  49.3,
+                                                                       "median":  -0.35
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  57.5,
+                                                                        "baseline":  48.4,
+                                                                        "median":  3.44
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  57.5,
+                                                                       "baseline":  48.8,
+                                                                       "median":  0.38
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  42.5,
+                                                                       "baseline":  48,
+                                                                       "median":  -0.92
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "hist"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  -2.18,
+                                                                           "d5":  -2.9,
+                                                                           "d10":  -3.21,
+                                                                           "d20":  null
+                                                                       },
+                                                           "result":  "stop",
+                                                           "days":  1,
+                                                           "r":  -1,
+                                                           "target2":  false,
+                                                           "daysSince":  13
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-09-02",
+                                           "close":  357.01,
+                                           "backfill":  true,
+                                           "status":  "yellow",
+                                           "label":  "AFVENT",
+                                           "entryLow":  352.14,
+                                           "entryHigh":  357.01,
+                                           "stop":  339.14,
+                                           "target1":  368.92,
+                                           "target2":  383.14,
+                                           "rr1":  0.93,
+                                           "horizon":  "2-3",
+                                           "histT1Pct":  57.5,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  70,
+                                                                        "baseline":  49.8,
+                                                                        "median":  3.58
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  75,
+                                                                        "baseline":  49.3,
+                                                                        "median":  5.99
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  52.5,
+                                                                       "baseline":  49.2,
+                                                                       "median":  0.2
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  75,
+                                                                        "baseline":  48.3,
+                                                                        "median":  5.73
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  52.5,
+                                                                       "baseline":  48.7,
+                                                                       "median":  0.18
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  65,
+                                                                       "baseline":  47.9,
+                                                                       "median":  2.7
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "trend",
+                                                          "rr"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  -0.82,
+                                                                           "d5":  1.83,
+                                                                           "d10":  2.57,
+                                                                           "d20":  null
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  1,
+                                                           "r":  0.67,
+                                                           "target2":  true,
+                                                           "daysSince":  14
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-09-01",
+                                           "close":  356.09,
+                                           "backfill":  true,
+                                           "status":  "yellow",
+                                           "label":  "AFVENT",
+                                           "entryLow":  352.14,
+                                           "entryHigh":  356.09,
+                                           "stop":  340.34,
+                                           "target1":  368.92,
+                                           "target2":  383.14,
+                                           "rr1":  1.07,
+                                           "horizon":  "2-3",
+                                           "histT1Pct":  47.5,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  67.5,
+                                                                        "baseline":  49.8,
+                                                                        "median":  3.45
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  70,
+                                                                        "baseline":  49.3,
+                                                                        "median":  5.34
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  42.5,
+                                                                       "baseline":  49.2,
+                                                                       "median":  -0.94
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  70,
+                                                                        "baseline":  48.3,
+                                                                        "median":  5.6
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  45,
+                                                                       "baseline":  48.7,
+                                                                       "median":  -0.69
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  60,
+                                                                       "baseline":  47.9,
+                                                                       "median":  2.48
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "trend",
+                                                          "rr",
+                                                          "hist"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  5.7,
+                                                                           "d5":  3.29,
+                                                                           "d10":  0.56,
+                                                                           "d20":  null
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  2,
+                                                           "r":  0.81,
+                                                           "target2":  true,
+                                                           "daysSince":  15
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-08-31",
+                                           "close":  367.95,
+                                           "backfill":  true,
+                                           "status":  "yellow",
+                                           "label":  "AFVENT",
+                                           "entryLow":  364.46,
+                                           "entryHigh":  367.95,
+                                           "stop":  352.53,
+                                           "target1":  383.14,
+                                           "target2":  400.57,
+                                           "rr1":  1.24,
+                                           "horizon":  "2-4",
+                                           "histT1Pct":  42.5,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  62.5,
+                                                                        "baseline":  49.7,
+                                                                        "median":  2.53
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  57.5,
+                                                                        "baseline":  49.2,
+                                                                        "median":  3.18
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  52.5,
+                                                                       "baseline":  49.1,
+                                                                       "median":  0.15
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  55,
+                                                                        "baseline":  48.2,
+                                                                        "median":  2.88
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  55,
+                                                                       "baseline":  48.7,
+                                                                       "median":  0.25
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  47.5,
+                                                                       "baseline":  47.8,
+                                                                       "median":  -0.1
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "rr",
+                                                          "hist"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  -2.97,
+                                                                           "d5":  0.06,
+                                                                           "d10":  -3.09,
+                                                                           "d20":  null
+                                                                       },
+                                                           "result":  "stop",
+                                                           "days":  2,
+                                                           "r":  -1,
+                                                           "target2":  false,
+                                                           "daysSince":  16
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-08-28",
+                                           "close":  348.75,
+                                           "backfill":  true,
+                                           "status":  "yellow",
+                                           "label":  "AFVENT",
+                                           "entryLow":  345.13,
+                                           "entryHigh":  348.75,
+                                           "stop":  333.88,
+                                           "target1":  360.47,
+                                           "target2":  383.14,
+                                           "rr1":  1.04,
+                                           "horizon":  "2-3",
+                                           "histT1Pct":  42.5,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  60,
+                                                                        "baseline":  49.7,
+                                                                        "median":  2.45
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  70,
+                                                                        "baseline":  49.2,
+                                                                        "median":  3.95
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  42.5,
+                                                                       "baseline":  49.2,
+                                                                       "median":  -1.27
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  70,
+                                                                        "baseline":  48.2,
+                                                                        "median":  5.6
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  37.5,
+                                                                       "baseline":  48.8,
+                                                                       "median":  -0.37
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  55,
+                                                                       "baseline":  47.8,
+                                                                       "median":  1.28
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "trend",
+                                                          "rr",
+                                                          "hist"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  2.1,
+                                                                           "d5":  1.53,
+                                                                           "d10":  2.93,
+                                                                           "d20":  null
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  1,
+                                                           "r":  0.79,
+                                                           "target2":  true,
+                                                           "daysSince":  17
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-08-27",
+                                           "close":  354.81,
+                                           "backfill":  true,
+                                           "status":  "yellow",
+                                           "label":  "AFVENT",
+                                           "entryLow":  344.75,
+                                           "entryHigh":  354.81,
+                                           "stop":  333.99,
+                                           "target1":  366.5,
+                                           "target2":  383.14,
+                                           "rr1":  1.06,
+                                           "horizon":  "2-4",
+                                           "histT1Pct":  45,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  65,
+                                                                        "baseline":  49.6,
+                                                                        "median":  2.88
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  67.5,
+                                                                        "baseline":  49.1,
+                                                                        "median":  5.25
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  47.5,
+                                                                       "baseline":  49.1,
+                                                                       "median":  -0.64
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  67.5,
+                                                                        "baseline":  48.2,
+                                                                        "median":  6.12
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  40,
+                                                                       "baseline":  48.7,
+                                                                       "median":  -0.74
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  55,
+                                                                       "baseline":  47.7,
+                                                                       "median":  0.84
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "trend",
+                                                          "rr",
+                                                          "hist"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  3.7,
+                                                                           "d5":  6.08,
+                                                                           "d10":  3,
+                                                                           "d20":  null
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  2,
+                                                           "r":  0.56,
+                                                           "target2":  true,
+                                                           "daysSince":  18
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-08-26",
+                                           "close":  345.82,
+                                           "backfill":  true,
+                                           "status":  "red",
+                                           "label":  "UINTERESSANT",
+                                           "entryLow":  337.24,
+                                           "entryHigh":  345.82,
+                                           "stop":  315.08,
+                                           "target1":  362.42,
+                                           "target2":  383.14,
+                                           "rr1":  0.79,
+                                           "horizon":  "2-8",
+                                           "histT1Pct":  57.5,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  57.5,
+                                                                        "baseline":  49.6,
+                                                                        "median":  2.51
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  67.5,
+                                                                        "baseline":  49.1,
+                                                                        "median":  3.95
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  42.5,
+                                                                       "baseline":  49.1,
+                                                                       "median":  -1.15
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  65,
+                                                                        "baseline":  48.1,
+                                                                        "median":  5.38
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  42.5,
+                                                                       "baseline":  48.7,
+                                                                       "median":  -0.89
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  55,
+                                                                       "baseline":  47.7,
+                                                                       "median":  2.02
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "trend",
+                                                          "rr"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  0.85,
+                                                                           "d5":  3.24,
+                                                                           "d10":  5.13,
+                                                                           "d20":  null
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  3,
+                                                           "r":  0.54,
+                                                           "target2":  true,
+                                                           "daysSince":  19
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-08-25",
+                                           "close":  350.25,
+                                           "backfill":  true,
+                                           "status":  "red",
+                                           "label":  "UINTERESSANT",
+                                           "entryLow":  343.46,
+                                           "entryHigh":  350.25,
+                                           "stop":  333.34,
+                                           "target1":  363.73,
+                                           "target2":  383.14,
+                                           "rr1":  1.25,
+                                           "horizon":  "2-3",
+                                           "histT1Pct":  32.5,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  60,
+                                                                        "baseline":  49.5,
+                                                                        "median":  2.95
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  65,
+                                                                        "baseline":  49.1,
+                                                                        "median":  3.95
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  37.5,
+                                                                       "baseline":  49.1,
+                                                                       "median":  -1.94
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  65,
+                                                                        "baseline":  48.1,
+                                                                        "median":  4.85
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  32.5,
+                                                                       "baseline":  48.6,
+                                                                       "median":  -1.69
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  50,
+                                                                       "baseline":  47.7,
+                                                                       "median":  0.88
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "trend",
+                                                          "rr",
+                                                          "hist"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  1.3,
+                                                                           "d5":  1.67,
+                                                                           "d10":  5.01,
+                                                                           "d20":  8.53
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  4,
+                                                           "r":  0.80,
+                                                           "target2":  true,
+                                                           "daysSince":  20
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-08-24",
+                                           "close":  348.95,
+                                           "backfill":  true,
+                                           "status":  "yellow",
+                                           "label":  "AFVENT",
+                                           "entryLow":  342.75,
+                                           "entryHigh":  348.95,
+                                           "stop":  331.91,
+                                           "target1":  364.85,
+                                           "target2":  383.14,
+                                           "rr1":  1.36,
+                                           "horizon":  "2-5",
+                                           "histT1Pct":  42.5,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  62.5,
+                                                                        "baseline":  49.5,
+                                                                        "median":  2.37
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  67.5,
+                                                                        "baseline":  49,
+                                                                        "median":  4.92
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  42.5,
+                                                                       "baseline":  49,
+                                                                       "median":  -1.03
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  65,
+                                                                        "baseline":  48,
+                                                                        "median":  6.05
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  45,
+                                                                       "baseline":  48.6,
+                                                                       "median":  -0.41
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  42.5,
+                                                                       "baseline":  47.6,
+                                                                       "median":  -0.72
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "trend",
+                                                          "rr",
+                                                          "hist"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  -0.9,
+                                                                           "d5":  5.44,
+                                                                           "d10":  5.51,
+                                                                           "d20":  8.58
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  5,
+                                                           "r":  0.93,
+                                                           "target2":  true,
+                                                           "daysSince":  21
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-08-21",
+                                           "close":  362.86,
+                                           "backfill":  true,
+                                           "status":  "yellow",
+                                           "label":  "AFVENT",
+                                           "entryLow":  352.14,
+                                           "entryHigh":  362.86,
+                                           "stop":  338.63,
+                                           "target1":  383.14,
+                                           "target2":  403.32,
+                                           "rr1":  1.36,
+                                           "horizon":  "2-6",
+                                           "histT1Pct":  40,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  60,
+                                                                        "baseline":  49.5,
+                                                                        "median":  2.53
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  60,
+                                                                        "baseline":  49,
+                                                                        "median":  2.71
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  50,
+                                                                       "baseline":  49.1,
+                                                                       "median":  -0.35
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  55,
+                                                                        "baseline":  48,
+                                                                        "median":  1.57
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  47.5,
+                                                                       "baseline":  48.6,
+                                                                       "median":  -0.77
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  50,
+                                                                       "baseline":  47.6,
+                                                                       "median":  0.37
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "trend",
+                                                          "rr",
+                                                          "hist"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  -3.48,
+                                                                           "d5":  -3.89,
+                                                                           "d10":  -2.42,
+                                                                           "d20":  3.43
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  9,
+                                                           "r":  0.84,
+                                                           "target2":  false,
+                                                           "daysSince":  22
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-08-20",
+                                           "close":  345.13,
+                                           "backfill":  true,
+                                           "status":  "yellow",
+                                           "label":  "AFVENT",
+                                           "entryLow":  339.91,
+                                           "entryHigh":  345.13,
+                                           "stop":  315.96,
+                                           "target1":  366.23,
+                                           "target2":  383.14,
+                                           "rr1":  0.89,
+                                           "horizon":  "2-6",
+                                           "histT1Pct":  57.5,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  62.5,
+                                                                        "baseline":  49.4,
+                                                                        "median":  2.62
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  67.5,
+                                                                        "baseline":  48.9,
+                                                                        "median":  4
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  45,
+                                                                       "baseline":  49.1,
+                                                                       "median":  -0.9
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  67.5,
+                                                                        "baseline":  47.9,
+                                                                        "median":  7.25
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  42.5,
+                                                                       "baseline":  48.7,
+                                                                       "median":  -1.02
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  57.5,
+                                                                       "baseline":  47.6,
+                                                                       "median":  2.53
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "trend",
+                                                          "rr"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  1.11,
+                                                                           "d5":  2.8,
+                                                                           "d10":  9.05,
+                                                                           "d20":  5.55
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  1,
+                                                           "r":  0.72,
+                                                           "target2":  true,
+                                                           "daysSince":  23
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-08-19",
+                                           "close":  351.12,
+                                           "backfill":  true,
+                                           "status":  "yellow",
+                                           "label":  "AFVENT",
+                                           "entryLow":  339.36,
+                                           "entryHigh":  351.12,
+                                           "stop":  318.51,
+                                           "target1":  367.26,
+                                           "target2":  383.14,
+                                           "rr1":  0.82,
+                                           "horizon":  "2-7",
+                                           "histT1Pct":  52.5,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  62.5,
+                                                                        "baseline":  49.5,
+                                                                        "median":  2.95
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  65,
+                                                                        "baseline":  48.9,
+                                                                        "median":  2.81
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  30,
+                                                                       "baseline":  49.1,
+                                                                       "median":  -2.06
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  65,
+                                                                        "baseline":  47.9,
+                                                                        "median":  6.05
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  25,
+                                                                       "baseline":  48.7,
+                                                                       "median":  -1.7
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  50,
+                                                                       "baseline":  47.6,
+                                                                       "median":  0.31
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "trend",
+                                                          "rr"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  3.34,
+                                                                           "d5":  -1.51,
+                                                                           "d10":  1.68,
+                                                                           "d20":  4.29
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  8,
+                                                           "r":  0.49,
+                                                           "target2":  true,
+                                                           "daysSince":  24
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-08-18",
+                                           "close":  336.87,
+                                           "backfill":  true,
+                                           "status":  "red",
+                                           "label":  "UINTERESSANT",
+                                           "entryLow":  326.99,
+                                           "entryHigh":  336.87,
+                                           "stop":  294.09,
+                                           "target1":  355.39,
+                                           "target2":  380.17,
+                                           "rr1":  0.62,
+                                           "horizon":  "2-8",
+                                           "histT1Pct":  67.5,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  62.5,
+                                                                        "baseline":  49.5,
+                                                                        "median":  3.69
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  62.5,
+                                                                        "baseline":  48.9,
+                                                                        "median":  6.06
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  52.5,
+                                                                       "baseline":  49.2,
+                                                                       "median":  0.74
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  67.5,
+                                                                        "baseline":  47.9,
+                                                                        "median":  8.57
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  50,
+                                                                       "baseline":  48.8,
+                                                                       "median":  0.04
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  55,
+                                                                       "baseline":  47.7,
+                                                                       "median":  1.37
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "trend",
+                                                          "rr"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  2.45,
+                                                                           "d5":  3.97,
+                                                                           "d10":  5.71,
+                                                                           "d20":  6.3
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  3,
+                                                           "r":  0.43,
+                                                           "target2":  true,
+                                                           "daysSince":  25
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-08-17",
+                                           "close":  339.3,
+                                           "backfill":  true,
+                                           "status":  "red",
+                                           "label":  "UINTERESSANT",
+                                           "entryLow":  329.2,
+                                           "entryHigh":  339.3,
+                                           "stop":  294.01,
+                                           "target1":  355.39,
+                                           "target2":  369.5,
+                                           "rr1":  0.53,
+                                           "horizon":  "2-8",
+                                           "histT1Pct":  67.5,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  55,
+                                                                        "baseline":  49.5,
+                                                                        "median":  2.63
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  60,
+                                                                        "baseline":  49,
+                                                                        "median":  6.06
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  52.5,
+                                                                       "baseline":  49.2,
+                                                                       "median":  0.45
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  62.5,
+                                                                        "baseline":  48,
+                                                                        "median":  6.48
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  52.5,
+                                                                       "baseline":  48.8,
+                                                                       "median":  0.37
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  52.5,
+                                                                       "baseline":  47.7,
+                                                                       "median":  0.45
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "trend",
+                                                          "rr"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  3.48,
+                                                                           "d5":  2.84,
+                                                                           "d10":  8.44,
+                                                                           "d20":  5.09
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  4,
+                                                           "r":  0.36,
+                                                           "target2":  true,
+                                                           "daysSince":  26
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-08-14",
+                                           "close":  342.27,
+                                           "backfill":  true,
+                                           "status":  "red",
+                                           "label":  "UINTERESSANT",
+                                           "entryLow":  338.15,
+                                           "entryHigh":  342.27,
+                                           "stop":  312.44,
+                                           "target1":  355.39,
+                                           "target2":  371.09,
+                                           "rr1":  0.55,
+                                           "horizon":  "2-5",
+                                           "histT1Pct":  65,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  62.5,
+                                                                        "baseline":  49.6,
+                                                                        "median":  3.48
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  65,
+                                                                        "baseline":  49,
+                                                                        "median":  5.67
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  47.5,
+                                                                       "baseline":  49.3,
+                                                                       "median":  -0.31
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  67.5,
+                                                                        "baseline":  48,
+                                                                        "median":  6.18
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  50,
+                                                                       "baseline":  48.8,
+                                                                       "median":  0.03
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  47.5,
+                                                                       "baseline":  47.8,
+                                                                       "median":  -0.6
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "trend",
+                                                          "rr"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  -1.58,
+                                                                           "d5":  6.02,
+                                                                           "d10":  1.89,
+                                                                           "d20":  4.88
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  5,
+                                                           "r":  0.44,
+                                                           "target2":  true,
+                                                           "daysSince":  27
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-08-13",
+                                           "close":  339.96,
+                                           "backfill":  true,
+                                           "status":  "red",
+                                           "label":  "UINTERESSANT",
+                                           "entryLow":  329.67,
+                                           "entryHigh":  339.96,
+                                           "stop":  293.95,
+                                           "target1":  355.39,
+                                           "target2":  372.71,
+                                           "rr1":  0.5,
+                                           "horizon":  "2-8",
+                                           "histT1Pct":  57.5,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  60,
+                                                                        "baseline":  49.6,
+                                                                        "median":  3.13
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  60,
+                                                                        "baseline":  49,
+                                                                        "median":  5.59
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  50,
+                                                                       "baseline":  49.3,
+                                                                       "median":  0.06
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  65,
+                                                                        "baseline":  48.1,
+                                                                        "median":  6.05
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  40,
+                                                                       "baseline":  48.8,
+                                                                       "median":  -0.43
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  55,
+                                                                       "baseline":  47.8,
+                                                                       "median":  1.8
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "trend",
+                                                          "rr"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  -0.19,
+                                                                           "d5":  1.52,
+                                                                           "d10":  4.37,
+                                                                           "d20":  7.5
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  6,
+                                                           "r":  0.34,
+                                                           "target2":  true,
+                                                           "daysSince":  28
+                                                       }
+                                       },
+                                       {
+                                           "date":  "2026-08-12",
+                                           "close":  327.51,
+                                           "backfill":  true,
+                                           "status":  "red",
+                                           "label":  "UINTERESSANT",
+                                           "entryLow":  317.37,
+                                           "entryHigh":  327.51,
+                                           "stop":  294,
+                                           "target1":  337.47,
+                                           "target2":  355.39,
+                                           "rr1":  0.53,
+                                           "horizon":  "2-3",
+                                           "histT1Pct":  62.5,
+                                           "expected":  {
+                                                            "d10":  {
+                                                                        "matches":  55,
+                                                                        "baseline":  49.7,
+                                                                        "median":  0.44
+                                                                    },
+                                                            "d15":  {
+                                                                        "matches":  52.5,
+                                                                        "baseline":  49.1,
+                                                                        "median":  3.55
+                                                                    },
+                                                            "d3":  {
+                                                                       "matches":  52.5,
+                                                                       "baseline":  49.3,
+                                                                       "median":  0.45
+                                                                   },
+                                                            "d20":  {
+                                                                        "matches":  55,
+                                                                        "baseline":  48.1,
+                                                                        "median":  3.5
+                                                                    },
+                                                            "d2":  {
+                                                                       "matches":  42.5,
+                                                                       "baseline":  48.8,
+                                                                       "median":  -3.23
+                                                                   },
+                                                            "d5":  {
+                                                                       "matches":  55,
+                                                                       "baseline":  47.8,
+                                                                       "median":  1.34
+                                                                   }
+                                                        },
+                                           "eventRisk":  null,
+                                           "failed":  [
+                                                          "trend",
+                                                          "rr"
+                                                      ],
+                                           "outcome":  {
+                                                           "returns":  {
+                                                                           "d2":  4.51,
+                                                                           "d5":  7.21,
+                                                                           "d10":  5.59,
+                                                                           "d20":  11.01
+                                                                       },
+                                                           "result":  "t1",
+                                                           "days":  1,
+                                                           "r":  0.30,
+                                                           "target2":  true,
+                                                           "daysSince":  29
                                                        }
                                        }
                                    ],
