@@ -1,8 +1,8 @@
 {
     "schemaVersion":  1,
     "symbol":  "TSLA",
-    "generatedAt":  "2026-09-24T11:45:32Z",
-    "dataHash":  "0b90cae7109c63215c1f34098ca61bd54b7f97f62d70d744d8f692d05f5cc26a",
+    "generatedAt":  "2026-09-24T12:54:02Z",
+    "dataHash":  "22f565d9164a1e0ed03852cd74b162565df345d9413c235fb0a18ae03cde4e95",
     "source":  "Yahoo Finance (chart v8)",
     "provider":  "Yahoo",
     "quote":  {
@@ -3520,6 +3520,31 @@
                                  }
                              ]
                },
+    "narrative":  {
+                      "parts":  [
+                                    {
+                                        "topic":  "Trend",
+                                        "text":  "Den korte trend peger op, men den lange peger stadig ned. Det er typisk for en aktie der er ved at rette sig op efter et fald, men som ikke har brudt den lange nedtrend."
+                                    },
+                                    {
+                                        "topic":  "Momentum",
+                                        "text":  "RSI er 60,6, altså positivt momentum uden at være overkøbt. MACD ligger over signallinjen, så momentum er stigende."
+                                    },
+                                    {
+                                        "topic":  "Niveauer",
+                                        "text":  "20 EMA på $363,54 ligger 4,4% under kursen og kan virke som støtte. 200 SMA på $396,34 ligger 4,3% over kursen og kan virke som modstand."
+                                    },
+                                    {
+                                        "topic":  "Volumen og volatilitet",
+                                        "text":  "Stigningen skete på lav volumen (0,86x normalt), altså uden stor opbakning. Udsvingene er blandt de laveste det seneste år. Rolige perioder bliver ofte afløst af større bevægelser, men retningen er ukendt."
+                                    }
+                                ],
+                      "needTitle":  "Hvad skal der til for INTERESSANT?",
+                      "need":  [
+                                   "Flere historiske matches skal nå Target 1 før stop (nu 27,5%, krav 50%). Stoppet ligger kun 1,1 ATR under entry, så det bliver let ramt af almindelige udsving."
+                               ],
+                      "note":  "Teksten dannes automatisk af faste regler ud fra dagens tal og opdateres ved hver kørsel."
+                  },
     "performance":  {
                         "status":  "ok",
                         "total":  1,
