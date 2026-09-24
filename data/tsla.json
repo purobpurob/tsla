@@ -1,8 +1,8 @@
 {
     "schemaVersion":  1,
     "symbol":  "TSLA",
-    "generatedAt":  "2026-09-24T11:08:26Z",
-    "dataHash":  "f435ac46da4f841ac134464d5cfee63b5355f58928670fef5edffb2045a8f7cd",
+    "generatedAt":  "2026-09-24T11:14:07Z",
+    "dataHash":  "83ace2e7d197356415dc271540532322bf3fdd984789e0a638118f3189d08966",
     "source":  "Yahoo Finance (chart v8)",
     "provider":  "Yahoo",
     "quote":  {
@@ -2939,8 +2939,8 @@
                  "sources":  [
                                  {
                                      "name":  "SEC EDGAR",
-                                     "ok":  true,
-                                     "items":  0
+                                     "ok":  false,
+                                     "error":  "TSLA_SEC_CONTACT er ikke sat (SEC kræver en kontakt-email i User-Agent)"
                                  },
                                  {
                                      "name":  "Nasdaq RSS",
