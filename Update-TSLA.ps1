@@ -319,6 +319,12 @@ try {
         }
     }
 
+    # Notifikation (script uden for repo'et)
+    if ($Config.NotifyScript -and (Test-Path $Config.NotifyScript)) {
+        try { & $Config.NotifyScript | Out-Null; Write-Log 'Notify-script kørt' }
+        catch { Write-Log "Notify-script fejlede: $($_.Exception.Message)" 'WARN' }
+    }
+
     Write-Log ("=== Færdig på {0:N1} sek ===" -f $sw.Elapsed.TotalSeconds)
     exit 0
 }

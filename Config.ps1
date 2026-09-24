@@ -29,6 +29,10 @@ $Config = @{
     CacheDir        = 'Cache'
     LogDir          = 'Logs'
 
+    # Notifikation (valgfri). Scriptet ligger uden for repo'et, så token ikke kommer i Git.
+    # Kaldes efter hver kørsel hvis filen findes. Sæt til $null for at slå fra.
+    NotifyScript    = 'C:\Tools\TSLA_Notify\Notify-TSLA.ps1'
+
     # Git
     GitEnabled      = $true
     GitCommitMessage = 'Update TSLA data'
