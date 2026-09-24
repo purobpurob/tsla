@@ -6,6 +6,7 @@
   <title>TSLA Swing Trader</title>
   <meta name="robots" content="noindex">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%23171b21%27/%3E%3Cpath d=%27M5 22l7-7 5 4 10-10%27 stroke=%27%2322c55e%27 stroke-width=%273%27 fill=%27none%27/%3E%3C/svg%3E">
+  <script>try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -15,9 +16,12 @@
         <div class="brand">TSLA SWING TRADER</div>
         <div class="sub" id="updated">Indlæser data ...</div>
       </div>
+      <div class="top-right">
+      <button class="theme-btn" id="theme-btn" type="button" aria-label="Skift mellem mørkt og lyst tema">Lyst tema</button>
       <div class="quote">
         <div class="price" id="price">-</div>
         <div class="chg" id="change"></div>
+      </div>
       </div>
     </div>
   </header>
@@ -151,15 +155,27 @@
       <p class="muted small" id="news-method"></p>
     </section>
 
-    <section class="grid-2">
-      <article class="card placeholder">
-        <h2>Events</h2>
-        <p class="muted">Fase 5. Earnings, deliveries, Fed, CPI og andre makroevents.</p>
-      </article>
-      <article class="card placeholder">
-        <h2>Previous setups</h2>
-        <p class="muted">Fase 6. Hvad sagde modellen dengang og hvad skete der bagefter.</p>
-      </article>
+    <section class="card" id="events-card">
+      <h2>Events</h2>
+      <div class="news-top">
+        <div>
+          <div class="k">Event risk</div>
+          <div class="status status-pending" id="event-risk"><span class="dot"></span><span id="event-risk-label">-</span></div>
+        </div>
+        <ul class="why" id="event-reasons"></ul>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl tbl-left" id="events-table">
+          <thead><tr><th>Dato</th><th>Om</th><th>Type</th><th>Event</th><th>Status</th><th>Kilde</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="muted small" id="events-method"></p>
+    </section>
+
+    <section class="card placeholder">
+      <h2>Previous setups</h2>
+      <p class="muted">Fase 6. Hvad sagde modellen dengang og hvad skete der bagefter.</p>
     </section>
   </main>
 

@@ -3,7 +3,7 @@
 Analyse af swing trade setups i TSLA med en horisont på 2 dage til 3 uger.
 PowerShell på en lokal server er datamotoren. GitHub Pages viser resultatet.
 
-**Status: Fase 4** (kurser, indikatorer, signaler, graf, historiske setups, trade levels, status og nyheder).
+**Status: Fase 5** (kurser, indikatorer, signaler, graf, historiske setups, trade levels, status, nyheder og events).
 
 Siden er et analyseværktøj og ikke investeringsrådgivning.
 
@@ -20,7 +20,9 @@ C:\Tools\TSLA
 │   ├── Signals.ps1            Farveregler for de tekniske signaler
 │   ├── HistoricalSetups.ps1   Fase 2: lignende historiske dage og deres udvikling
 │   ├── TradeLevels.ps1        Fase 3: entry, stop, targets og samlet status
-│   └── News.ps1               Fase 4: nyheder fra SEC EDGAR og Nasdaq RSS
+│   ├── News.ps1               Fase 4: nyheder fra SEC EDGAR og Nasdaq RSS
+│   └── Events.ps1             Fase 5: kommende events og event risk
+├── Events.json                Event-kalender (vedligeholdes manuelt)
 ├── data                       JSON til frontend (committes)
 │   ├── tsla.json              Aktuel status, indikatorer og signaler
 │   └── tsla-history.json      Ca. 3 års dagsdata til grafen
@@ -168,6 +170,7 @@ Niveauer der ligger inden for 0,2% af hinanden slås sammen.
 | Historisk T1 før stop | ≥ 50% | < 35% |
 | Matches mod alle dage, median 10 dage | ≥ 0 | |
 | Volatilitet | ikke rød | |
+| Event risk (fase 5) | ikke høj | |
 
 - INTERESSANT: alle krav opfyldt.
 - UINTERESSANT: mindst ét krav i højre kolonne.
@@ -206,6 +209,33 @@ Nyheder gemmes i `Cache/news.json`, så de ikke forsvinder hvis en kilde fejler 
 
 **Begrænsning:** Reglerne forstår ikke ironi eller negationer. "BYD gains share" er dårligt for Tesla, men ordene alene siger det ikke.
 
+## Fase 5: Events
+
+Kalenderen ligger i `Events.json` og vedligeholdes manuelt. Den indeholder:
+
+| Type | Kilde | Status |
+|---|---|---|
+| FOMC | [Federal Reserve](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm) | Bekræftet |
+| CPI | [BLS](https://www.bls.gov/schedule/news_release/cpi.htm) | Bekræftet |
+| Tesla earnings | Kalendertjenester indtil Tesla bekræfter på [IR](https://ir.tesla.com/) | Estimat, indtil bekræftet |
+| Tesla deliveries | Mønster: 2. hverdag i kvartalet | Estimat |
+
+Mangler Tesla-datoer for de næste 2 kvartaler, laves automatiske estimater (deliveries: 2. hverdag i kvartalet, earnings: 4. onsdag i første måned). Ret `confirmed` til `true` og datoen når Tesla melder den ud.
+
+Loggen advarer når der ikke er FOMC/CPI-datoer mere end 30 dage frem. Så skal næste års datoer tilføjes. Helligdage i `holidays` bruges til at tælle handelsdage.
+
+**Event risk**
+
+- Høj: Tesla earnings/deliveries inden for 5 handelsdage, eller FOMC/CPI i dag eller i morgen.
+- Moderat: Tesla earnings/deliveries inden for 15 handelsdage, eller FOMC/CPI inden for 5 handelsdage.
+- Lav: ellers.
+
+Event risk indgår som krav i setup-status: Høj event risk giver AFVENT, men aldrig UINTERESSANT. Det er information om risiko og ikke et signal om at sælge.
+
+## Tema
+
+Siden bruger mørkt tema som standard. Knappen øverst skifter til lyst tema, og valget huskes i browseren.
+
 ## Næste fase
 
-Fase 5: Events (earnings-dato, deliveries, Fed, CPI) og event risk i setup-status.
+Fase 6: Log hver dags setup og mål bagefter hvad der faktisk skete efter 2, 5, 10 og 20 dage.

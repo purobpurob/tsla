@@ -104,6 +104,43 @@
 
 
 
+
+  // ---------- Events (fase 5) ----------
+  function renderEvents(e) {
+    if (!e || e.status !== 'ok') {
+      $('event-risk-label').textContent = e && e.reason ? 'Fejl: ' + e.reason : 'Ikke beregnet endnu';
+      return;
+    }
+    $('event-risk').className = 'status status-' + e.risk.status;
+    $('event-risk-label').textContent = e.risk.label;
+    $('event-reasons').innerHTML = e.risk.reasons.map((r) => '<li>' + esc(r) + '</li>').join('');
+    const when = (td) => (td === 0 ? 'I dag' : td === 1 ? 'I morgen' : td + ' handelsdage');
+    $('events-table').querySelector('tbody').innerHTML = e.items.map((i) => {
+      const url = /^https?:\/\//.test(i.url || '') ? i.url : null;
+      const soon = (i.group === 'tesla' && i.tradingDays <= 5) || (i.group === 'macro' && i.tradingDays <= 1);
+      return '<tr class="' + (soon ? 'ev-soon' : '') + '"><td>' + esc(df.format(new Date(i.date + 'T12:00:00'))) + (i.time ? ' ' + esc(i.time) : '') + '</td>' +
+        '<td>' + when(i.tradingDays) + '</td><td>' + esc(i.typeLabel) + '</td><td>' + esc(i.title) + '</td>' +
+        '<td class="' + (i.confirmed ? 'ev-conf' : 'ev-est') + '">' + (i.confirmed ? 'Bekræftet' : 'Estimat') + '</td>' +
+        '<td>' + (url ? '<a href="' + esc(url) + '" target="_blank" rel="noopener noreferrer" title="' + esc(i.source) + '">Kilde</a>' : esc(i.source || '')) + '</td></tr>';
+    }).join('');
+    $('events-method').textContent = e.risk.rule + ' Estimater er markeret. Datoerne vedligeholdes i Events.json.' +
+      (e.warnings.length ? ' Advarsel: ' + e.warnings.join(' ') : '');
+  }
+
+  // ---------- Tema ----------
+  function initTheme() {
+    const btn = $('theme-btn');
+    const cur = () => document.documentElement.getAttribute('data-theme') || 'dark';
+    const label = () => { btn.textContent = cur() === 'dark' ? 'Lyst tema' : 'Mørkt tema'; };
+    label();
+    btn.addEventListener('click', () => {
+      const next = cur() === 'dark' ? 'light' : 'dark';
+      try { localStorage.setItem('theme', next); } catch (e) { /* ignorer */ }
+      document.documentElement.setAttribute('data-theme', next);
+      location.reload();   // Graferne tegnes med temaets farver ved indlæsning
+    });
+  }
+
   // ---------- Nyheder (fase 4) ----------
   const TONE = { positive: 'green', neutral: 'na', negative: 'red' };
   const TONE_TXT = { positive: 'Positiv', neutral: 'Neutral', negative: 'Negativ' };
@@ -166,8 +203,7 @@
       return '<li><span class="ic ' + cls + '">' + ic + '</span><span>' + esc(c.label) + '<span class="d">' + esc(c.detail) + '</span></span></li>';
     }).join('');
 
-    $('setup-event').textContent = 'Event risk: ' + s.eventRisk.note +
-      ' Status: grøn kræver at alle krav er opfyldt. Rød hvis et krav er langt fra. Ellers gul.';
+    $('setup-event').textContent = 'Status: grøn kræver at alle krav er opfyldt. Rød hvis et krav er langt fra. Ellers gul. News risk indgår ikke i status, se nyhedssektionen.';
 
     const w = s.why;
     $('setup-why').innerHTML = [['Entry', w.entry], ['Stop', w.stop], ['Target 1', w.target1], ['Target 2', w.target2],
@@ -338,6 +374,7 @@
   }
 
   async function main() {
+    initTheme();
     try {
       const [d, hist] = await Promise.all([getJson('data/tsla.json'), getJson('data/tsla-history.json')]);
       renderHeader(d);
@@ -346,6 +383,7 @@
       renderHistorical(d.historical);
       renderSetup(d.setup);
       renderNews(d.news);
+      renderEvents(d.events);
       showWarnings(d.dataWarnings);
       $('source').textContent = 'Datakilde: ' + d.source + '. Historik: ' + d.history.bars + ' handelsdage fra ' + d.history.firstDate + '.';
       renderCharts(hist, d.setup);

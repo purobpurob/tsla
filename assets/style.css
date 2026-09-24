@@ -18,8 +18,8 @@
   color-scheme: dark;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
+@media all {
+  :root[data-theme="light"] {
     --bg: #f5f6f8;
     --surface: #ffffff;
     --surface-2: #f0f2f5;
@@ -190,3 +190,12 @@ main { padding-top: 20px; padding-bottom: 20px; display: grid; gap: 16px; }
 .news-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
 .news-why { font-size: 12px; color: var(--muted); }
 .tag-high { color: var(--red); font-weight: 600; }
+
+.top-right { display: flex; align-items: center; gap: 16px; }
+.theme-btn { background: var(--surface-2); border: 1px solid var(--border); color: var(--muted); border-radius: 6px; padding: 4px 10px; cursor: pointer; font: inherit; font-size: 12px; }
+.theme-btn:hover { color: var(--text); }
+@media (max-width: 520px) { .theme-btn { display: none; } }
+.tbl-left td, .tbl-left th { text-align: left; }
+.ev-est { color: var(--yellow); }
+.ev-conf { color: var(--green); }
+.ev-soon td { font-weight: 600; }

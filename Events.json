@@ -1,0 +1,77 @@
+{
+  "_comment": "Kommende events. Rediger manuelt. confirmed=false betyder estimat. Datoer er New York-tid. Tesla-estimater for senere kvartaler laves automatisk hvis de mangler her.",
+  "holidays": ["2026-11-26", "2026-12-25", "2027-01-01"],
+  "events": [
+    {
+      "date": "2026-10-02",
+      "type": "deliveries",
+      "title": "Tesla Q3 2026 production og deliveries",
+      "confirmed": false,
+      "source": "Estimat. Tesla offentliggør typisk deliveries på 2. hverdag i kvartalet (Q2 2026: 2. juli 2026).",
+      "url": "https://ir.tesla.com/"
+    },
+    {
+      "date": "2026-10-21",
+      "time": "Efter lukketid",
+      "type": "earnings",
+      "title": "Tesla Q3 2026 earnings",
+      "confirmed": false,
+      "source": "Wall Street Horizon, forventet dato. Ikke bekræftet af Tesla.",
+      "url": "https://www.wallstreethorizon.com/tesla-earnings-calendar"
+    },
+    {
+      "date": "2026-10-14",
+      "time": "08:30",
+      "type": "cpi",
+      "title": "CPI for september 2026",
+      "confirmed": true,
+      "source": "U.S. Bureau of Labor Statistics",
+      "url": "https://www.bls.gov/schedule/news_release/cpi.htm"
+    },
+    {
+      "date": "2026-10-28",
+      "time": "14:00",
+      "type": "fomc",
+      "title": "FOMC rentebeslutning (møde 27.-28. okt.)",
+      "confirmed": true,
+      "source": "Federal Reserve",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    },
+    {
+      "date": "2026-11-10",
+      "time": "08:30",
+      "type": "cpi",
+      "title": "CPI for oktober 2026",
+      "confirmed": true,
+      "source": "U.S. Bureau of Labor Statistics",
+      "url": "https://www.bls.gov/schedule/news_release/cpi.htm"
+    },
+    {
+      "date": "2026-12-09",
+      "time": "14:00",
+      "type": "fomc",
+      "title": "FOMC rentebeslutning med prognoser (møde 8.-9. dec.)",
+      "confirmed": true,
+      "source": "Federal Reserve",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    },
+    {
+      "date": "2026-12-10",
+      "time": "08:30",
+      "type": "cpi",
+      "title": "CPI for november 2026",
+      "confirmed": true,
+      "source": "U.S. Bureau of Labor Statistics",
+      "url": "https://www.bls.gov/schedule/news_release/cpi.htm"
+    },
+    {
+      "date": "2027-01-27",
+      "time": "14:00",
+      "type": "fomc",
+      "title": "FOMC rentebeslutning (møde 26.-27. jan.)",
+      "confirmed": true,
+      "source": "Federal Reserve",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    }
+  ]
+}

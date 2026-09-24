@@ -55,7 +55,7 @@ function Merge-Levels([object[]]$Levels) {
 function New-Level($Price, $Label) { return [pscustomobject]@{ Price = [double]$Price; Label = $Label } }
 
 function Get-TradeSetup {
-    param([object[]]$Rows, [object[]]$Signals, $Historical)
+    param([object[]]$Rows, [object[]]$Signals, $Historical, $Events)
 
     $n = $Rows.Count
     $r = $Rows[$n - 1]
@@ -206,6 +206,11 @@ function Get-TradeSetup {
     $crit.Add([ordered]@{ key = 'vol'; label = 'Volatilitet ikke ekstrem'; pass = ($vol -ne 'red'); hardFail = $false
         detail = 'Krav: volatilitetssignalet er ikke rødt (ATR over 90. percentil).' })
 
+    if ($Events -and $Events.status -eq 'ok') {
+        $crit.Add([ordered]@{ key = 'event'; label = 'Ingen større event lige forude'; pass = ($Events.risk.level -ne 'high'); hardFail = $false
+            detail = "Event risk $($Events.risk.label). $($Events.risk.reasons[0]). Krav: event risk er ikke høj. Et event gør ikke setup uinteressant, men giver ekstra risiko." })
+    }
+
     $hard = @($crit | Where-Object { $_.hardFail }).Count
     $allPass = @($crit | Where-Object { -not $_.pass }).Count -eq 0
     if ($hard -gt 0) { $status = 'red'; $label = 'UINTERESSANT' }
@@ -236,7 +241,7 @@ function Get-TradeSetup {
         horizon       = $horizon
         why           = $why
         criteria      = $crit.ToArray()
-        eventRisk     = [ordered]@{ status = 'pending'; phase = 5; note = 'Earnings, deliveries og makro er ikke vurderet endnu (fase 5).' }
+        eventRisk     = if ($Events -and $Events.status -eq 'ok') { [ordered]@{ status = $Events.risk.status; label = $Events.risk.label; note = ($Events.risk.reasons -join '. ') + '.' } } else { [ordered]@{ status = 'na'; label = '-'; note = 'Events kunne ikke indlæses.' } }
         historicalTest = $sim
         invalidation  = $invalid
         supports      = @($supports | Select-Object -First 6 | ForEach-Object { [ordered]@{ price = [math]::Round($_.Price, 2); label = $_.Label } })

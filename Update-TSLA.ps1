@@ -42,6 +42,7 @@ $Root = $PSScriptRoot
 . (Join-Path (Join-Path $Root 'Engine') 'HistoricalSetups.ps1')
 . (Join-Path (Join-Path $Root 'Engine') 'TradeLevels.ps1')
 . (Join-Path (Join-Path $Root 'Engine') 'News.ps1')
+. (Join-Path (Join-Path $Root 'Engine') 'Events.ps1')
 
 $DataDir  = Join-Path $Root $Config.DataDir
 $CacheDir = Join-Path $Root $Config.CacheDir
@@ -161,7 +162,17 @@ try {
     }
 
     # Fase 3: trade levels og samlet status
-    $setup = Get-TradeSetup -Rows $rows -Signals $signals -Historical $hist
+    # Fase 5: events (før setup, fordi event risk indgår i status)
+    try {
+        $events = Get-Events -Path (Join-Path $Root 'Events.json') -Today $ny.Date
+        Write-Log ("Events: {0} kommende. Event risk: {1}" -f $events.items.Count, $events.risk.label)
+        foreach ($w in $events.warnings) { Write-Log $w 'WARN' }
+    } catch {
+        Write-Log "Events fejlede: $($_.Exception.Message)" 'WARN'
+        $events = [ordered]@{ status = 'error'; reason = $_.Exception.Message }
+    }
+
+    $setup = Get-TradeSetup -Rows $rows -Signals $signals -Historical $hist -Events $events
     if ($setup.status -ne 'na') {
         Write-Log ("Setup: {0}. Entry {1}-{2}, stop {3}, T1 {4}, T2 {5}, R/R {6}" -f $setup.label, $setup.entryLow, $setup.entryHigh, $setup.stop, $setup.target1, $setup.target2, $setup.riskReward1)
     }
@@ -236,7 +247,7 @@ try {
         setup         = $setup
         historical    = $hist
         news          = $news
-        events        = [ordered]@{ status = 'pending'; phase = 5 }
+        events        = $events
         dataWarnings  = $warnings
         history       = [ordered]@{ bars = $bars.Count; firstDate = $bars[0].Date; lastDate = $last.Date; file = 'data/tsla-history.json' }
     }
