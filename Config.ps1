@@ -17,6 +17,10 @@ $Config = @{
     MatchCount      = 40     # Antal nærmeste naboer
     MatchMinGap     = 5      # Min. antal handelsdage mellem to matches
 
+    # Fase 4: nyheder. SEC kræver kontakt-email: sæt miljøvariablen TSLA_SEC_CONTACT
+    NewsDays        = 14     # Hvor mange dages nyheder der vises
+    NewsMaxItems    = 30
+
     # Hvor mange handelsdage frontend-grafen får med
     ChartBars       = 756          # ca. 3 år
 

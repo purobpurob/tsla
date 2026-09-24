@@ -3,7 +3,7 @@
 Analyse af swing trade setups i TSLA med en horisont på 2 dage til 3 uger.
 PowerShell på en lokal server er datamotoren. GitHub Pages viser resultatet.
 
-**Status: Fase 3** (kurser, indikatorer, signaler, graf, historiske lignende setups, entry, stop, targets og samlet status).
+**Status: Fase 4** (kurser, indikatorer, signaler, graf, historiske setups, trade levels, status og nyheder).
 
 Siden er et analyseværktøj og ikke investeringsrådgivning.
 
@@ -19,7 +19,8 @@ C:\Tools\TSLA
 │   ├── Indicators.ps1         EMA, SMA, RSI, MACD, ATR, volumen, high/low
 │   ├── Signals.ps1            Farveregler for de tekniske signaler
 │   ├── HistoricalSetups.ps1   Fase 2: lignende historiske dage og deres udvikling
-│   └── TradeLevels.ps1        Fase 3: entry, stop, targets og samlet status
+│   ├── TradeLevels.ps1        Fase 3: entry, stop, targets og samlet status
+│   └── News.ps1               Fase 4: nyheder fra SEC EDGAR og Nasdaq RSS
 ├── data                       JSON til frontend (committes)
 │   ├── tsla.json              Aktuel status, indikatorer og signaler
 │   └── tsla-history.json      Ca. 3 års dagsdata til grafen
@@ -174,6 +175,37 @@ Niveauer der ligger inden for 0,2% af hinanden slås sammen.
 
 Event risk indgår ikke endnu (fase 5).
 
+## Fase 4: Nyheder
+
+**Kilder**
+
+| Kilde | Indhold | Nøgle |
+|---|---|---|
+| SEC EDGAR (`data.sec.gov`) | Teslas egne 8-K, 10-Q og 10-K. Item 2.02 = regnskab | Ingen, men kontakt-email i User-Agent |
+| Nasdaq RSS | Artikler om TSLA fra bl.a. Motley Fool, Zacks, Barchart | Ingen |
+
+Tesla IR har ikke et RSS-feed. Teslas væsentlige meddelelser indberettes også som 8-K til SEC.
+
+SEC kræver en kontakt-email. Sæt den som miljøvariabel på serveren, så den ikke ligger i det offentlige repo:
+
+```powershell
+[Environment]::SetEnvironmentVariable('TSLA_SEC_CONTACT', 'din@email.dk', 'User')
+```
+
+Uden variablen springes SEC over og loggen skriver en advarsel.
+
+**Klassifikation:** Faste nøgleord i overskriften giver kategori (Earnings, Deliveries, Regulering, Robotaxi, FSD, Optimus, Modeller, Kina, Musk, Analytiker, Makro) og tone (antal positive minus negative ord). De ord der udløste resultatet vises ved hver nyhed. Earnings, Deliveries, Regulering og SEC-indberetninger har høj betydning. Overskrifter der er spørgsmål tæller ikke som høj betydning.
+
+**News risk**
+
+- Høj: negativ nyhed med høj betydning inden for 2 dage, eller mindst 3 negative inden for 3 dage.
+- Moderat: mindst 1 negativ inden for 3 dage, eller en nyhed med høj betydning inden for 2 dage.
+- Lav: ellers.
+
+Nyheder gemmes i `Cache/news.json`, så de ikke forsvinder hvis en kilde fejler en dag.
+
+**Begrænsning:** Reglerne forstår ikke ironi eller negationer. "BYD gains share" er dårligt for Tesla, men ordene alene siger det ikke.
+
 ## Næste fase
 
-Fase 4: Nyheder fra Tesla IR og andre kilder med forklarende klassifikation.
+Fase 5: Events (earnings-dato, deliveries, Fed, CPI) og event risk i setup-status.

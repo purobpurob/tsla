@@ -103,6 +103,44 @@
 
 
 
+
+  // ---------- Nyheder (fase 4) ----------
+  const TONE = { positive: 'green', neutral: 'na', negative: 'red' };
+  const TONE_TXT = { positive: 'Positiv', neutral: 'Neutral', negative: 'Negativ' };
+
+  function renderNews(n) {
+    if (!n || n.status !== 'ok') {
+      $('news-risk-label').textContent = n && n.reason ? 'Fejl: ' + n.reason : 'Ikke beregnet endnu';
+      return;
+    }
+    $('news-risk').className = 'status status-' + n.risk.status;
+    $('news-risk-label').textContent = n.risk.label;
+    $('news-reasons').innerHTML = n.risk.reasons.map((r) => '<li>' + esc(r) + '</li>').join('');
+    $('news-cats').innerHTML = Object.entries(n.categories).map(([k, v]) => '<span class="chip">' + esc(k) + ' ' + v + '</span>').join('') +
+      '<span class="chip">' + n.counts.positive + ' positive / ' + n.counts.neutral + ' neutrale / ' + n.counts.negative + ' negative</span>';
+
+    const list = (tone) => {
+      const items = n.items.filter((i) => tone === 'all' || i.tone === tone);
+      $('news-list').innerHTML = items.length ? items.map((i) => {
+        const safe = /^https?:\/\//.test(i.link) ? i.link : '#';
+        return '<li><span class="sig-dot s-' + TONE[i.tone] + '" title="' + TONE_TXT[i.tone] + '"></span><div>' +
+          '<a href="' + esc(safe) + '" target="_blank" rel="noopener noreferrer">' + esc(i.title) + '</a>' +
+          '<div class="news-meta">' + esc(dtf.format(new Date(i.time))) + ' · ' + esc(i.source) +
+          (i.categoryLabels.length ? ' · ' + esc(i.categoryLabels.join(', ')) : '') +
+          (i.highImpact ? ' · <span class="tag-high">Høj betydning</span>' : '') + '</div>' +
+          '<div class="news-why">' + TONE_TXT[i.tone] + '. ' + esc(i.why) + '</div></div></li>';
+      }).join('') : '<li><span></span><span class="muted">Ingen nyheder i dette filter.</span></li>';
+    };
+    list('all');
+    $('news-filter').querySelectorAll('button').forEach((b) => b.addEventListener('click', () => {
+      $('news-filter').querySelectorAll('button').forEach((x) => x.classList.toggle('active', x === b));
+      list(b.dataset.tone);
+    }));
+
+    const src = n.sources.map((x) => x.name + (x.ok ? ' (' + x.items + ')' : ' (fejlede)')).join(', ');
+    $('news-method').textContent = 'Kilder: ' + src + '. Seneste ' + n.days + ' dage. ' + n.method + ' ' + n.risk.rule;
+  }
+
   // ---------- Setup (fase 3) ----------
   function renderSetup(s) {
     const box = $('setup-status');
@@ -307,6 +345,7 @@
       renderKeyFigures(d);
       renderHistorical(d.historical);
       renderSetup(d.setup);
+      renderNews(d.news);
       showWarnings(d.dataWarnings);
       $('source').textContent = 'Datakilde: ' + d.source + '. Historik: ' + d.history.bars + ' handelsdage fra ' + d.history.firstDate + '.';
       renderCharts(hist, d.setup);

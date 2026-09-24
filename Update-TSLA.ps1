@@ -41,6 +41,7 @@ $Root = $PSScriptRoot
 . (Join-Path (Join-Path $Root 'Engine') 'Signals.ps1')
 . (Join-Path (Join-Path $Root 'Engine') 'HistoricalSetups.ps1')
 . (Join-Path (Join-Path $Root 'Engine') 'TradeLevels.ps1')
+. (Join-Path (Join-Path $Root 'Engine') 'News.ps1')
 
 $DataDir  = Join-Path $Root $Config.DataDir
 $CacheDir = Join-Path $Root $Config.CacheDir
@@ -165,6 +166,16 @@ try {
         Write-Log ("Setup: {0}. Entry {1}-{2}, stop {3}, T1 {4}, T2 {5}, R/R {6}" -f $setup.label, $setup.entryLow, $setup.entryHigh, $setup.stop, $setup.target1, $setup.target2, $setup.riskReward1)
     }
 
+    # Fase 4: nyheder
+    $offline = if ($prov -eq 'File') { Join-Path $Root 'Tests' } else { $null }
+    try {
+        $news = Get-News -Config $Config -CacheDir $CacheDir -OfflineDir $offline
+        Write-Log ("Nyheder: {0} stk. ({1} positive, {2} negative). News risk: {3}" -f $news.items.Count, $news.counts.positive, $news.counts.negative, $news.risk.label)
+    } catch {
+        Write-Log "Nyheder fejlede: $($_.Exception.Message)" 'WARN'
+        $news = [ordered]@{ status = 'error'; reason = $_.Exception.Message }
+    }
+
     # Er seneste dagsbar afsluttet? (NYSE lukker 16:00 New York-tid)
     $barComplete = $true   # Ufærdige bars er fjernet ovenfor
 
@@ -224,7 +235,7 @@ try {
         # Pladsholdere til senere faser, så frontend kan vise at de endnu ikke er bygget
         setup         = $setup
         historical    = $hist
-        news          = [ordered]@{ status = 'pending'; phase = 4 }
+        news          = $news
         events        = [ordered]@{ status = 'pending'; phase = 5 }
         dataWarnings  = $warnings
         history       = [ordered]@{ bars = $bars.Count; firstDate = $bars[0].Date; lastDate = $last.Date; file = 'data/tsla-history.json' }

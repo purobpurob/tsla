@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:nasdaq="http://nasdaq.com/reference/feeds/1.0">
+<channel>
+<title>SYNTETISKE TESTDATA - ikke rigtige nyheder</title>
+<item><title>Tesla Robotaxi Expansion Gets Approval in Two New States</title><link>https://example.com/1</link><pubDate>Wed, 23 Sep 2026 14:05:00 +0000</pubDate><dc:creator>Test Source A</dc:creator></item>
+<item><title>NHTSA Opens Probe Into Tesla FSD After Crashes</title><link>https://example.com/2</link><pubDate>Tue, 22 Sep 2026 19:30:00 +0000</pubDate><dc:creator>Test Source B</dc:creator></item>
+<item><title>Is Tesla Stock a Buy Before Q3 Deliveries?</title><link>https://example.com/3</link><pubDate>Mon, 21 Sep 2026 11:00:00 +0000</pubDate><dc:creator>Test Source A</dc:creator></item>
+<item><title>Tesla Sales in China Fall as BYD Gains Share</title><link>https://example.com/4</link><pubDate>Sun, 20 Sep 2026 08:15:00 -0400</pubDate><dc:creator>Test Source C</dc:creator></item>
+<item><title>Analyst Upgrades Tesla, Raises Price Target on Optimus Progress</title><link>https://example.com/5</link><pubDate>Thu, 17 Sep 2026 16:45:00 GMT</pubDate><dc:creator>Test Source B</dc:creator></item>
+<item><title>Old item that should be filtered away</title><link>https://example.com/6</link><pubDate>Mon, 03 Aug 2026 10:00:00 +0000</pubDate><dc:creator>Test Source A</dc:creator></item>
+</channel></rss>
