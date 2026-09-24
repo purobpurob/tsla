@@ -1,0 +1,136 @@
+{
+    "schemaVersion":  1,
+    "symbol":  "TSLA",
+    "generatedAt":  "2026-09-24T10:00:20Z",
+    "dataHash":  "19a816d8578cb35f643e1833fc79575cec2813ce93aefcb10a27ae9ef08a657c",
+    "source":  "Yahoo Finance (chart v8)",
+    "provider":  "Yahoo",
+    "quote":  {
+                  "price":  380.12,
+                  "time":  "2026-09-23T20:00:00Z",
+                  "previousClose":  378.9,
+                  "change":  1.22,
+                  "changePct":  0.32,
+                  "currency":  "USD"
+              },
+    "lastBar":  {
+                    "date":  "2026-09-23",
+                    "complete":  true,
+                    "open":  380.1,
+                    "high":  386.7,
+                    "low":  377.58,
+                    "close":  380.12,
+                    "volume":  33427400
+                },
+    "trend":  {
+                  "short":  "positive",
+                  "medium":  "neutral",
+                  "long":  "negative"
+              },
+    "indicators":  {
+                       "ema20":  363.54,
+                       "sma50":  348.96,
+                       "sma200":  396.34,
+                       "rsi14":  60.6,
+                       "macd":  6.307,
+                       "macdSignal":  4.61,
+                       "macdHist":  1.697,
+                       "atr14":  12.59,
+                       "atrPct":  3.31,
+                       "atrPctRank":  0,
+                       "avgVolume20":  38805345,
+                       "volumeRatio":  0.86,
+                       "high20":  386.7,
+                       "low20":  342.53,
+                       "high52w":  498.83,
+                       "low52w":  297.38,
+                       "distEma20":  4.56,
+                       "distSma50":  8.93,
+                       "distSma200":  -4.09,
+                       "distHigh52w":  -23.8,
+                       "distLow52w":  27.82
+                   },
+    "signals":  [
+                    {
+                        "key":  "ema20",
+                        "label":  "20 EMA",
+                        "status":  "green",
+                        "value":  363.54,
+                        "rule":  "Grøn: kurs over 20 EMA og 20 EMA stigende over 5 dage. Rød: kurs under og faldende. Ellers gul.",
+                        "reason":  "Kurs 4,6% over 20 EMA. 20 EMA er stigende."
+                    },
+                    {
+                        "key":  "sma50",
+                        "label":  "50 SMA",
+                        "status":  "yellow",
+                        "value":  348.96,
+                        "rule":  "Grøn: kurs over 50 SMA og 50 SMA stigende over 10 dage. Rød: kurs under og faldende. Ellers gul.",
+                        "reason":  "Kurs 8,9% over 50 SMA. 50 SMA er faldende."
+                    },
+                    {
+                        "key":  "sma200",
+                        "label":  "200 SMA",
+                        "status":  "red",
+                        "value":  396.34,
+                        "rule":  "Grøn: kurs over 200 SMA og 200 SMA stigende over 20 dage. Rød: kurs under og faldende. Ellers gul.",
+                        "reason":  "Kurs 4,1% under 200 SMA. 200 SMA er faldende."
+                    },
+                    {
+                        "key":  "rsi",
+                        "label":  "RSI 14",
+                        "status":  "green",
+                        "value":  60.6,
+                        "rule":  "Grøn: 50-70 (positivt momentum uden at være overkøbt). Gul: 40-50 eller over 70. Rød: under 40.",
+                        "reason":  "RSI 60,6. Positivt momentum."
+                    },
+                    {
+                        "key":  "macd",
+                        "label":  "MACD",
+                        "status":  "green",
+                        "value":  6.31,
+                        "rule":  "Grøn: MACD over signallinjen og over 0. Rød: MACD under signallinjen og under 0. Ellers gul.",
+                        "reason":  "MACD er over signallinjen og over 0."
+                    },
+                    {
+                        "key":  "volume",
+                        "label":  "Volumen",
+                        "status":  "yellow",
+                        "value":  0.86,
+                        "rule":  "Grøn: volumen mindst 1,2x gennemsnittet af de 20 foregående dage på en op-dag. Rød: samme volumen på en ned-dag. Ellers gul.",
+                        "reason":  "Volumen 0,86x 20-dages gennemsnit på en op-dag."
+                    },
+                    {
+                        "key":  "volatility",
+                        "label":  "Volatilitet",
+                        "status":  "green",
+                        "value":  3.31,
+                        "rule":  "ATR14 i procent af kursen sammenlignet med det seneste år. Grøn: under 70. percentil. Gul: 70-90. Rød: over 90. percentil.",
+                        "reason":  "ATR er 3,31% af kursen. Det er blandt de laveste niveauer det seneste år."
+                    }
+                ],
+    "setup":  {
+                  "status":  "pending",
+                  "phase":  3
+              },
+    "historical":  {
+                       "status":  "pending",
+                       "phase":  2
+                   },
+    "news":  {
+                 "status":  "pending",
+                 "phase":  4
+             },
+    "events":  {
+                   "status":  "pending",
+                   "phase":  5
+               },
+    "dataWarnings":  [
+
+                     ],
+    "history":  {
+                    "bars":  1254,
+                    "firstDate":  "2021-09-24",
+                    "lastDate":  "2026-09-23",
+                    "file":  "data/tsla-history.json"
+                }
+}

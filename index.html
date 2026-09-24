@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TSLA Swing Trader</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%23171b21%27/%3E%3Cpath d=%27M5 22l7-7 5 4 10-10%27 stroke=%27%2322c55e%27 stroke-width=%273%27 fill=%27none%27/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <div>
+        <div class="brand">TSLA SWING TRADER</div>
+        <div class="sub" id="updated">Indlæser data ...</div>
+      </div>
+      <div class="quote">
+        <div class="price" id="price">-</div>
+        <div class="chg" id="change"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div id="error" class="error" hidden></div>
+    <div id="warnings" class="warn-box" hidden></div>
+
+    <section class="grid-2">
+      <article class="card">
+        <h2>Current setup</h2>
+        <div class="status status-pending">
+          <span class="dot"></span>
+          <span>Ikke beregnet endnu</span>
+        </div>
+        <p class="muted">Setup-status, entry, stop og targets bygges i fase 2 og 3. Indtil da viser siden kun de tekniske signaler.</p>
+        <dl class="levels">
+          <div><dt>Entry</dt><dd>-</dd></div>
+          <div><dt>Stop</dt><dd>-</dd></div>
+          <div><dt>Target 1</dt><dd>-</dd></div>
+          <div><dt>Target 2</dt><dd>-</dd></div>
+          <div><dt>Risk/reward</dt><dd>-</dd></div>
+          <div><dt>Horisont</dt><dd>-</dd></div>
+        </dl>
+      </article>
+
+      <article class="card">
+        <h2>Technical trend</h2>
+        <div class="trend" id="trend"></div>
+        <ul class="signals" id="signals"></ul>
+        <p class="muted small">Klik på et signal for at se reglen bag farven.</p>
+      </article>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Price chart</h2>
+        <div class="ranges" id="ranges">
+          <button data-days="63">3M</button>
+          <button data-days="126" class="active">6M</button>
+          <button data-days="252">1Å</button>
+          <button data-days="756">3Å</button>
+        </div>
+      </div>
+      <div class="legend" id="legend">
+        <span class="lg lg-ema20">20 EMA</span>
+        <span class="lg lg-sma50">50 SMA</span>
+        <span class="lg lg-sma200">200 SMA</span>
+      </div>
+      <div id="chart-price" class="chart chart-main"></div>
+      <div class="sub-label">RSI 14</div>
+      <div id="chart-rsi" class="chart chart-sub"></div>
+      <div class="sub-label">MACD 12/26/9</div>
+      <div id="chart-macd" class="chart chart-sub"></div>
+    </section>
+
+    <section class="card">
+      <h2>Nøgletal</h2>
+      <div class="kv" id="keyfigures"></div>
+    </section>
+
+    <section class="grid-3">
+      <article class="card placeholder">
+        <h2>Historical matches</h2>
+        <p class="muted">Fase 2. Lignende historiske setups og deres udvikling efter 2, 3, 5, 10, 15 og 20 handelsdage.</p>
+      </article>
+      <article class="card placeholder">
+        <h2>News &amp; events</h2>
+        <p class="muted">Fase 4 og 5. Nyheder, earnings, deliveries og makro.</p>
+      </article>
+      <article class="card placeholder">
+        <h2>Previous setups</h2>
+        <p class="muted">Fase 6. Hvad sagde modellen dengang og hvad skete der bagefter.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <p id="source"></p>
+    <p>Siden er et analyseværktøj og ikke investeringsrådgivning. Signaler er regelbaserede og kan tage fejl.</p>
+    <p>Grafer: <a href="https://www.tradingview.com/" target="_blank" rel="noopener">TradingView Lightweight Charts™</a> Copyright © TradingView, Inc. Apache License 2.0.</p>
+  </footer>
+
+  <script src="assets/vendor/lightweight-charts.standalone.production.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
