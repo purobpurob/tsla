@@ -1,8 +1,8 @@
 {
     "schemaVersion":  1,
     "symbol":  "TSLA",
-    "generatedAt":  "2026-09-24T11:14:07Z",
-    "dataHash":  "83ace2e7d197356415dc271540532322bf3fdd984789e0a638118f3189d08966",
+    "generatedAt":  "2026-09-24T11:27:07Z",
+    "dataHash":  "ad4c3fa13de259056cba541259848df2a96c2a2689f12c84aa004accf8bf2a65",
     "source":  "Yahoo Finance (chart v8)",
     "provider":  "Yahoo",
     "quote":  {
@@ -170,12 +170,19 @@
                                        "pass":  true,
                                        "hardFail":  false,
                                        "detail":  "Krav: volatilitetssignalet er ikke rødt (ATR over 90. percentil)."
+                                   },
+                                   {
+                                       "key":  "event",
+                                       "label":  "Ingen større event lige forude",
+                                       "pass":  true,
+                                       "hardFail":  false,
+                                       "detail":  "Event risk Moderat. Tesla Q3 2026 production og deliveries om 6 handelsdage (2026-10-02, estimat). Krav: event risk er ikke høj. Et event gør ikke setup uinteressant, men giver ekstra risiko."
                                    }
                                ],
                   "eventRisk":  {
-                                    "status":  "pending",
-                                    "phase":  5,
-                                    "note":  "Earnings, deliveries og makro er ikke vurderet endnu (fase 5)."
+                                    "status":  "yellow",
+                                    "label":  "Moderat",
+                                    "note":  "Tesla Q3 2026 production og deliveries om 6 handelsdage (2026-10-02, estimat)."
                                 },
                   "historicalTest":  {
                                          "matches":  40,
@@ -2939,8 +2946,8 @@
                  "sources":  [
                                  {
                                      "name":  "SEC EDGAR",
-                                     "ok":  false,
-                                     "error":  "TSLA_SEC_CONTACT er ikke sat (SEC kræver en kontakt-email i User-Agent)"
+                                     "ok":  true,
+                                     "items":  0
                                  },
                                  {
                                      "name":  "Nasdaq RSS",
@@ -3384,8 +3391,134 @@
                            ]
              },
     "events":  {
-                   "status":  "pending",
-                   "phase":  5
+                   "status":  "ok",
+                   "today":  "2026-09-24",
+                   "risk":  {
+                                "level":  "moderate",
+                                "label":  "Moderat",
+                                "status":  "yellow",
+                                "reasons":  [
+                                                "Tesla Q3 2026 production og deliveries om 6 handelsdage (2026-10-02, estimat)"
+                                            ],
+                                "rule":  "Høj: Tesla earnings/deliveries inden for 5 handelsdage, eller FOMC/CPI i dag eller i morgen. Moderat: Tesla earnings/deliveries inden for 15 handelsdage, eller FOMC/CPI inden for 5 handelsdage. Ellers lav. Handelsdage = hverdage minus helligdage i Events.json."
+                            },
+                   "nextTesla":  {
+                                     "date":  "2026-10-02",
+                                     "time":  null,
+                                     "type":  "deliveries",
+                                     "typeLabel":  "Deliveries",
+                                     "group":  "tesla",
+                                     "title":  "Tesla Q3 2026 production og deliveries",
+                                     "confirmed":  false,
+                                     "estimated":  false,
+                                     "source":  "Estimat. Tesla offentliggør typisk deliveries på 2. hverdag i kvartalet (Q2 2026: 2. juli 2026).",
+                                     "url":  "https://ir.tesla.com/",
+                                     "tradingDays":  6,
+                                     "insideHorizon":  true
+                                 },
+                   "warnings":  [
+
+                                ],
+                   "items":  [
+                                 {
+                                     "date":  "2026-10-02",
+                                     "time":  null,
+                                     "type":  "deliveries",
+                                     "typeLabel":  "Deliveries",
+                                     "group":  "tesla",
+                                     "title":  "Tesla Q3 2026 production og deliveries",
+                                     "confirmed":  false,
+                                     "estimated":  false,
+                                     "source":  "Estimat. Tesla offentliggør typisk deliveries på 2. hverdag i kvartalet (Q2 2026: 2. juli 2026).",
+                                     "url":  "https://ir.tesla.com/",
+                                     "tradingDays":  6,
+                                     "insideHorizon":  true
+                                 },
+                                 {
+                                     "date":  "2026-10-14",
+                                     "time":  "08:30",
+                                     "type":  "cpi",
+                                     "typeLabel":  "CPI",
+                                     "group":  "macro",
+                                     "title":  "CPI for september 2026",
+                                     "confirmed":  true,
+                                     "estimated":  false,
+                                     "source":  "U.S. Bureau of Labor Statistics",
+                                     "url":  "https://www.bls.gov/schedule/news_release/cpi.htm",
+                                     "tradingDays":  14,
+                                     "insideHorizon":  true
+                                 },
+                                 {
+                                     "date":  "2026-10-21",
+                                     "time":  "Efter lukketid",
+                                     "type":  "earnings",
+                                     "typeLabel":  "Earnings",
+                                     "group":  "tesla",
+                                     "title":  "Tesla Q3 2026 earnings",
+                                     "confirmed":  false,
+                                     "estimated":  false,
+                                     "source":  "Wall Street Horizon, forventet dato. Ikke bekræftet af Tesla.",
+                                     "url":  "https://www.wallstreethorizon.com/tesla-earnings-calendar",
+                                     "tradingDays":  19,
+                                     "insideHorizon":  true
+                                 },
+                                 {
+                                     "date":  "2026-10-28",
+                                     "time":  "14:00",
+                                     "type":  "fomc",
+                                     "typeLabel":  "FOMC",
+                                     "group":  "macro",
+                                     "title":  "FOMC rentebeslutning (møde 27.-28. okt.)",
+                                     "confirmed":  true,
+                                     "estimated":  false,
+                                     "source":  "Federal Reserve",
+                                     "url":  "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+                                     "tradingDays":  24,
+                                     "insideHorizon":  false
+                                 },
+                                 {
+                                     "date":  "2026-11-10",
+                                     "time":  "08:30",
+                                     "type":  "cpi",
+                                     "typeLabel":  "CPI",
+                                     "group":  "macro",
+                                     "title":  "CPI for oktober 2026",
+                                     "confirmed":  true,
+                                     "estimated":  false,
+                                     "source":  "U.S. Bureau of Labor Statistics",
+                                     "url":  "https://www.bls.gov/schedule/news_release/cpi.htm",
+                                     "tradingDays":  33,
+                                     "insideHorizon":  false
+                                 },
+                                 {
+                                     "date":  "2026-12-09",
+                                     "time":  "14:00",
+                                     "type":  "fomc",
+                                     "typeLabel":  "FOMC",
+                                     "group":  "macro",
+                                     "title":  "FOMC rentebeslutning med prognoser (møde 8.-9. dec.)",
+                                     "confirmed":  true,
+                                     "estimated":  false,
+                                     "source":  "Federal Reserve",
+                                     "url":  "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+                                     "tradingDays":  53,
+                                     "insideHorizon":  false
+                                 },
+                                 {
+                                     "date":  "2026-12-10",
+                                     "time":  "08:30",
+                                     "type":  "cpi",
+                                     "typeLabel":  "CPI",
+                                     "group":  "macro",
+                                     "title":  "CPI for november 2026",
+                                     "confirmed":  true,
+                                     "estimated":  false,
+                                     "source":  "U.S. Bureau of Labor Statistics",
+                                     "url":  "https://www.bls.gov/schedule/news_release/cpi.htm",
+                                     "tradingDays":  54,
+                                     "insideHorizon":  false
+                                 }
+                             ]
                },
     "dataWarnings":  [
 
