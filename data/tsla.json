@@ -1,16 +1,16 @@
 {
     "schemaVersion":  1,
     "symbol":  "TSLA",
-    "generatedAt":  "2026-09-24T19:06:56Z",
-    "dataHash":  "bfdf075a3accd4bf2bc46cd05c8af2b6c152a4077e4fa501f8f600916fa0f1ca",
+    "generatedAt":  "2026-09-24T19:15:46Z",
+    "dataHash":  "34d088b5f359e6fed220c031a6cbb4e417dc42763259ee3e6315dc523f806c9e",
     "source":  "Yahoo Finance (chart v8)",
     "provider":  "Yahoo",
     "quote":  {
-                  "price":  378.95,
-                  "time":  "2026-09-24T19:06:40Z",
+                  "price":  378.55,
+                  "time":  "2026-09-24T19:15:30Z",
                   "previousClose":  380.12,
-                  "change":  -1.17,
-                  "changePct":  -0.31,
+                  "change":  -1.57,
+                  "changePct":  -0.41,
                   "currency":  "USD"
               },
     "lastBar":  {
@@ -2988,7 +2988,7 @@
                           },
                  "counts":  {
                                 "positive":  1,
-                                "neutral":  17,
+                                "neutral":  19,
                                 "negative":  1
                             },
                  "categories":  {
@@ -2996,11 +2996,66 @@
                                     "FSD":  1,
                                     "Modeller":  1,
                                     "Kina":  1,
-                                    "Musk":  1,
+                                    "Musk":  2,
                                     "Makro":  1
                                 },
                  "method":  "Kategori og tone findes med faste nøgleord i overskriften. Tone = antal positive minus antal negative ord. Reglerne forstår ikke ironi, spørgsmål eller negationer.",
                  "items":  [
+                               {
+                                   "title":  "Elon Musk Has Left the Door Open to a Tesla-SpaceX Merger. Here\u0027s What Shareholders of Both Stocks Should Do.",
+                                   "link":  "https://www.nasdaq.com/articles/elon-musk-has-left-door-open-tesla-spacex-merger-heres-what-shareholders-both-stocks",
+                                   "time":  "2026-09-24T19:05:00Z",
+                                   "source":  "The Motley Fool",
+                                   "feed":  "Nasdaq RSS",
+                                   "kind":  "article",
+                                   "categories":  [
+                                                      "musk"
+                                                  ],
+                                   "categoryLabels":  [
+                                                          "Musk"
+                                                      ],
+                                   "matchedWords":  [
+                                                        "musk",
+                                                        "elon"
+                                                    ],
+                                   "tone":  "neutral",
+                                   "toneScore":  0,
+                                   "positiveWords":  [
+
+                                                     ],
+                                   "negativeWords":  [
+
+                                                     ],
+                                   "highImpact":  false,
+                                   "why":  "Ingen positive eller negative nøgleord."
+                               },
+                               {
+                                   "title":  "Prediction: NIO Is a Better Buy Than Lucid for the Next Decade",
+                                   "link":  "https://www.nasdaq.com/articles/prediction-nio-better-buy-lucid-next-decade",
+                                   "time":  "2026-09-24T18:50:00Z",
+                                   "source":  "The Motley Fool",
+                                   "feed":  "Nasdaq RSS",
+                                   "kind":  "article",
+                                   "categories":  [
+
+                                                  ],
+                                   "categoryLabels":  [
+
+                                                      ],
+                                   "matchedWords":  [
+
+                                                    ],
+                                   "tone":  "neutral",
+                                   "toneScore":  0,
+                                   "positiveWords":  [
+
+                                                     ],
+                                   "negativeWords":  [
+
+                                                     ],
+                                   "highImpact":  false,
+                                   "why":  "Ingen positive eller negative nøgleord."
+                               },
                                {
                                    "title":  "Tesla\u0027s Q3 Sales Report Comes Out Oct. 2. Here Are 2 Surprises It Might Reveal.",
                                    "link":  "https://www.nasdaq.com/articles/teslas-q3-sales-report-comes-out-oct-2-here-are-2-surprises-it-might-reveal",
