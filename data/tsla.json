@@ -1,16 +1,16 @@
 {
     "schemaVersion":  1,
     "symbol":  "TSLA",
-    "generatedAt":  "2026-09-24T18:22:56Z",
-    "dataHash":  "f0ed0fd889a83343a3a132c3efa88b4d56fd39e9b5e32b7ed02c2aa965566d44",
+    "generatedAt":  "2026-09-24T19:06:56Z",
+    "dataHash":  "bfdf075a3accd4bf2bc46cd05c8af2b6c152a4077e4fa501f8f600916fa0f1ca",
     "source":  "Yahoo Finance (chart v8)",
     "provider":  "Yahoo",
     "quote":  {
-                  "price":  379.02,
-                  "time":  "2026-09-24T18:22:40Z",
+                  "price":  378.95,
+                  "time":  "2026-09-24T19:06:40Z",
                   "previousClose":  380.12,
-                  "change":  -1.1,
-                  "changePct":  -0.29,
+                  "change":  -1.17,
+                  "changePct":  -0.31,
                   "currency":  "USD"
               },
     "lastBar":  {
@@ -113,6 +113,21 @@
                   "status":  "red",
                   "label":  "UINTERESSANT",
                   "direction":  "long",
+                  "setupType":  "trend",
+                  "minRR":  1.5,
+                  "vending":  {
+                                  "active":  false,
+                                  "drawdownPct":  -1.7,
+                                  "rsiMin5":  53.8,
+                                  "trigger":  false,
+                                  "low5":  360.75,
+                                  "detail":  "Fald fra 20-dages high -1,7% (krav mindst 12%: nej). Laveste RSI 5 dage 53,8 (krav under 40: nej). Lukkekurs over gårsdagens high: nej."
+                              },
+                  "pullback":  {
+                                   "active":  false,
+                                   "hitRatePct":  25,
+                                   "detail":  "Kursen er 1,7% under 20-dages high, laveste RSI 5 dage er 53,8, og lukkekursen er over gårsdagens high. Det ligner et pullback der vender. I testen nåede kun ca. 25% af den slags dage +10% før stop, så det er ikke et købssignal."
+                               },
                   "entryLow":  368.6,
                   "entryHigh":  380.12,
                   "entry":  374.36,
@@ -136,6 +151,13 @@
                               "target2":  "Swing high 2026-06-22 ($414,75) er næste modstand mindst 1 ATR over Target 1."
                           },
                   "criteria":  [
+                                   {
+                                       "key":  "vend",
+                                       "label":  "Vending-setup efter fald",
+                                       "pass":  false,
+                                       "hardFail":  false,
+                                       "detail":  "Krav for INTERESSANT. Fald fra 20-dages high -1,7% (krav mindst 12%: nej). Laveste RSI 5 dage 53,8 (krav under 40: nej). Lukkekurs over gårsdagens high: nej."
+                                   },
                                    {
                                        "key":  "trend",
                                        "label":  "Trend og momentum",
@@ -3650,6 +3672,7 @@
                                 ],
                       "needTitle":  "Hvad skal der til for INTERESSANT?",
                       "need":  [
+                                   "Der skal være et vending-setup: kursen mindst 12% under 20-dages high (nu -1,7%), RSI under 40 inden for 5 dage (laveste nu 53,8) og en lukkekurs over gårsdagens high.",
                                    "Flere historiske matches skal nå Target 1 før stop (nu 27,5%, krav 50%). Stoppet ligger kun 1,1 ATR under entry, så det bliver let ramt af almindelige udsving."
                                ],
                       "note":  "Teksten dannes automatisk af faste regler ud fra dagens tal og opdateres ved hver kørsel."
@@ -3664,9 +3687,9 @@
                                        "all":  {
                                                    "n":  251,
                                                    "closed":  248,
-                                                   "t1Pct":  60.1,
-                                                   "stopPct":  39.5,
-                                                   "avgR":  -0.01,
+                                                   "t1Pct":  59.7,
+                                                   "stopPct":  39.9,
+                                                   "avgR":  0.01,
                                                    "d2":  {
                                                               "n":  249,
                                                               "pctPositive":  49.4,
@@ -3689,8 +3712,31 @@
                                                            }
                                                },
                                        "green":  {
-                                                     "n":  0,
-                                                     "closed":  0
+                                                     "n":  9,
+                                                     "closed":  9,
+                                                     "t1Pct":  88.9,
+                                                     "stopPct":  11.1,
+                                                     "avgR":  1.08,
+                                                     "d2":  {
+                                                                "n":  9,
+                                                                "pctPositive":  77.8,
+                                                                "mean":  4.06
+                                                            },
+                                                     "d5":  {
+                                                                "n":  9,
+                                                                "pctPositive":  88.9,
+                                                                "mean":  5.79
+                                                            },
+                                                     "d10":  {
+                                                                 "n":  9,
+                                                                 "pctPositive":  88.9,
+                                                                 "mean":  5.25
+                                                             },
+                                                     "d20":  {
+                                                                 "n":  9,
+                                                                 "pctPositive":  77.8,
+                                                                 "mean":  8.81
+                                                             }
                                                  },
                                        "yellow":  {
                                                       "n":  126,
@@ -3720,30 +3766,30 @@
                                                               }
                                                   },
                                        "red":  {
-                                                   "n":  125,
-                                                   "closed":  123,
-                                                   "t1Pct":  66.7,
-                                                   "stopPct":  33.3,
-                                                   "avgR":  0.04,
+                                                   "n":  116,
+                                                   "closed":  114,
+                                                   "t1Pct":  64,
+                                                   "stopPct":  36,
+                                                   "avgR":  0.01,
                                                    "d2":  {
-                                                              "n":  124,
-                                                              "pctPositive":  49.2,
-                                                              "mean":  0.13
+                                                              "n":  115,
+                                                              "pctPositive":  47,
+                                                              "mean":  -0.17
                                                           },
                                                    "d5":  {
-                                                              "n":  123,
-                                                              "pctPositive":  50.4,
-                                                              "mean":  -0.04
+                                                              "n":  114,
+                                                              "pctPositive":  47.4,
+                                                              "mean":  -0.5
                                                           },
                                                    "d10":  {
-                                                               "n":  123,
-                                                               "pctPositive":  53.7,
-                                                               "mean":  0.45
+                                                               "n":  114,
+                                                               "pctPositive":  50.9,
+                                                               "mean":  0.07
                                                            },
                                                    "d20":  {
-                                                               "n":  121,
-                                                               "pctPositive":  52.1,
-                                                               "mean":  1.97
+                                                               "n":  112,
+                                                               "pctPositive":  50,
+                                                               "mean":  1.42
                                                            }
                                                }
                                    },
@@ -3837,7 +3883,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  "Moderat",
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "hist"
                                                       ],
                                            "outcome":  {
@@ -3901,7 +3950,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "hist"
                                                       ],
                                            "outcome":  {
@@ -3965,7 +4017,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "hist"
                                                       ],
                                            "outcome":  {
@@ -4029,7 +4084,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "hist"
                                                       ],
                                            "outcome":  {
@@ -4093,7 +4151,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "hist"
                                                       ],
                                            "outcome":  {
@@ -4157,7 +4218,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "trend",
                                                           "hist"
                                                       ],
@@ -4222,7 +4286,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "trend"
                                                       ],
                                            "outcome":  {
@@ -4286,7 +4353,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "hist"
                                                       ],
                                            "outcome":  {
@@ -4350,7 +4420,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "hist"
                                                       ],
                                            "outcome":  {
@@ -4414,7 +4487,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "rr",
                                                           "hist"
                                                       ],
@@ -4479,7 +4555,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "rr",
                                                           "hist"
                                                       ],
@@ -4544,7 +4623,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "rr",
                                                           "hist"
                                                       ],
@@ -4609,7 +4691,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "trend",
                                                           "rr",
                                                           "hist",
@@ -4676,7 +4761,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "hist"
                                                       ],
                                            "outcome":  {
@@ -4740,7 +4828,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "trend",
                                                           "rr"
                                                       ],
@@ -4805,7 +4896,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "trend",
                                                           "rr",
                                                           "hist"
@@ -4871,7 +4965,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "rr",
                                                           "hist"
                                                       ],
@@ -4936,7 +5033,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "trend",
                                                           "rr",
                                                           "hist"
@@ -5002,7 +5102,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "trend",
                                                           "rr",
                                                           "hist"
@@ -5068,7 +5171,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "trend",
                                                           "rr"
                                                       ],
@@ -5133,7 +5239,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "trend",
                                                           "rr",
                                                           "hist"
@@ -5199,7 +5308,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "trend",
                                                           "rr",
                                                           "hist"
@@ -5265,7 +5377,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "trend",
                                                           "rr",
                                                           "hist"
@@ -5331,7 +5446,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "trend",
                                                           "rr"
                                                       ],
@@ -5396,7 +5514,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "trend",
                                                           "rr"
                                                       ],
@@ -5461,7 +5582,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "trend",
                                                           "rr"
                                                       ],
@@ -5526,7 +5650,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "trend",
                                                           "rr"
                                                       ],
@@ -5591,7 +5718,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  true,
                                            "failed":  [
+                                                          "vend",
                                                           "trend",
                                                           "rr"
                                                       ],
@@ -5656,7 +5786,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "trend",
                                                           "rr"
                                                       ],
@@ -5721,7 +5854,10 @@
                                                                    }
                                                         },
                                            "eventRisk":  null,
+                                           "setupType":  "trend",
+                                           "pullback":  false,
                                            "failed":  [
+                                                          "vend",
                                                           "trend",
                                                           "rr"
                                                       ],
