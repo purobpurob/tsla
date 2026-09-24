@@ -1,8 +1,8 @@
 {
     "schemaVersion":  1,
     "symbol":  "TSLA",
-    "generatedAt":  "2026-09-24T11:04:32Z",
-    "dataHash":  "46730dcad02ae661257b37694052056846c4f9a76b93ff22009d74df069bd360",
+    "generatedAt":  "2026-09-24T11:08:26Z",
+    "dataHash":  "f435ac46da4f841ac134464d5cfee63b5355f58928670fef5edffb2045a8f7cd",
     "source":  "Yahoo Finance (chart v8)",
     "provider":  "Yahoo",
     "quote":  {
@@ -2934,8 +2934,454 @@
                                    ]
                    },
     "news":  {
-                 "status":  "pending",
-                 "phase":  4
+                 "status":  "ok",
+                 "days":  14,
+                 "sources":  [
+                                 {
+                                     "name":  "SEC EDGAR",
+                                     "ok":  true,
+                                     "items":  0
+                                 },
+                                 {
+                                     "name":  "Nasdaq RSS",
+                                     "ok":  true,
+                                     "items":  15
+                                 }
+                             ],
+                 "risk":  {
+                              "level":  "high",
+                              "label":  "Høj",
+                              "status":  "red",
+                              "reasons":  [
+                                              "1 negativ(e) nyhed(er) med høj betydning de seneste 2 dage (fx: THO Q4 Earnings Miss Estimates on North American Margin Pressure)"
+                                          ],
+                              "rule":  "Høj: negativ nyhed med høj betydning inden for 2 dage, eller mindst 3 negative nyheder inden for 3 dage. Moderat: mindst 1 negativ nyhed inden for 3 dage, eller en nyhed med høj betydning inden for 2 dage. Ellers lav."
+                          },
+                 "counts":  {
+                                "positive":  0,
+                                "neutral":  14,
+                                "negative":  1
+                            },
+                 "categories":  {
+                                    "Earnings":  2,
+                                    "FSD":  1,
+                                    "Kina":  1,
+                                    "Musk":  1,
+                                    "Makro":  1
+                                },
+                 "method":  "Kategori og tone findes med faste nøgleord i overskriften. Tone = antal positive minus antal negative ord. Reglerne forstår ikke ironi, spørgsmål eller negationer.",
+                 "items":  [
+                               {
+                                   "title":  "Here\u0027s What a $1,000 Investment in SpaceX Stock Could Be Worth in 5 Years",
+                                   "link":  "https://www.nasdaq.com/articles/heres-what-1000-investment-spacex-stock-could-be-worth-5-years",
+                                   "time":  "2026-09-24T06:25:00Z",
+                                   "source":  "The Motley Fool",
+                                   "feed":  "Nasdaq RSS",
+                                   "kind":  "article",
+                                   "categories":  [
+
+                                                  ],
+                                   "categoryLabels":  [
+
+                                                      ],
+                                   "matchedWords":  [
+
+                                                    ],
+                                   "tone":  "neutral",
+                                   "toneScore":  0,
+                                   "positiveWords":  [
+
+                                                     ],
+                                   "negativeWords":  [
+
+                                                     ],
+                                   "highImpact":  false,
+                                   "why":  "Ingen positive eller negative nøgleord."
+                               },
+                               {
+                                   "title":  "Tesla Makes Brilliant Supercharger Move but BYD Is Closer in the Mirror Than It Appears",
+                                   "link":  "https://www.nasdaq.com/articles/tesla-makes-brilliant-supercharger-move-byd-closer-mirror-it-appears",
+                                   "time":  "2026-09-24T01:25:00Z",
+                                   "source":  "The Motley Fool",
+                                   "feed":  "Nasdaq RSS",
+                                   "kind":  "article",
+                                   "categories":  [
+                                                      "china"
+                                                  ],
+                                   "categoryLabels":  [
+                                                          "Kina"
+                                                      ],
+                                   "matchedWords":  [
+                                                        "byd"
+                                                    ],
+                                   "tone":  "neutral",
+                                   "toneScore":  0,
+                                   "positiveWords":  [
+
+                                                     ],
+                                   "negativeWords":  [
+
+                                                     ],
+                                   "highImpact":  false,
+                                   "why":  "Ingen positive eller negative nøgleord."
+                               },
+                               {
+                                   "title":  "Finally, Some Good News for Lucid -- but There\u0027s a Catch",
+                                   "link":  "https://www.nasdaq.com/articles/finally-some-good-news-lucid-theres-catch",
+                                   "time":  "2026-09-23T22:25:00Z",
+                                   "source":  "The Motley Fool",
+                                   "feed":  "Nasdaq RSS",
+                                   "kind":  "article",
+                                   "categories":  [
+
+                                                  ],
+                                   "categoryLabels":  [
+
+                                                      ],
+                                   "matchedWords":  [
+
+                                                    ],
+                                   "tone":  "neutral",
+                                   "toneScore":  0,
+                                   "positiveWords":  [
+
+                                                     ],
+                                   "negativeWords":  [
+
+                                                     ],
+                                   "highImpact":  false,
+                                   "why":  "Ingen positive eller negative nøgleord."
+                               },
+                               {
+                                   "title":  "Could SpaceX Stock Make You a Millionaire by 2036?",
+                                   "link":  "https://www.nasdaq.com/articles/could-spacex-stock-make-you-millionaire-2036",
+                                   "time":  "2026-09-23T21:43:00Z",
+                                   "source":  "The Motley Fool",
+                                   "feed":  "Nasdaq RSS",
+                                   "kind":  "article",
+                                   "categories":  [
+
+                                                  ],
+                                   "categoryLabels":  [
+
+                                                      ],
+                                   "matchedWords":  [
+
+                                                    ],
+                                   "tone":  "neutral",
+                                   "toneScore":  0,
+                                   "positiveWords":  [
+
+                                                     ],
+                                   "negativeWords":  [
+
+                                                     ],
+                                   "highImpact":  false,
+                                   "why":  "Ingen positive eller negative nøgleord. Spørgsmål tæller ikke som høj betydning."
+                               },
+                               {
+                                   "title":  "3 Things You Need to Know Before Buying Tesla",
+                                   "link":  "https://www.nasdaq.com/articles/3-things-you-need-know-buying-tesla",
+                                   "time":  "2026-09-23T19:25:00Z",
+                                   "source":  "The Motley Fool",
+                                   "feed":  "Nasdaq RSS",
+                                   "kind":  "article",
+                                   "categories":  [
+
+                                                  ],
+                                   "categoryLabels":  [
+
+                                                      ],
+                                   "matchedWords":  [
+
+                                                    ],
+                                   "tone":  "neutral",
+                                   "toneScore":  0,
+                                   "positiveWords":  [
+
+                                                     ],
+                                   "negativeWords":  [
+
+                                                     ],
+                                   "highImpact":  false,
+                                   "why":  "Ingen positive eller negative nøgleord."
+                               },
+                               {
+                                   "title":  "This ETF Is Up 20% in 2026. Here\u0027s Why It Could Have More Room to Run.",
+                                   "link":  "https://www.nasdaq.com/articles/etf-20-2026-heres-why-it-could-have-more-room-run",
+                                   "time":  "2026-09-23T16:40:00Z",
+                                   "source":  "The Motley Fool",
+                                   "feed":  "Nasdaq RSS",
+                                   "kind":  "article",
+                                   "categories":  [
+
+                                                  ],
+                                   "categoryLabels":  [
+
+                                                      ],
+                                   "matchedWords":  [
+
+                                                    ],
+                                   "tone":  "neutral",
+                                   "toneScore":  0,
+                                   "positiveWords":  [
+
+                                                     ],
+                                   "negativeWords":  [
+
+                                                     ],
+                                   "highImpact":  false,
+                                   "why":  "Ingen positive eller negative nøgleord."
+                               },
+                               {
+                                   "title":  "I Speculated That Stanley Druckenmiller\u0027s Tesla Buy Was About FSD. Billionaire Investor Ron Baron Just Confirmed My Thesis.",
+                                   "link":  "https://www.nasdaq.com/articles/i-speculated-stanley-druckenmillers-tesla-buy-was-about-fsd-billionaire-investor-ron-baron",
+                                   "time":  "2026-09-23T16:27:00Z",
+                                   "source":  "The Motley Fool",
+                                   "feed":  "Nasdaq RSS",
+                                   "kind":  "article",
+                                   "categories":  [
+                                                      "fsd"
+                                                  ],
+                                   "categoryLabels":  [
+                                                          "FSD"
+                                                      ],
+                                   "matchedWords":  [
+                                                        "fsd"
+                                                    ],
+                                   "tone":  "neutral",
+                                   "toneScore":  0,
+                                   "positiveWords":  [
+
+                                                     ],
+                                   "negativeWords":  [
+
+                                                     ],
+                                   "highImpact":  false,
+                                   "why":  "Ingen positive eller negative nøgleord."
+                               },
+                               {
+                                   "title":  "THO Q4 Earnings Miss Estimates on North American Margin Pressure",
+                                   "link":  "https://www.nasdaq.com/articles/tho-q4-earnings-miss-estimates-north-american-margin-pressure",
+                                   "time":  "2026-09-23T13:58:00Z",
+                                   "source":  "Zacks",
+                                   "feed":  "Nasdaq RSS",
+                                   "kind":  "article",
+                                   "categories":  [
+                                                      "earnings"
+                                                  ],
+                                   "categoryLabels":  [
+                                                          "Earnings"
+                                                      ],
+                                   "matchedWords":  [
+                                                        "earnings",
+                                                        "margin"
+                                                    ],
+                                   "tone":  "negative",
+                                   "toneScore":  -1,
+                                   "positiveWords":  [
+
+                                                     ],
+                                   "negativeWords":  [
+                                                         "miss"
+                                                     ],
+                                   "highImpact":  true,
+                                   "why":  "Negative ord: miss."
+                               },
+                               {
+                                   "title":  "AutoZone Q4 Earnings Beat Estimates on Tariff Refunds, Sales Miss",
+                                   "link":  "https://www.nasdaq.com/articles/autozone-q4-earnings-beat-estimates-tariff-refunds-sales-miss",
+                                   "time":  "2026-09-23T13:52:00Z",
+                                   "source":  "Zacks",
+                                   "feed":  "Nasdaq RSS",
+                                   "kind":  "article",
+                                   "categories":  [
+                                                      "earnings",
+                                                      "macro"
+                                                  ],
+                                   "categoryLabels":  [
+                                                          "Earnings",
+                                                          "Makro"
+                                                      ],
+                                   "matchedWords":  [
+                                                        "earnings",
+                                                        "tariff"
+                                                    ],
+                                   "tone":  "neutral",
+                                   "toneScore":  0,
+                                   "positiveWords":  [
+                                                         "beat"
+                                                     ],
+                                   "negativeWords":  [
+                                                         "miss"
+                                                     ],
+                                   "highImpact":  true,
+                                   "why":  "Positive ord: beat. Negative ord: miss."
+                               },
+                               {
+                                   "title":  "Elon Musk Just Said \u0026quot;Dario Is Right\u0026quot; About Slowing AI Development. Here\u0027s What That Endorsement Could Mean for Tesla\u0027s and xAI\u0027s AI Road Maps.",
+                                   "link":  "https://www.nasdaq.com/articles/elon-musk-just-said-dario-right-about-slowing-ai-development-heres-what-endorsement-could",
+                                   "time":  "2026-09-23T13:33:00Z",
+                                   "source":  "The Motley Fool",
+                                   "feed":  "Nasdaq RSS",
+                                   "kind":  "article",
+                                   "categories":  [
+                                                      "musk"
+                                                  ],
+                                   "categoryLabels":  [
+                                                          "Musk"
+                                                      ],
+                                   "matchedWords":  [
+                                                        "musk",
+                                                        "elon"
+                                                    ],
+                                   "tone":  "neutral",
+                                   "toneScore":  0,
+                                   "positiveWords":  [
+
+                                                     ],
+                                   "negativeWords":  [
+
+                                                     ],
+                                   "highImpact":  false,
+                                   "why":  "Ingen positive eller negative nøgleord."
+                               },
+                               {
+                                   "title":  "Could Palantir Be the Next Stock Added to the Dow Jones?",
+                                   "link":  "https://www.nasdaq.com/articles/could-palantir-be-next-stock-added-dow-jones",
+                                   "time":  "2026-09-23T09:25:00Z",
+                                   "source":  "The Motley Fool",
+                                   "feed":  "Nasdaq RSS",
+                                   "kind":  "article",
+                                   "categories":  [
+
+                                                  ],
+                                   "categoryLabels":  [
+
+                                                      ],
+                                   "matchedWords":  [
+
+                                                    ],
+                                   "tone":  "neutral",
+                                   "toneScore":  0,
+                                   "positiveWords":  [
+
+                                                     ],
+                                   "negativeWords":  [
+
+                                                     ],
+                                   "highImpact":  false,
+                                   "why":  "Ingen positive eller negative nøgleord. Spørgsmål tæller ikke som høj betydning."
+                               },
+                               {
+                                   "title":  "I\u0027ve Covered the \u0026quot;Magnificent Seven\u0026quot; Stocks Ever Since the Term Was Coined. Only 4 of Them Still Deserve the Title.",
+                                   "link":  "https://www.nasdaq.com/articles/ive-covered-magnificent-seven-stocks-ever-term-was-coined-only-4-them-still-deserve-title",
+                                   "time":  "2026-09-23T03:20:00Z",
+                                   "source":  "The Motley Fool",
+                                   "feed":  "Nasdaq RSS",
+                                   "kind":  "article",
+                                   "categories":  [
+
+                                                  ],
+                                   "categoryLabels":  [
+
+                                                      ],
+                                   "matchedWords":  [
+
+                                                    ],
+                                   "tone":  "neutral",
+                                   "toneScore":  0,
+                                   "positiveWords":  [
+
+                                                     ],
+                                   "negativeWords":  [
+
+                                                     ],
+                                   "highImpact":  false,
+                                   "why":  "Ingen positive eller negative nøgleord."
+                               },
+                               {
+                                   "title":  "May Mobility\u0027s SPAC Merger: Is This a Road to Nowhere for Investors?",
+                                   "link":  "https://www.nasdaq.com/articles/may-mobilitys-spac-merger-road-nowhere-investors",
+                                   "time":  "2026-09-23T01:50:00Z",
+                                   "source":  "The Motley Fool",
+                                   "feed":  "Nasdaq RSS",
+                                   "kind":  "article",
+                                   "categories":  [
+
+                                                  ],
+                                   "categoryLabels":  [
+
+                                                      ],
+                                   "matchedWords":  [
+
+                                                    ],
+                                   "tone":  "neutral",
+                                   "toneScore":  0,
+                                   "positiveWords":  [
+
+                                                     ],
+                                   "negativeWords":  [
+
+                                                     ],
+                                   "highImpact":  false,
+                                   "why":  "Ingen positive eller negative nøgleord. Spørgsmål tæller ikke som høj betydning."
+                               },
+                               {
+                                   "title":  "Stocks Settle Sharply Higher as Crude Prices Plunge and Chipmakers Soar",
+                                   "link":  "https://www.nasdaq.com/articles/stocks-settle-sharply-higher-crude-prices-plunge-and-chipmakers-soar",
+                                   "time":  "2026-09-22T17:51:21Z",
+                                   "source":  "Barchart",
+                                   "feed":  "Nasdaq RSS",
+                                   "kind":  "article",
+                                   "categories":  [
+
+                                                  ],
+                                   "categoryLabels":  [
+
+                                                      ],
+                                   "matchedWords":  [
+
+                                                    ],
+                                   "tone":  "neutral",
+                                   "toneScore":  0,
+                                   "positiveWords":  [
+                                                         "soar"
+                                                     ],
+                                   "negativeWords":  [
+                                                         "plunge"
+                                                     ],
+                                   "highImpact":  false,
+                                   "why":  "Positive ord: soar. Negative ord: plunge."
+                               },
+                               {
+                                   "title":  "Wall Street Loves This EV Stock. Here\u0027s Why I\u0027m Not Buying.",
+                                   "link":  "https://www.nasdaq.com/articles/wall-street-loves-ev-stock-heres-why-im-not-buying",
+                                   "time":  "2026-09-22T16:25:00Z",
+                                   "source":  "The Motley Fool",
+                                   "feed":  "Nasdaq RSS",
+                                   "kind":  "article",
+                                   "categories":  [
+
+                                                  ],
+                                   "categoryLabels":  [
+
+                                                      ],
+                                   "matchedWords":  [
+
+                                                    ],
+                                   "tone":  "neutral",
+                                   "toneScore":  0,
+                                   "positiveWords":  [
+
+                                                     ],
+                                   "negativeWords":  [
+
+                                                     ],
+                                   "highImpact":  false,
+                                   "why":  "Ingen positive eller negative nøgleord."
+                               }
+                           ]
              },
     "events":  {
                    "status":  "pending",
