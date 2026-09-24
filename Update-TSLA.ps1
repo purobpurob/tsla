@@ -40,6 +40,7 @@ $Root = $PSScriptRoot
 . (Join-Path (Join-Path $Root 'Engine') 'Indicators.ps1')
 . (Join-Path (Join-Path $Root 'Engine') 'Signals.ps1')
 . (Join-Path (Join-Path $Root 'Engine') 'HistoricalSetups.ps1')
+. (Join-Path (Join-Path $Root 'Engine') 'TradeLevels.ps1')
 
 $DataDir  = Join-Path $Root $Config.DataDir
 $CacheDir = Join-Path $Root $Config.CacheDir
@@ -146,6 +147,12 @@ try {
         Write-Log "Historisk model: $($hist.reason)" 'WARN'
     }
 
+    # Fase 3: trade levels og samlet status
+    $setup = Get-TradeSetup -Rows $rows -Signals $signals -Historical $hist
+    if ($setup.status -ne 'na') {
+        Write-Log ("Setup: {0}. Entry {1}-{2}, stop {3}, T1 {4}, T2 {5}, R/R {6}" -f $setup.label, $setup.entryLow, $setup.entryHigh, $setup.stop, $setup.target1, $setup.target2, $setup.riskReward1)
+    }
+
     # Er seneste dagsbar afsluttet? (NYSE lukker 16:00 New York-tid)
     $ny = Get-NewYorkNow
     $nyDate = $ny.ToString('yyyy-MM-dd')
@@ -202,7 +209,7 @@ try {
         }
         signals       = $signals
         # Pladsholdere til senere faser, så frontend kan vise at de endnu ikke er bygget
-        setup         = [ordered]@{ status = 'pending'; phase = 3 }
+        setup         = $setup
         historical    = $hist
         news          = [ordered]@{ status = 'pending'; phase = 4 }
         events        = [ordered]@{ status = 'pending'; phase = 5 }

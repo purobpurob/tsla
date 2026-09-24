@@ -3,7 +3,7 @@
 Analyse af swing trade setups i TSLA med en horisont på 2 dage til 3 uger.
 PowerShell på en lokal server er datamotoren. GitHub Pages viser resultatet.
 
-**Status: Fase 2** (kurser, indikatorer, signaler, graf og historiske lignende setups).
+**Status: Fase 3** (kurser, indikatorer, signaler, graf, historiske lignende setups, entry, stop, targets og samlet status).
 
 Siden er et analyseværktøj og ikke investeringsrådgivning.
 
@@ -18,7 +18,8 @@ C:\Tools\TSLA
 │   ├── DataProvider.ps1       Yahoo, Tiingo og fil (test)
 │   ├── Indicators.ps1         EMA, SMA, RSI, MACD, ATR, volumen, high/low
 │   ├── Signals.ps1            Farveregler for de tekniske signaler
-│   └── HistoricalSetups.ps1   Fase 2: lignende historiske dage og deres udvikling
+│   ├── HistoricalSetups.ps1   Fase 2: lignende historiske dage og deres udvikling
+│   └── TradeLevels.ps1        Fase 3: entry, stop, targets og samlet status
 ├── data                       JSON til frontend (committes)
 │   ├── tsla.json              Aktuel status, indikatorer og signaler
 │   └── tsla-history.json      Ca. 3 års dagsdata til grafen
@@ -137,6 +138,42 @@ Kun dage med 20 dages kendt fremtid kan være matches. Features bruger kun data 
 
 Indstillinger i `Config.ps1`: `ModelYears`, `MatchCount`, `MatchMinGap`.
 
+## Fase 3: Entry, stop, targets og status
+
+Kun long-setups. Alle regler er faste.
+
+| Niveau | Regel |
+|---|---|
+| Support | 20 EMA, 50 SMA, 200 SMA, 20d low og swing lows (120 dage) under kursen |
+| Modstand | 20d high, 52u high, 50/200 SMA og swing highs (250 dage) over kursen |
+| Swing low/high | Laveste low / højeste high blandt 3 dage før og efter |
+| Entry high | Seneste lukkekurs |
+| Entry low | Nærmeste support 0,25-1,5 ATR under kursen. Ellers kurs - 0,75 ATR |
+| Stop | Næste support under entry low - 0,25 ATR. Risiko holdes mellem 1 og 3 ATR |
+| Target 1 | Nærmeste modstand mindst 1 ATR over entry. Ellers 2R |
+| Target 2 | Næste modstand mindst 1 ATR over T1. Ellers max(T1 + 1,5 ATR, 3R) |
+| Horisont | 25-75% af antal dage til T1 blandt historiske matches der ramte |
+
+Niveauer der ligger inden for 0,2% af hinanden slås sammen.
+
+**Historisk test:** Samme procentafstande lægges på de 40 matches fra fase 2. Det tælles om Target 1 eller stop blev ramt først inden for 20 dage. Samme dag tæller som stop.
+
+**Status**
+
+| Krav | Opfyldt | Gør setup uinteressant |
+|---|---|---|
+| Trend-score (20 EMA, 50 SMA, 200 SMA, RSI, MACD) | ≥ 2 | ≤ -2 |
+| Risk/reward til T1 | ≥ 1,5 | < 0,8 |
+| Historisk T1 før stop | ≥ 50% | < 35% |
+| Matches mod alle dage, median 10 dage | ≥ 0 | |
+| Volatilitet | ikke rød | |
+
+- INTERESSANT: alle krav opfyldt.
+- UINTERESSANT: mindst ét krav i højre kolonne.
+- AFVENT: resten.
+
+Event risk indgår ikke endnu (fase 5).
+
 ## Næste fase
 
-Fase 3: Entry zone, stop, targets og risk/reward ud fra ATR, swing high/low og matchenes max op og max ned.
+Fase 4: Nyheder fra Tesla IR og andre kilder med forklarende klassifikation.

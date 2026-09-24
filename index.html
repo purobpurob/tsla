@@ -27,21 +27,25 @@
     <div id="warnings" class="warn-box" hidden></div>
 
     <section class="grid-2">
-      <article class="card">
+      <article class="card" id="setup-card">
         <h2>Current setup</h2>
-        <div class="status status-pending">
+        <div class="status status-pending" id="setup-status">
           <span class="dot"></span>
-          <span>Ikke beregnet endnu</span>
+          <span id="setup-label">Indlæser ...</span>
         </div>
-        <p class="muted">Setup-status, entry, stop og targets bygges i fase 2 og 3. Indtil da viser siden kun de tekniske signaler.</p>
-        <dl class="levels">
-          <div><dt>Entry</dt><dd>-</dd></div>
-          <div><dt>Stop</dt><dd>-</dd></div>
-          <div><dt>Target 1</dt><dd>-</dd></div>
-          <div><dt>Target 2</dt><dd>-</dd></div>
-          <div><dt>Risk/reward</dt><dd>-</dd></div>
-          <div><dt>Horisont</dt><dd>-</dd></div>
-        </dl>
+        <dl class="levels" id="setup-levels"></dl>
+        <h3 class="sub-h">Hvorfor?</h3>
+        <ul class="crit" id="setup-criteria"></ul>
+        <p class="muted small" id="setup-event"></p>
+        <details class="more">
+          <summary>Hvorfor ligger niveauerne her?</summary>
+          <ul class="why" id="setup-why"></ul>
+        </details>
+        <details class="more">
+          <summary>Hvornår er setup ugyldigt?</summary>
+          <ul class="why" id="setup-invalid"></ul>
+        </details>
+        <p class="muted small" id="setup-test"></p>
       </article>
 
       <article class="card">
@@ -110,6 +114,9 @@
         <span class="lg lg-ema20">20 EMA</span>
         <span class="lg lg-sma50">50 SMA</span>
         <span class="lg lg-sma200">200 SMA</span>
+        <span class="lg lg-entry">Entry-zone</span>
+        <span class="lg lg-stop">Stop</span>
+        <span class="lg lg-target">Targets</span>
       </div>
       <div id="chart-price" class="chart chart-main"></div>
       <div class="sub-label">RSI 14</div>

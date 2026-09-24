@@ -102,6 +102,48 @@
   }
 
 
+
+  // ---------- Setup (fase 3) ----------
+  function renderSetup(s) {
+    const box = $('setup-status');
+    if (!s || s.status === 'na' || s.status === 'pending') {
+      $('setup-label').textContent = s && s.reason ? 'Ikke beregnet: ' + s.reason : 'Ikke beregnet endnu';
+      return;
+    }
+    box.className = 'status status-' + s.status;
+    $('setup-label').textContent = s.label;
+
+    const lv = (label, val, pc) => '<div><dt>' + label + '</dt><dd>' + val + (pc != null ? '<span class="pc">' + pct(pc) + '</span>' : '') + '</dd></div>';
+    $('setup-levels').innerHTML =
+      lv('Entry', usd(s.entryLow) + ' - ' + usd(s.entryHigh)) +
+      lv('Stop', usd(s.stop), s.riskPct) +
+      lv('Target 1', usd(s.target1), s.target1Pct) +
+      lv('Target 2', usd(s.target2), s.target2Pct) +
+      lv('Risk/reward', nf1.format(s.riskReward1) + ' / ' + nf1.format(s.riskReward2)) +
+      lv('Horisont', s.horizon.low + '-' + s.horizon.high + ' dage');
+
+    $('setup-criteria').innerHTML = s.criteria.map((c) => {
+      const cls = c.pass ? 'ok' : c.hardFail ? 'hard' : 'no';
+      const ic = c.pass ? '✓' : '✗';
+      return '<li><span class="ic ' + cls + '">' + ic + '</span><span>' + esc(c.label) + '<span class="d">' + esc(c.detail) + '</span></span></li>';
+    }).join('');
+
+    $('setup-event').textContent = 'Event risk: ' + s.eventRisk.note +
+      ' Status: grøn kræver at alle krav er opfyldt. Rød hvis et krav er langt fra. Ellers gul.';
+
+    const w = s.why;
+    $('setup-why').innerHTML = [['Entry', w.entry], ['Stop', w.stop], ['Target 1', w.target1], ['Target 2', w.target2],
+      ['Horisont', s.horizon.source + '.']].map(([k, v]) => '<li><b>' + k + '</b> ' + esc(v) + '</li>').join('');
+    $('setup-invalid').innerHTML = s.invalidation.map((v) => '<li>' + esc(v) + '</li>').join('');
+
+    const t = s.historicalTest;
+    if (t) {
+      $('setup-test').textContent = 'Historisk test på ' + t.matches + ' lignende setups: Target 1 først i ' + t.target1First +
+        ', stop først i ' + t.stopFirst + ', ingen af dem i ' + t.neither + '. Target 2 nået i ' + t.target2 +
+        '. Gennemsnit ' + nf2.format(t.avgR) + 'R pr. trade. ' + t.rule;
+    }
+  }
+
   // ---------- Historiske matches (fase 2) ----------
   const pctCls = (v) => (v > 0 ? 'up' : v < 0 ? 'down' : '');
   const pctCell = (v) => '<td class="' + pctCls(v) + '">' + pct(v) + '</td>';
@@ -179,7 +221,7 @@
   }
 
   // ---------- Grafer ----------
-  function renderCharts(hist) {
+  function renderCharts(hist, setup) {
     const LC = window.LightweightCharts;
     if (!LC) throw new Error('Graf-biblioteket kunne ikke indlæses');
 
@@ -204,8 +246,17 @@
     const line = (key) => rows.map((r) => (r[idx[key]] == null ? { time: r[0] } : { time: r[0], value: r[idx[key]] }));
 
     const main = LC.createChart($('chart-price'), base);
-    main.addCandlestickSeries({ upColor: green, downColor: red, wickUpColor: green, wickDownColor: red, borderVisible: false })
-      .setData(rows.map((r) => ({ time: r[0], open: r[idx.open], high: r[idx.high], low: r[idx.low], close: r[idx.close] })));
+    const candles = main.addCandlestickSeries({ upColor: green, downColor: red, wickUpColor: green, wickDownColor: red, borderVisible: false });
+    candles.setData(rows.map((r) => ({ time: r[0], open: r[idx.open], high: r[idx.high], low: r[idx.low], close: r[idx.close] })));
+    if (setup && setup.entryLow) {
+      const pl = (price, color, title, style) => candles.createPriceLine({ price, color, lineWidth: 1, lineStyle: style, axisLabelVisible: true, title });
+      const accent = cssVar('--accent');
+      pl(setup.entryHigh, accent, 'Entry', 2);
+      pl(setup.entryLow, accent, 'Entry', 2);
+      pl(setup.stop, red, 'Stop', 0);
+      pl(setup.target1, green, 'T1', 0);
+      pl(setup.target2, green, 'T2', 2);
+    }
     const lineOpts = (c) => ({ color: c, lineWidth: 1.5, priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
     main.addLineSeries(lineOpts(cssVar('--ema20'))).setData(line('ema20'));
     main.addLineSeries(lineOpts(cssVar('--sma50'))).setData(line('sma50'));
@@ -255,9 +306,10 @@
       renderTrend(d);
       renderKeyFigures(d);
       renderHistorical(d.historical);
+      renderSetup(d.setup);
       showWarnings(d.dataWarnings);
       $('source').textContent = 'Datakilde: ' + d.source + '. Historik: ' + d.history.bars + ' handelsdage fra ' + d.history.firstDate + '.';
-      renderCharts(hist);
+      renderCharts(hist, d.setup);
     } catch (e) {
       const box = $('error');
       box.hidden = false;
